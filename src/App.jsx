@@ -1,5 +1,11 @@
+import Menu from "./components/Menu";
+
 function App() {
-  return <h1 className="text-3xl">Test</h1>;
+  return (
+    <div className="layout">
+      <Menu />
+    </div>
+  );
 }
 
 export default App;
