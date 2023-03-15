@@ -21,7 +21,7 @@ export default function Create({ pb, getBooklist, userID }) {
 
   return (
     <div className="mt-10">
-      <h2 className="text-neutral900 font-medium mb-1">Insert</h2>
+      <h2 className="text-neutral900 font-medium mb-1">Add a Book</h2>
       <form
         onSubmit={addBook}
         className="flex flex-col justify-start gap-y-1 md:flex-row md:justify-between"
