@@ -12,6 +12,11 @@ function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    const authData = JSON.parse(localStorage.getItem("authData"));
+    setUser(authData);
+  }, []);
+
+  useEffect(() => {
     if (user) {
       getBooklist();
     }
@@ -31,7 +36,7 @@ function App() {
 
   return (
     <main className="w-full max-w-xl mx-auto py-10 md:py-20 p-5">
-      <button onClick={logUser}>LogUser</button>
+      {/* <button onClick={logUser}>LogUser</button> */}
       <Header user={user} />
       {user ? (
         <>

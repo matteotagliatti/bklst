@@ -15,6 +15,7 @@ export function LoginLogout({ pb, setUser }) {
       .collection("users")
       .authWithPassword(data.email, data.password);
     setUser(authData);
+    localStorage.setItem("authData", JSON.stringify(authData));
   }
 
   return (
