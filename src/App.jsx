@@ -20,6 +20,7 @@ function App() {
   async function getBooklist() {
     const records = await pb.collection("books").getFullList({
       filter: "owner.name = " + '"' + user.record.name + '"',
+      sort: "created",
     });
     setBooklist(records);
   }
@@ -31,7 +32,7 @@ function App() {
   return (
     <main className="w-full max-w-xl mx-auto py-10 md:py-20 p-5">
       <button onClick={logUser}>LogUser</button>
-      <Header />
+      <Header user={user} />
       {user ? (
         <>
           <Create pb={pb} getBooklist={getBooklist} />
