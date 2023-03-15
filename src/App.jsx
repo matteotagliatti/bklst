@@ -30,19 +30,12 @@ function App() {
     setBooklist(records);
   }
 
-  function logout() {
-    localStorage.removeItem("authData");
-    setUser(null);
-    pb.authStore.clear();
-  }
-
   return (
     <main className="w-full max-w-xl mx-auto py-10 md:py-20 p-5">
       {/* <button onClick={logUser}>LogUser</button> */}
-      <Header user={user} />
+      <Header user={user} pb={pb} setUser={setUser} />
       {user ? (
         <>
-          <button onClick={logout}>Logout</button>
           <Create pb={pb} userID={user.record.id} getBooklist={getBooklist} />
           <List booklist={booklist} />
         </>
