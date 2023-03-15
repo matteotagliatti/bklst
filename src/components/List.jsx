@@ -1,10 +1,13 @@
 export default function List({ booklist }) {
   return (
     <div className="mt-10">
-      <p>Booklist</p>
+      <p className="text-neutral900 font-medium mb-1">Booklist</p>
       <ul>
         {booklist.map((book) => (
-          <li key={book.id} className="flex justify-between">
+          <li
+            key={book.id}
+            className="flex gap-x-2 justify-between flex-wrap mb-1"
+          >
             <div>
               <span>{book.title}</span> - <span>{book.author}</span>
             </div>

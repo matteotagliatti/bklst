@@ -42,7 +42,7 @@ function App() {
       <Header user={user} />
       {user ? (
         <>
-          <button onClick={logout}>logout</button>
+          <button onClick={logout}>Logout</button>
           <Create pb={pb} userID={user.record.id} getBooklist={getBooklist} />
           <List booklist={booklist} />
         </>

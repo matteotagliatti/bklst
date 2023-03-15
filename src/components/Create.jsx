@@ -21,7 +21,7 @@ export default function Create({ pb, getBooklist, userID }) {
 
   return (
     <div className="mt-10">
-      <p>Insert</p>
+      <p className="text-neutral900 font-medium mb-1">Insert</p>
       <form onSubmit={addBook}>
         <input required type="text" placeholder="Title" ref={titleRef} />
         <input required type="text" placeholder="Author" ref={authorRef} />
