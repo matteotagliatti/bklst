@@ -1,20 +1,32 @@
-import { useState, useEffect } from "react";
-import books from "./books.json";
+import { useState, useEffect, useRef } from "react";
+
+import PocketBase from "pocketbase";
+const pb = new PocketBase("http://127.0.0.1:8090");
 
 function App() {
   const [booklist, setBooklist] = useState([]);
 
+  const titleRef = useRef();
+  const authorRef = useRef();
+
   useEffect(() => {
-    setBooklist(books);
+    getBooklist();
   }, []);
 
-  function addBook() {
-    const newBook = {
-      id: 4,
-      title: "The Lord of the Rings",
-      author: "J.R.R. Tolkien",
+  async function getBooklist() {
+    const records = await pb.collection("books").getFullList({
+      sort: "-created",
+    });
+    setBooklist(records);
+  }
+
+  async function addBook() {
+    const data = {
+      title: titleRef.current.value,
+      author: authorRef.current.value,
     };
-    setBooklist([...booklist, newBook]);
+    const record = await pb.collection("books").create(data);
+    getBooklist();
   }
 
   return (
@@ -25,12 +37,11 @@ function App() {
       </div>
       <div className="mt-10">
         <p>Insert</p>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={addBook}
-        >
-          Add Book
-        </button>
+        <form onSubmit={addBook}>
+          <input required type="text" placeholder="Title" ref={titleRef} />
+          <input required type="text" placeholder="Author" ref={authorRef} />
+          <button type="submit">Add</button>
+        </form>
       </div>
       <div className="mt-10">
         <p>Booklist</p>
