@@ -20,7 +20,7 @@ function App() {
   async function getBooklist() {
     const records = await pb.collection("books").getFullList({
       filter: "owner.name = " + '"' + user.record.name + '"',
-      sort: "created",
+      sort: "-created",
     });
     setBooklist(records);
   }
@@ -35,7 +35,7 @@ function App() {
       <Header user={user} />
       {user ? (
         <>
-          <Create pb={pb} getBooklist={getBooklist} />
+          <Create pb={pb} userID={user.record.id} getBooklist={getBooklist} />
           <List booklist={booklist} />
         </>
       ) : (

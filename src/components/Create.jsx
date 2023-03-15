@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export default function Create({ pb, getBooklist }) {
+export default function Create({ pb, getBooklist, userID }) {
   const titleRef = useRef();
   const authorRef = useRef();
 
@@ -8,6 +8,7 @@ export default function Create({ pb, getBooklist }) {
     const data = {
       title: titleRef.current.value,
       author: authorRef.current.value,
+      owner: userID,
     };
 
     event.preventDefault();
