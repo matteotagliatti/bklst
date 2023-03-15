@@ -1,15 +1,21 @@
 import { useRef } from "react";
 
-export default function Form({ pb }) {
+export default function Create({ pb, getBooklist }) {
   const titleRef = useRef();
   const authorRef = useRef();
 
-  async function addBook() {
+  async function addBook(event) {
     const data = {
       title: titleRef.current.value,
       author: authorRef.current.value,
     };
+
+    event.preventDefault();
     const record = await pb.collection("books").create(data);
+
+    titleRef.current.value = "";
+    authorRef.current.value = "";
+    getBooklist();
   }
 
   return (
