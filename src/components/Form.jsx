@@ -18,7 +18,7 @@ export default function Form({ pb }) {
       <form onSubmit={addBook}>
         <input required type="text" placeholder="Title" ref={titleRef} />
         <input required type="text" placeholder="Author" ref={authorRef} />
-        <button type="submit">Add</button>
+        <input type="submit" value="Add" />
       </form>
     </div>
   );
