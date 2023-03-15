@@ -20,8 +20,11 @@ export default function Login({ pb, setUser }) {
 
   return (
     <div className="mt-10">
-      <h2>Login</h2>
-      <form onSubmit={login}>
+      <h2 className="text-neutral900 font-medium mb-1">Login</h2>
+      <form
+        onSubmit={login}
+        className="flex flex-col justify-start gap-y-1 md:flex-row md:justify-between"
+      >
         <input
           type="text"
           placeholder="email"

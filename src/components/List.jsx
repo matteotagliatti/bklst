@@ -1,7 +1,7 @@
 export default function List({ booklist }) {
   return (
     <div className="mt-10">
-      <p className="text-neutral900 font-medium mb-1">Booklist</p>
+      <h2 className="text-neutral900 font-medium mb-1">Booklist</h2>
       <ul>
         {booklist.map((book) => (
           <li

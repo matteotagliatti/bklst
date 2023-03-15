@@ -21,11 +21,14 @@ export default function Create({ pb, getBooklist, userID }) {
 
   return (
     <div className="mt-10">
-      <p className="text-neutral900 font-medium mb-1">Insert</p>
-      <form onSubmit={addBook}>
+      <h2 className="text-neutral900 font-medium mb-1">Insert</h2>
+      <form
+        onSubmit={addBook}
+        className="flex flex-col justify-start gap-y-1 md:flex-row md:justify-between"
+      >
         <input required type="text" placeholder="Title" ref={titleRef} />
         <input required type="text" placeholder="Author" ref={authorRef} />
-        <input type="submit" value="Add" />
+        <input className="w-fit" type="submit" value="Add" />
       </form>
     </div>
   );
