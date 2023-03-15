@@ -4,7 +4,7 @@ import PocketBase from "pocketbase";
 import Header from "./components/Header";
 import Create from "./components/Create";
 import List from "./components/List";
-import { LoginLogout } from "./components/LogInLogout";
+import Login from "./components/Login";
 const pb = new PocketBase("http://127.0.0.1:8090");
 
 function App() {
@@ -30,9 +30,11 @@ function App() {
     setBooklist(records);
   }
 
-  const logUser = () => {
-    console.log(user);
-  };
+  function logout() {
+    localStorage.removeItem("authData");
+    setUser(null);
+    pb.authStore.clear();
+  }
 
   return (
     <main className="w-full max-w-xl mx-auto py-10 md:py-20 p-5">
@@ -40,11 +42,12 @@ function App() {
       <Header user={user} />
       {user ? (
         <>
+          <button onClick={logout}>logout</button>
           <Create pb={pb} userID={user.record.id} getBooklist={getBooklist} />
           <List booklist={booklist} />
         </>
       ) : (
-        <LoginLogout pb={pb} setUser={setUser} />
+        <Login pb={pb} setUser={setUser} />
       )}
     </main>
   );

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export function LoginLogout({ pb, setUser }) {
+export default function Login({ pb, setUser }) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
