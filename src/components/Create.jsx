@@ -12,7 +12,7 @@ export default function Create({ pb, getBooklist, userID }) {
     };
 
     event.preventDefault();
-    const record = await pb.collection("books").create(data);
+    await pb.collection("books").create(data);
 
     titleRef.current.value = "";
     authorRef.current.value = "";
