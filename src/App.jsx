@@ -1,15 +1,34 @@
 import { useState, useEffect } from "react";
 import PocketBase from "pocketbase";
+import Home from "./routes/Home";
 
-import Header from "./components/Header";
-import Create from "./components/Create";
-import List from "./components/List";
 import Login from "./components/Login";
 const pb = new PocketBase("http://127.0.0.1:8090");
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 function App() {
   const [booklist, setBooklist] = useState([]);
   const [user, setUser] = useState(null);
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: (
+        <Home
+          user={user}
+          pb={pb}
+          setUser={setUser}
+          booklist={booklist}
+          setBooklist={setBooklist}
+        />
+      ),
+    },
+    {
+      path: "/add",
+      element: <div>Add</div>,
+    },
+  ]);
 
   useEffect(() => {
     const authData = JSON.parse(localStorage.getItem("authData"));
@@ -32,16 +51,7 @@ function App() {
 
   return (
     <main className="w-full max-w-xl mx-auto py-10 md:py-20 p-5">
-      {/* <button onClick={logUser}>LogUser</button> */}
-      <Header user={user} pb={pb} setUser={setUser} />
-      {user ? (
-        <>
-          <Create pb={pb} userID={user.record.id} getBooklist={getBooklist} />
-          <List booklist={booklist} />
-        </>
-      ) : (
-        <Login pb={pb} setUser={setUser} />
-      )}
+      <RouterProvider router={router} />
     </main>
   );
 }
