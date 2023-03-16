@@ -1,11 +1,4 @@
-export default function Header({
-  title,
-  subtitle,
-  buttons,
-  user,
-  pb,
-  setUser,
-}) {
+export default function Header({ title, subtitle, buttons, user }) {
   return (
     <header className="flex flex-col md:flex-row flex-start md:justify-between">
       <div>
