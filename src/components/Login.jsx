@@ -37,7 +37,11 @@ export default function Login({ pb, setUser }) {
           defaultValue={"password"}
           ref={passwordRef}
         />
-        <input type="submit" value="Login" />
+        <input
+          className="w-fit hover:cursor-pointer"
+          type="submit"
+          value="Login"
+        />
       </form>
     </div>
   );

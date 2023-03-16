@@ -28,7 +28,11 @@ export default function Create({ pb, getBooklist, userID }) {
       >
         <input required type="text" placeholder="Title" ref={titleRef} />
         <input required type="text" placeholder="Author" ref={authorRef} />
-        <input className="w-fit" type="submit" value="Add" />
+        <input
+          className="w-fit hover:cursor-pointer"
+          type="submit"
+          value="Add"
+        />
       </form>
     </div>
   );
