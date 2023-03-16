@@ -50,7 +50,7 @@ function App() {
   }
 
   return (
-    <main className="w-full max-w-xl mx-auto py-10 md:py-20 p-5">
+    <main className="w-full max-w-xl mx-auto p-5 md:py-20">
       <RouterProvider router={router} />
     </main>
   );
