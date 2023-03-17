@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { redirect } from "react-router-dom";
 
 export default function Create({ pb, getBooklist, userID }) {
   const titleRef = useRef();
@@ -17,11 +18,12 @@ export default function Create({ pb, getBooklist, userID }) {
     titleRef.current.value = "";
     authorRef.current.value = "";
     getBooklist();
+    return redirect("/");
   }
 
   return (
     <div className="mt-10">
-      <h2 className="text-neutral900 font-medium mb-1">Add a Book</h2>
+      <h2 className="text-neutral900 font-medium mb-1">Title and Author</h2>
       <form
         onSubmit={addBook}
         className="flex flex-col justify-start gap-y-1 md:flex-row md:justify-between"
