@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
-import Create from "../components/Create";
 import List from "../components/List";
 import Login from "../components/Login";
 
-export default function Home({ user, pb, setUser, booklist, getBooklist }) {
+export default function Home({ user, pb, setUser, booklist }) {
   const headerTitle = "(Basic) Booklist";
   const headerButtons = [
     <button className="w-fit" onClick={logout}>
@@ -28,7 +27,6 @@ export default function Home({ user, pb, setUser, booklist, getBooklist }) {
       />
       {user ? (
         <>
-          <Create pb={pb} userID={user.record.id} getBooklist={getBooklist} />
           <List booklist={booklist} />
         </>
       ) : (
