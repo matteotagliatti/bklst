@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import PocketBase from "pocketbase";
 import Home from "./routes/Home";
+import Add from "./routes/Add";
 
 import Login from "./components/Login";
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("https://booklist.pockethost.io");
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -26,7 +27,7 @@ function App() {
     },
     {
       path: "/add",
-      element: <div>Add</div>,
+      element: <Add pb={pb} user={user} getBooklist={getBooklist} />,
     },
   ]);
 
