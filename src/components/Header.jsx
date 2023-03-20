@@ -1,4 +1,4 @@
-export default function Header({ title, subtitle, buttons }) {
+export default function Header({ title, subtitle, button }) {
   return (
     <header className="flex flex-col-reverse gap-y-10 md:flex-row flex-start md:justify-between md:items-center">
       <div>
@@ -6,7 +6,7 @@ export default function Header({ title, subtitle, buttons }) {
         <p className="text-neutral-500 mb-1">{subtitle}</p>
       </div>
       <div className="flex flex-row justify-between gap-1 md:items-end md:flex-col">
-        {buttons ? buttons : null}
+        {button}
       </div>
     </header>
   );

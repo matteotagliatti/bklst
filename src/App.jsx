@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
-import PocketBase from "pocketbase";
-import Home from "./routes/Home";
-import Add from "./routes/Add";
-
-import Login from "./components/Login";
-const pb = new PocketBase("https://booklist.pockethost.io");
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import PocketBase from "pocketbase";
+const pb = new PocketBase("https://booklist.pockethost.io");
+import Home from "./routes/Home";
+import Book from "./routes/Book";
 
 function App() {
   const [booklist, setBooklist] = useState([]);
@@ -22,12 +19,13 @@ function App() {
           setUser={setUser}
           booklist={booklist}
           setBooklist={setBooklist}
+          getBooklist={getBooklist}
         />
       ),
     },
     {
-      path: "/add",
-      element: <Add pb={pb} user={user} getBooklist={getBooklist} />,
+      path: "/:id",
+      element: <Book />,
     },
   ]);
 

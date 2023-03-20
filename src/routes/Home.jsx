@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import List from "../components/List";
 import Login from "../components/Login";
+import Create from "../components/Create";
 
-export default function Home({ user, pb, setUser, booklist }) {
+export default function Home({ user, pb, setUser, booklist, getBooklist }) {
   const headerTitle = "(Basic) Booklist";
-  const headerButtons = [
-    <button className="w-fit" onClick={logout}>
+  const headerButton = (
+    <button className="w-fit hover:underline" onClick={logout}>
       Logout
-    </button>,
-    <Link to={"add"}>Add</Link>,
-  ];
+    </button>
+  );
 
   function logout() {
     localStorage.removeItem("authData");
@@ -23,10 +23,11 @@ export default function Home({ user, pb, setUser, booklist }) {
       <Header
         title={user ? `${user.record.name}'s ${headerTitle}` : `${headerTitle}`}
         subtitle={user ? "Your booklist" : " A basic booklist. Login to start"}
-        buttons={user ? headerButtons : null}
+        button={user ? headerButton : null}
       />
       {user ? (
         <>
+          <Create pb={pb} userID={user.record.id} getBooklist={getBooklist} />
           <List booklist={booklist} />
         </>
       ) : (
