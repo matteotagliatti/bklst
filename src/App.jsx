@@ -24,8 +24,8 @@ function App() {
       ),
     },
     {
-      path: "/:id",
-      element: <Book />,
+      path: "/:bookID",
+      element: <Book pb={pb} />,
     },
   ]);
 
