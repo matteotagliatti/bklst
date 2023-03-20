@@ -3,7 +3,15 @@ import List from "../components/List";
 import Login from "../components/Login";
 import CreateEdit from "../components/CreateEdit";
 
-export default function Home({ user, pb, setUser, booklist, getBooklist }) {
+export default function Home({
+  user,
+  pb,
+  setUser,
+  getBooklist,
+  booksToRead,
+  booksReading,
+  booksRead,
+}) {
   const headerTitle = "(Basic) Booklist";
   const headerButton = (
     <button className="w-fit hover:underline" onClick={logout}>
@@ -31,7 +39,11 @@ export default function Home({ user, pb, setUser, booklist, getBooklist }) {
             userID={user.record.id}
             getBooklist={getBooklist}
           />
-          <List booklist={booklist} />
+          <List
+            booksToRead={booksToRead}
+            booksReading={booksReading}
+            booksRead={booksRead}
+          />
         </>
       ) : (
         <Login pb={pb} setUser={setUser} />

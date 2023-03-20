@@ -1,6 +1,6 @@
 # Todo
 
-- [ ] Pagina Book dinamica
+- [x] Pagina Book dinamica
+- [x] Implementare Read/InProgress/ToRead
 - [ ] Store al posto di LocalStorage per salvare i dati dell'utente
-- [ ] Implementare Read/InProgress/ToRead
 - [ ] Aggiungere Modal su Delete ?

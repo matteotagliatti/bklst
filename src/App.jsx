@@ -6,7 +6,9 @@ import Home from "./routes/Home";
 import Book from "./routes/Book";
 
 function App() {
-  const [booklist, setBooklist] = useState([]);
+  const [booksToRead, setBooksToRead] = useState([]);
+  const [booksReading, setBooksReading] = useState([]);
+  const [booksRead, setBooksRead] = useState([]);
   const [user, setUser] = useState(null);
 
   const router = createBrowserRouter([
@@ -17,8 +19,9 @@ function App() {
           user={user}
           pb={pb}
           setUser={setUser}
-          booklist={booklist}
-          setBooklist={setBooklist}
+          booksToRead={booksToRead}
+          booksReading={booksReading}
+          booksRead={booksRead}
           getBooklist={getBooklist}
         />
       ),
@@ -41,11 +44,16 @@ function App() {
   }, [user]);
 
   async function getBooklist() {
-    const records = await pb.collection("books").getFullList({
+    const books = await pb.collection("books").getFullList({
       filter: "owner.name = " + '"' + user.record.name + '"',
       sort: "-created",
     });
-    setBooklist(records);
+    const booksToRead = books.filter((book) => book.status === "to-read");
+    const booksReading = books.filter((book) => book.status === "reading");
+    const booksRead = books.filter((book) => book.status === "read");
+    setBooksToRead(booksToRead);
+    setBooksReading(booksReading);
+    setBooksRead(booksRead);
   }
 
   return (
