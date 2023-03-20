@@ -1,7 +1,7 @@
 import Header from "../components/Header";
 import List from "../components/List";
 import Login from "../components/Login";
-import Create from "../components/Create";
+import CreateEdit from "../components/CreateEdit";
 
 export default function Home({ user, pb, setUser, booklist, getBooklist }) {
   const headerTitle = "(Basic) Booklist";
@@ -26,7 +26,11 @@ export default function Home({ user, pb, setUser, booklist, getBooklist }) {
       />
       {user ? (
         <>
-          <Create pb={pb} userID={user.record.id} getBooklist={getBooklist} />
+          <CreateEdit
+            pb={pb}
+            userID={user.record.id}
+            getBooklist={getBooklist}
+          />
           <List booklist={booklist} />
         </>
       ) : (
