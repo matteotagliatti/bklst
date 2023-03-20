@@ -38,7 +38,7 @@ function App() {
   ]);
 
   useEffect(() => {
-    const authData = JSON.parse(localStorage.getItem("authData"));
+    const authData = JSON.parse(sessionStorage.getItem("authData"));
     setUser(authData);
   }, []);
 

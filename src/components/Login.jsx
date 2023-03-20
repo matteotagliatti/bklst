@@ -15,7 +15,7 @@ export default function Login({ pb, setUser }) {
       .collection("users")
       .authWithPassword(data.email, data.password);
     setUser(authData);
-    localStorage.setItem("authData", JSON.stringify(authData));
+    sessionStorage.setItem("authData", JSON.stringify(authData));
   }
 
   return (
