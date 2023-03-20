@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default function CreateEdit({ pb, getBooklist, userID, book, bookID }) {
+export default function CreateEdit({ pb, userID, book, bookID }) {
   const titleRef = useRef();
   const authorRef = useRef();
   const statusRef = useRef();
@@ -23,10 +23,7 @@ export default function CreateEdit({ pb, getBooklist, userID, book, bookID }) {
 
     event.preventDefault();
     await pb.collection("books").create(data);
-
-    titleRef.current.value = "";
-    authorRef.current.value = "";
-    getBooklist();
+    window.location.href = "/";
   }
 
   async function updateBook(event) {

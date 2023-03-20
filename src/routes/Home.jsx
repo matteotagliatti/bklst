@@ -31,20 +31,14 @@ export default function Home({
         title={user ? `${user.record.name}'s ${headerTitle}` : `${headerTitle}`}
         subtitle={user ? "Your booklist" : " A basic booklist. Login to start"}
         button={user ? headerButton : null}
+        add={user ? true : false}
       />
       {user ? (
-        <>
-          <CreateEdit
-            pb={pb}
-            userID={user.record.id}
-            getBooklist={getBooklist}
-          />
-          <List
-            booksToRead={booksToRead}
-            booksReading={booksReading}
-            booksRead={booksRead}
-          />
-        </>
+        <List
+          booksToRead={booksToRead}
+          booksReading={booksReading}
+          booksRead={booksRead}
+        />
       ) : (
         <Login pb={pb} setUser={setUser} />
       )}
