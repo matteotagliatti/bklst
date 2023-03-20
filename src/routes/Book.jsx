@@ -36,12 +36,22 @@ export default function Book({ pb }) {
       {book ? (
         <>
           <CreateEdit pb={pb} book={book} bookID={bookID} />
-          <button
-            className="w-fit text-red-600 hover:underline"
-            onClick={deleteBook}
-          >
-            Delete
-          </button>
+          <a href="#confirm" target="_self" className="w-fit">
+            <span className="text-red-600">Delete</span>
+            <div
+              id="confirm"
+              role="dialog"
+              className="invisible target:visible flex gap-2"
+            >
+              <p>Are you sure?</p>
+              <button
+                className="w-fit text-red-600 hover:underline"
+                onClick={deleteBook}
+              >
+                Confirm
+              </button>
+            </div>
+          </a>
         </>
       ) : null}
     </>

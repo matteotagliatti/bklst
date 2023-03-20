@@ -7,6 +7,7 @@ import Add from "./routes/Add";
 import Book from "./routes/Book";
 
 function App() {
+  const [books, setBooks] = useState([]);
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksReading, setBooksReading] = useState([]);
   const [booksRead, setBooksRead] = useState([]);
@@ -20,6 +21,7 @@ function App() {
           user={user}
           pb={pb}
           setUser={setUser}
+          books={books}
           booksToRead={booksToRead}
           booksReading={booksReading}
           booksRead={booksRead}
@@ -53,6 +55,7 @@ function App() {
       filter: "owner.name = " + '"' + user.record.name + '"',
       sort: "-created",
     });
+    setBooks(books);
     const booksToRead = books.filter((book) => book.status === "to-read");
     const booksReading = books.filter((book) => book.status === "reading");
     const booksRead = books.filter((book) => book.status === "read");

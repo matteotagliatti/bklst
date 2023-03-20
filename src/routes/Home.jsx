@@ -1,13 +1,12 @@
 import Header from "../components/Header";
-import List from "../components/List";
+import Booklist from "../components/Booklist";
 import Login from "../components/Login";
-import CreateEdit from "../components/CreateEdit";
 
 export default function Home({
   user,
   pb,
   setUser,
-  getBooklist,
+  books,
   booksToRead,
   booksReading,
   booksRead,
@@ -20,7 +19,7 @@ export default function Home({
   );
 
   function logout() {
-    localStorage.removeItem("authData");
+    sessionStorage.removeItem("authData");
     setUser(null);
     pb.authStore.clear();
   }
@@ -34,7 +33,8 @@ export default function Home({
         add={user ? true : false}
       />
       {user ? (
-        <List
+        <Booklist
+          books={books}
           booksToRead={booksToRead}
           booksReading={booksReading}
           booksRead={booksRead}
