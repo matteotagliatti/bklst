@@ -22,7 +22,7 @@ export default function Create({ pb, getBooklist, userID }) {
   }
 
   return (
-    <div className="mt-10">
+    <section>
       <h2 className="text-neutral900 font-medium mb-1">Add book</h2>
       <form
         onSubmit={addBook}
@@ -36,6 +36,6 @@ export default function Create({ pb, getBooklist, userID }) {
           value="Add"
         />
       </form>
-    </div>
+    </section>
   );
 }

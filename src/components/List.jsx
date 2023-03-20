@@ -1,6 +1,6 @@
 export default function List({ booklist }) {
   return (
-    <div className="mt-10">
+    <section>
       <h2 className="text-neutral900 font-medium mb-1">Booklist</h2>
       <ul>
         {booklist.map((book) => (
@@ -16,6 +16,6 @@ export default function List({ booklist }) {
           </a>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }

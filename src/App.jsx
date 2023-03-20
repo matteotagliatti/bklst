@@ -49,7 +49,7 @@ function App() {
   }
 
   return (
-    <main className="w-full max-w-xl mx-auto p-5 md:py-20">
+    <main className="w-full max-w-xl mx-auto p-5 md:py-20 flex flex-col gap-10">
       <RouterProvider router={router} />
     </main>
   );

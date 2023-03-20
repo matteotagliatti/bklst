@@ -19,7 +19,7 @@ export default function Login({ pb, setUser }) {
   }
 
   return (
-    <div className="mt-10">
+    <section>
       <h2 className="text-neutral900 font-medium mb-1">Login</h2>
       <form
         onSubmit={login}
@@ -43,6 +43,6 @@ export default function Login({ pb, setUser }) {
           value="Login"
         />
       </form>
-    </div>
+    </section>
   );
 }
