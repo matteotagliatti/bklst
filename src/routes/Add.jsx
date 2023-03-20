@@ -5,7 +5,7 @@ export default function Add({ pb, user }) {
   return (
     <>
       <Link to="/">-- back</Link>
-      <CreateEdit pb={pb} userID={user.record.id} />
+      {user ? <CreateEdit pb={pb} userID={user.record.id} /> : null}
     </>
   );
 }
