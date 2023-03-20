@@ -20,7 +20,6 @@ export default function Create({ pb, getBooklist, userID }) {
     titleRef.current.value = "";
     authorRef.current.value = "";
     getBooklist();
-    return redirect("/");
   }
 
   return (
