@@ -20,10 +20,32 @@ export default function Book({ pb }) {
     setBook(book);
   }
 
+  async function deleteBook() {
+    await pb.collection("books").delete(bookID);
+    window.location.href = "/";
+  }
+
   return (
     <>
-      <Header title="Book" subtitle="Book details" button={headerButton} />
-      <span>{bookID}</span>
+      <Header
+        title={book ? book.title : "Loading data..."}
+        subtitle={book ? book.author : ""}
+        button={headerButton}
+      />
+      <div>
+        {book ? (
+          <>
+            <button
+              className="w-fit text-red-600 hover:underline"
+              onClick={deleteBook}
+            >
+              Delete
+            </button>
+          </>
+        ) : (
+          "Loading data..."
+        )}
+      </div>
     </>
   );
 }
