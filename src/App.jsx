@@ -5,6 +5,7 @@ const pb = new PocketBase("https://booklist.pockethost.io");
 import Home from "./routes/Home";
 import Search from "./routes/Search";
 import Book from "./routes/Book";
+import Add from "./routes/Add";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -32,6 +33,10 @@ function App() {
     {
       path: "/search",
       element: <Search />,
+    },
+    {
+      path: "/add",
+      element: <Add pb={pb} user={user} />,
     },
     {
       path: "/:bookID",
