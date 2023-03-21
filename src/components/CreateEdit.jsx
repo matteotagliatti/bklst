@@ -40,10 +40,10 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
   return (
     <section>
       <h2 className="text-neutral900 font-medium mb-1">
-        {book ? "Update" : "Add"} book
+        {bookID ? "Update" : "Add"} book
       </h2>
       <form
-        onSubmit={book ? updateBook : addBook}
+        onSubmit={bookID ? updateBook : addBook}
         className="flex flex-col justify-start gap-y-1 md:gap-y-2"
       >
         <div className="flex gap-2">
@@ -78,7 +78,7 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
         <input
           className="w-fit hover:cursor-pointer hover:underline"
           type="submit"
-          value={`${book ? "Update" : "Add"}`}
+          value={`${bookID ? "Update" : "Add"}`}
         />
       </form>
     </section>
