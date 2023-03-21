@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useRef } from "react";
 
-export default function Search() {
+export default function Search({ setSearchedBooks }) {
   const api_key = import.meta.env.VITE_GOOGLE_API_KEY;
   const titleRef = useRef();
   const authorRef = useRef();
@@ -12,8 +12,8 @@ export default function Search() {
       const response = await axios.get(
         `https://www.googleapis.com/books/v1/volumes?q=${titleRef.current.value}+inauthor:${authorRef.current.value}&key=${api_key}`
       );
-      const books = response.data.items;
-      console.log(books);
+      let books = response.data.items.slice(0, 6);
+      setSearchedBooks(books);
     } catch (error) {
       console.log(error);
     }
