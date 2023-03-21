@@ -37,13 +37,20 @@ export default function Search({ setSearchedBooks }) {
             type="text"
             placeholder="Title"
             ref={titleRef}
+            defaultValue={"East of eden"}
           />
         </div>
         <div className="flex gap-2">
           <label htmlFor="author" className="text-neutral-500">
             Author:
           </label>
-          <input required type="text" placeholder="Author" ref={authorRef} />
+          <input
+            required
+            type="text"
+            placeholder="Author"
+            ref={authorRef}
+            defaultValue={"Steinbeck"}
+          />
         </div>
 
         <input
