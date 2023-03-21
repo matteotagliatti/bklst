@@ -4,12 +4,14 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
   const titleRef = useRef();
   const authorRef = useRef();
   const statusRef = useRef();
+  const imgRef = useRef();
 
   useEffect(() => {
     if (book) {
       titleRef.current.value = book.title;
       authorRef.current.value = book.author;
       statusRef.current.value = book.status;
+      imgRef.current.value = book.img;
     }
   }, [book]);
 
@@ -18,6 +20,7 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
       title: titleRef.current.value,
       author: authorRef.current.value,
       status: statusRef.current.value,
+      img: imgRef.current.value,
       owner: userID,
     };
 
@@ -32,6 +35,7 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
       title: titleRef.current.value,
       author: authorRef.current.value,
       status: statusRef.current.value,
+      img: imgRef.current.value,
     };
     await pb.collection("books").update(bookID, data);
     window.location.href = "/";
@@ -46,6 +50,7 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
         onSubmit={bookID ? updateBook : addBook}
         className="flex flex-col justify-start gap-y-1 md:gap-y-2"
       >
+        <img className="w-28 object-cover" src={book.img} alt="" ref={imgRef} />
         <div className="flex gap-2">
           <label htmlFor="title" className="text-neutral-500">
             Title:

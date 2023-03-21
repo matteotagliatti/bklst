@@ -8,6 +8,7 @@ export default function Add({ pb, user }) {
     title: locationBook.volumeInfo.title,
     author: locationBook.volumeInfo.authors[0],
     status: "to-read",
+    img: locationBook.volumeInfo.imageLinks.thumbnail,
   };
 
   return (

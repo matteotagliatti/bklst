@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 
 export default function SearchView({ searchedBooks }) {
-  console.log(searchedBooks);
-
   return (
     <section>
       <h2 className="text-neutral900 font-medium mb-1">Searched books</h2>
