@@ -39,7 +39,7 @@ function App() {
       element: <Add pb={pb} user={user} />,
     },
     {
-      path: "/:bookID",
+      path: "/book/:bookID",
       element: <Book pb={pb} />,
     },
   ]);

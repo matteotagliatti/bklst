@@ -8,7 +8,7 @@ export default function List({ books }) {
           {books.map((book) => (
             <a
               key={book.id}
-              href={`/${book.id}`}
+              href={`/book/${book.id}`}
               className="flex gap-x-2 justify-between flex-wrap mb-1 hover:underline hover:cursor-pointer"
             >
               <div>
