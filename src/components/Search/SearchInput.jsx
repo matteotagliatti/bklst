@@ -15,6 +15,7 @@ export default function SearchInput({ setSearchedBooks }) {
       );
       let books = response.data.items.slice(0, 6);
       setSearchedBooks(books);
+      sessionStorage.setItem("searchedBooks", JSON.stringify(books));
     } catch (error) {
       console.log(error);
     }
