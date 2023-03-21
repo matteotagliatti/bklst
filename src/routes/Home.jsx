@@ -30,7 +30,7 @@ export default function Home({
         title={user ? `${user.record.name}'s ${headerTitle}` : `${headerTitle}`}
         subtitle={user ? "Your booklist" : " A basic booklist. Login to start"}
         button={user ? headerButton : null}
-        add={user ? true : false}
+        search={user ? true : false}
       />
       {user ? (
         <Booklist

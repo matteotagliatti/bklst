@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Header({ title, subtitle, button, add }) {
+export default function Header({ title, subtitle, button, search }) {
   return (
     <header className="flex flex-col-reverse gap-y-10 md:flex-row flex-start md:justify-between md:items-center">
       <div>
@@ -9,7 +9,7 @@ export default function Header({ title, subtitle, button, add }) {
       </div>
       <div className="flex flex-row justify-between gap-1 md:items-end md:flex-col">
         {button}
-        {add ? <Link to="/add">Add</Link> : null}
+        {search ? <Link to="/search">Search</Link> : null}
       </div>
     </header>
   );

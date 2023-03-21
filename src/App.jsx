@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PocketBase from "pocketbase";
 const pb = new PocketBase("https://booklist.pockethost.io");
 import Home from "./routes/Home";
-import Add from "./routes/Add";
+import Search from "./routes/Search";
 import Book from "./routes/Book";
 
 function App() {
@@ -30,8 +30,8 @@ function App() {
       ),
     },
     {
-      path: "/add",
-      element: <Add pb={pb} user={user} />,
+      path: "/search",
+      element: <Search />,
     },
     {
       path: "/:bookID",
