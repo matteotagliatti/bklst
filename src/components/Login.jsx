@@ -38,7 +38,7 @@ export default function Login({ pb, setUser }) {
           ref={passwordRef}
         />
         <input
-          className="w-fit hover:cursor-pointer"
+          className="w-fit hover:cursor-pointer hover:underline"
           type="submit"
           value="Login"
         />
