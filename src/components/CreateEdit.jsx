@@ -73,6 +73,7 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
             <option value="reading">Reading</option>
             <option value="read">Read</option>
           </select>
+          {/* {statusRef.current.value === "read" ? <p>add a datepicker</p> : null} */}
         </div>
         <input
           className="w-fit hover:cursor-pointer hover:underline"
