@@ -11,7 +11,7 @@ export default function SearchInput({ setSearchedBooks }) {
       setSearchedBooks([]);
       e.preventDefault();
       const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${titleRef.current.value}+inauthor:${authorRef.current.value}&key=${api_key}`
+        `https://www.googleapis.com/books/v1/volumes?q=${titleRef.current.value}+inauthor:${authorRef.current.value}&orderBy=relevance&printType=BOOKS&key=${api_key}`
       );
       let books = response.data.items.slice(0, 6);
       setSearchedBooks(books);
