@@ -8,6 +8,7 @@ export default function Search({ setSearchedBooks }) {
 
   async function fetchBooks(e) {
     try {
+      setSearchedBooks([]);
       e.preventDefault();
       const response = await axios.get(
         `https://www.googleapis.com/books/v1/volumes?q=${titleRef.current.value}+inauthor:${authorRef.current.value}&key=${api_key}`
