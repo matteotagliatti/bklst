@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import Header from "../components/Header";
+import Header from "../components/Shared/Header";
 import CreateEdit from "../components/CreateEdit";
 
 export default function Book({ pb }) {

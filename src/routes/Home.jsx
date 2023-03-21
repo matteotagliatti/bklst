@@ -1,6 +1,6 @@
-import Header from "../components/Header";
-import Booklist from "../components/Booklist";
-import Login from "../components/Login";
+import Header from "../components/Shared/Header";
+import Booklist from "../components/Home/Booklist";
+import Login from "../components/Home/Login";
 
 export default function Home({
   user,

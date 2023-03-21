@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useRef } from "react";
 
-export default function Search({ setSearchedBooks }) {
+export default function SearchInput({ setSearchedBooks }) {
   const api_key = import.meta.env.VITE_GOOGLE_API_KEY;
   const titleRef = useRef();
   const authorRef = useRef();

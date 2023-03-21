@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Search from "../components/Search";
-import SearchView from "../components/SearchView";
+import SearchInput from "../components/Search/SearchInput";
+import SearchView from "../components/Search/SearchView";
 
-export default function Add({ pb, user }) {
+export default function Search() {
   const [searchedBooks, setSearchedBooks] = useState([]);
 
   return (
     <>
       <Link to="/">-- back</Link>
-      <Search setSearchedBooks={setSearchedBooks} />
+      <SearchInput setSearchedBooks={setSearchedBooks} />
       {searchedBooks.length > 0 ? (
         <SearchView searchedBooks={searchedBooks} />
       ) : null}
