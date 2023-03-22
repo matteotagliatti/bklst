@@ -28,7 +28,7 @@ export default function Home({
     <>
       <Header
         title={user ? `${user.record.name}'s ${headerTitle}` : `${headerTitle}`}
-        subtitle={user ? "Your booklist" : " A basic booklist. Login to start"}
+        subtitle={user ? "Your booklist." : " A basic booklist. Login to start"}
         button={user ? headerButton : null}
         search={user ? true : false}
       />
