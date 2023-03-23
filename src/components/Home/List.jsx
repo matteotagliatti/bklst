@@ -14,7 +14,7 @@ export default function List({ books }) {
               <div>
                 <span>{book.title}</span> - <span>{book.author}</span>
               </div>
-              <span>{book.created.split("-", 2).join("-")}</span>
+              {/* <span>{book.finished}</span> */}
             </a>
           ))}
         </>
