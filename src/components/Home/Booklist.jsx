@@ -13,21 +13,21 @@ export default function Booklist({
           <h2 className="text-neutral900 font-medium mb-1">Booklist</h2>
 
           {booksReading.length > 0 ? (
-            <div className="mt-3">
+            <div className="mt-5">
               <h3 className="text-neutral900 font-medium mb-1">Reading</h3>
               <List books={booksReading} />
             </div>
           ) : null}
 
           {booksRead.length > 0 ? (
-            <div className="mt-3">
+            <div className="mt-5">
               <h3 className="text-neutral900 font-medium mb-1">Read</h3>
               <List books={booksRead} />
             </div>
           ) : null}
 
           {booksToRead.length > 0 ? (
-            <div className="mt-3">
+            <div className="mt-5">
               <h3 className="text-neutral900 font-medium mb-1">To read</h3>
               <List books={booksToRead} />
             </div>
