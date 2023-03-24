@@ -1,30 +1,36 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CreateEdit({ pb, userID, book, bookID }) {
+  const [bookIsFinished, setBookIsFinished] = useState(false);
   const titleRef = useRef();
   const authorRef = useRef();
   const statusRef = useRef();
   const imgRef = useRef();
+  const finishedRef = useRef();
 
   useEffect(() => {
     if (book) {
       titleRef.current.value = book.title;
       authorRef.current.value = book.author;
       statusRef.current.value = book.status;
+      finishedRef.current.value = book.finished
+        ? book.finished.replace(/ .*/, "")
+        : null;
       imgRef.current.value = book.img;
     }
   }, [book]);
 
   async function addBook(event) {
+    event.preventDefault();
     const data = {
       title: titleRef.current.value,
       author: authorRef.current.value,
       status: statusRef.current.value,
       img: imgRef.current.value,
+      finished:
+        statusRef.current.value === "read" ? finishedRef.current.value : null,
       owner: userID,
     };
-
-    event.preventDefault();
     await pb.collection("books").create(data);
     window.location.href = "/";
   }
@@ -35,11 +41,25 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
       title: titleRef.current.value,
       author: authorRef.current.value,
       status: statusRef.current.value,
+      finished:
+        statusRef.current.value === "read" ? finishedRef.current.value : null,
       img: imgRef.current.value,
     };
     await pb.collection("books").update(bookID, data);
     window.location.href = "/";
   }
+
+  function toggleFinishedBook() {
+    if (statusRef.current.value === "read") {
+      setBookIsFinished(true);
+    } else {
+      setBookIsFinished(false);
+    }
+  }
+
+  useEffect(() => {
+    toggleFinishedBook();
+  });
 
   return (
     <section>
@@ -73,12 +93,20 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
           <label className="text-neutral-500" htmlFor="status">
             Status:
           </label>
-          <select className="w-fit" ref={statusRef}>
+          <select
+            className="w-fit"
+            ref={statusRef}
+            onChange={toggleFinishedBook}
+          >
             <option value="to-read">To Read</option>
             <option value="reading">Reading</option>
             <option value="read">Read</option>
           </select>
-          {/* {statusRef.current.value === "read" ? <p>add a datepicker</p> : null} */}
+          <input
+            className={bookIsFinished ? "visible" : "hidden"}
+            type="date"
+            ref={finishedRef}
+          />
         </div>
         <input
           className="w-fit hover:cursor-pointer hover:underline"
