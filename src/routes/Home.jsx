@@ -12,11 +12,6 @@ export default function Home({
   booksRead,
 }) {
   const headerTitle = "(Basic) Booklist";
-  const headerButton = (
-    <button className="w-fit hover:underline" onClick={logout}>
-      Logout
-    </button>
-  );
 
   function logout() {
     sessionStorage.removeItem("authData");
@@ -29,8 +24,8 @@ export default function Home({
       <Header
         title={user ? `${user.record.name}'s ${headerTitle}` : `${headerTitle}`}
         subtitle={user ? "Your booklist." : " A basic booklist. Login to start"}
-        button={user ? headerButton : null}
-        search={user ? true : false}
+        buttons={user ? true : false}
+        logout={logout}
       />
       {user ? (
         <Booklist

@@ -4,7 +4,7 @@ export default function SearchView({ searchedBooks }) {
   return (
     <section>
       <h2 className="text-neutral900 font-medium mb-1">Searched books</h2>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {searchedBooks.map((book, index) => {
           const title = book.volumeInfo.title;
           const author = book.volumeInfo.authors[0];
