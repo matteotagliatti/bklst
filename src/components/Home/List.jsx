@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function List({ books }) {
   return (
     <>
@@ -24,9 +26,9 @@ export default function List({ books }) {
               return 0;
             })
             .map((book) => (
-              <a
+              <Link
                 key={book.id}
-                href={`/book/${book.id}`}
+                to={`/book/${book.id}`}
                 className="flex gap-x-2 justify-between flex-wrap mb-1 hover:underline hover:cursor-pointer"
               >
                 <div>
@@ -35,7 +37,7 @@ export default function List({ books }) {
                 {book.status === "read" ? (
                   <span>{book.finished.replace(/ .*/, "")}</span>
                 ) : null}
-              </a>
+              </Link>
             ))}
         </>
       )}
