@@ -12,20 +12,26 @@ export default function Booklist({
         <section>
           <h2 className="text-neutral900 font-medium mb-1">Booklist</h2>
 
-          <div className="mt-3">
-            <h3 className="text-neutral900 font-medium mb-1">Reading</h3>
-            <List books={booksReading} />
-          </div>
+          {booksReading.length > 0 ? (
+            <div className="mt-3">
+              <h3 className="text-neutral900 font-medium mb-1">Reading</h3>
+              <List books={booksReading} />
+            </div>
+          ) : null}
 
-          <div className="mt-3">
-            <h3 className="text-neutral900 font-medium mb-1">Read</h3>
-            <List books={booksRead} />
-          </div>
+          {booksRead.length > 0 ? (
+            <div className="mt-3">
+              <h3 className="text-neutral900 font-medium mb-1">Read</h3>
+              <List books={booksRead} />
+            </div>
+          ) : null}
 
-          <div className="mt-3">
-            <h3 className="text-neutral900 font-medium mb-1">To read</h3>
-            <List books={booksToRead} />
-          </div>
+          {booksToRead.length > 0 ? (
+            <div className="mt-3">
+              <h3 className="text-neutral900 font-medium mb-1">To read</h3>
+              <List books={booksToRead} />
+            </div>
+          ) : null}
         </section>
       ) : (
         <h2>Loading...</h2>
