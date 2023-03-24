@@ -16,7 +16,6 @@ export default function Search() {
       <Link to="/">-- back</Link>
       <SearchInput setSearchedBooks={setSearchedBooks} />
       {searchedBooks ? <SearchView searchedBooks={searchedBooks} /> : null}
-      {/* {user ? <CreateEdit pb={pb} userID={user.record.id} /> : null} */}
     </>
   );
 }
