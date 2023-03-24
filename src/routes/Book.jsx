@@ -6,11 +6,6 @@ import CreateEdit from "../components/CreateEdit";
 export default function Book({ pb }) {
   const { bookID } = useParams();
   const [book, setBook] = useState(null);
-  const headerButton = (
-    <Link className="hover:underline" to="/">
-      -- Back
-    </Link>
-  );
 
   useEffect(() => {
     getBook();
@@ -28,10 +23,12 @@ export default function Book({ pb }) {
 
   return (
     <>
+      <Link className="hover:underline" to="/">
+        -- Back
+      </Link>
       <Header
         title={book ? book.title : "Loading data..."}
         subtitle={book ? book.author : ""}
-        button={headerButton}
       />
       {book ? (
         <>
