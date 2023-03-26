@@ -6,5 +6,7 @@
 - [x] Aggiungere Modal su Delete ?
 - [x] Implementare Books API
 - [x] Miglior gestione delle date
+- [x] Netlify fix ricarico pagina
+- [ ] Loading quando non hai libri
 - [ ] Miglior Cerca
 - [ ] Books visti a grid con immagini

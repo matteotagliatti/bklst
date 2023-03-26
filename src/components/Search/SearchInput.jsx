@@ -13,7 +13,11 @@ export default function SearchInput({ setSearchedBooks }) {
       const response = await axios.get(
         `https://www.googleapis.com/books/v1/volumes?q=${titleRef.current.value}+inauthor:${authorRef.current.value}&orderBy=relevance&printType=BOOKS&key=${api_key}`
       );
-      let books = response.data.items.slice(0, 6);
+      console.log(response.data.items.length);
+      let books =
+        response.data.items.length > 6
+          ? response.data.items.slice(0, 6)
+          : response.data.items;
       setSearchedBooks(books);
       sessionStorage.setItem("searchedBooks", JSON.stringify(books));
     } catch (error) {
