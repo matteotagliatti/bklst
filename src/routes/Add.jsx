@@ -1,5 +1,5 @@
 import { useLocation, Link } from "react-router-dom";
-import CreateEdit from "../components/CreateEdit";
+import CreateEdit from "../components/Shared/CreateEdit";
 
 export default function Add({ pb, user }) {
   const location = useLocation();

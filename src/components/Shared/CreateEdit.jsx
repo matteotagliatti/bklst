@@ -70,7 +70,19 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
         onSubmit={bookID ? updateBook : addBook}
         className="flex flex-col justify-start gap-y-1 md:gap-y-2"
       >
-        <img className="w-28 object-cover" src={book.img} alt="" ref={imgRef} />
+        <img className="w-28 object-cover" src={book.img} alt={book.title} />
+        <div className="flex gap-2">
+          <label htmlFor="img-url" className="text-neutral-500">
+            Img Url:
+          </label>
+          <input
+            id="img-url"
+            required
+            type="text"
+            placeholder="Img Url"
+            ref={imgRef}
+          />
+        </div>
         <div className="flex gap-2">
           <label htmlFor="title" className="text-neutral-500">
             Title:

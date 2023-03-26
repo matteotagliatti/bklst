@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Header from "../components/Shared/Header";
-import CreateEdit from "../components/CreateEdit";
+import CreateEdit from "../components/Shared/CreateEdit";
 
 export default function Book({ pb }) {
   const { bookID } = useParams();
