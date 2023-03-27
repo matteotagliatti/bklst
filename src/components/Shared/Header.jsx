@@ -8,7 +8,7 @@ export default function Header({ title, subtitle, buttons, logout }) {
         <p className="text-neutral-500 mb-1">{subtitle}</p>
       </div>
       {buttons ? (
-        <div className="flex flex-row justify-between gap-1 md:items-end md:flex-col">
+        <div className="flex flex-row-reverse justify-between gap-1 md:items-end md:flex-col">
           <button className="w-fit hover:underline" onClick={logout}>
             Logout
           </button>
