@@ -1,22 +1,42 @@
 import { Link } from "react-router-dom";
 
-export default function Header({ title, subtitle, buttons, logout }) {
+export default function Header({ user, setUser, pb }) {
+  function logout() {
+    sessionStorage.removeItem("authData");
+    setUser(null);
+    pb.authStore.clear();
+  }
+
   return (
-    <header className="flex flex-col-reverse md:flex-row flex-start md:justify-between md:items-center gap-y-10 md:gap-y-0">
-      <div>
-        <h1 className="font-medium mb-1 text-neutral-900">{title}</h1>
-        <p className="text-neutral-500 mb-1">{subtitle}</p>
-      </div>
-      {buttons ? (
-        <div className="flex flex-row-reverse justify-between gap-1 md:items-end md:flex-col">
-          <button className="w-fit hover:underline" onClick={logout}>
-            Logout
-          </button>
-          <Link className="w-fit hover:underline" to="/search">
-            Search
+    <header className="absolute top-0 left-0 right-0 h-12 px-3 py-4 mx-2 flex justify-between items-center border-b border-neutral-100">
+      <Link className="text-sm underline italic" to="/">
+        Index
+      </Link>
+      <nav>
+        {user ? (
+          <div className="flex gap-4">
+            <Link
+              className="text-sm text-neutral-400 hover:underline"
+              to="/search"
+            >
+              Search
+            </Link>
+            <button
+              className="text-sm text-neutral-400 hover:underline"
+              onClick={logout}
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <Link
+            className="text-sm text-neutral-400 hover:underline"
+            to="/login"
+          >
+            Login
           </Link>
-        </div>
-      ) : null}
+        )}
+      </nav>
     </header>
   );
 }

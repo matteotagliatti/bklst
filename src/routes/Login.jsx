@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import Layout from "../components/Shared/Layout";
 
 export default function Login({ pb, setUser }) {
   const emailRef = useRef();
@@ -16,10 +17,11 @@ export default function Login({ pb, setUser }) {
       .authWithPassword(data.email, data.password);
     setUser(authData);
     sessionStorage.setItem("authData", JSON.stringify(authData));
+    window.location.href = "/";
   }
 
   return (
-    <section>
+    <Layout>
       <h2 className="text-neutral900 font-medium mb-1">Login</h2>
       <form
         onSubmit={login}
@@ -43,6 +45,6 @@ export default function Login({ pb, setUser }) {
           value="Login"
         />
       </form>
-    </section>
+    </Layout>
   );
 }

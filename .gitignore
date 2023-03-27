@@ -24,3 +24,4 @@ db
 *.sln
 *.sw?
 .env
+note.md
