@@ -34,7 +34,7 @@ export default function Home({
               in a very simple and clean interface.
             </p>
             <a
-              href="to:matteotagliatti@gmail.com"
+              href="mailto:matteotagliatti@gmail.com"
               className="text-sm flex items-center border border-neutral-200 rounded-xl px-2 py-1 w-fit gap-2"
             >
               <svg
