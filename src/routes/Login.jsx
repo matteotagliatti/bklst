@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import Layout from "../components/Shared/Layout";
+import Back from "../components/UI/Back";
 
 export default function Login({ pb, setUser }) {
   const emailRef = useRef();
@@ -22,7 +23,12 @@ export default function Login({ pb, setUser }) {
 
   return (
     <Layout>
-      <h2 className="text-neutral900 font-medium mb-1">Login</h2>
+      <Back to="/" />
+      <h2 className="mb-2 text-2xl">Login</h2>
+      <p className="mb-10 text-sm text-neutral-400">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto dicta
+        dolorum.
+      </p>
       <form
         onSubmit={login}
         className="flex flex-col justify-start gap-y-1 md:flex-row md:justify-between"
