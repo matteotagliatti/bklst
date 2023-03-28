@@ -23,7 +23,7 @@ export default function Home({
             booksRead={booksRead}
           />
         ) : (
-          <div>
+          <div className="md:max-w-md">
             <h1 className="text-4xl mb-2">
               Your <span className="italic">simple</span> and
               <br /> <span className="italic">personal</span> booklist
@@ -35,7 +35,7 @@ export default function Home({
             </p>
             <a
               href="mailto:matteotagliatti@gmail.com"
-              className="text-sm flex items-center border border-neutral-200 rounded-xl px-2 py-1 w-fit gap-2"
+              className="text-sm flex items-center border border-neutral-200 rounded-full px-2 py-1 w-fit gap-2"
             >
               <svg
                 width="16"
