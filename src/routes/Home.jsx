@@ -12,8 +12,6 @@ export default function Home({
   booksReading,
   booksRead,
 }) {
-  console.log(books);
-
   return (
     <>
       <Header user={user} setUser={setUser} pb={pb} />
@@ -67,9 +65,57 @@ export default function Home({
                 Request an invite
               </a>
             </div>
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-4">
-              <Book to="/search" />
-              <Book to="/search" />
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Book
+                book={{
+                  title: "East of Eden",
+                  author: "John Steinbeck",
+                  img: "http://books.google.com/books/content?id=OPy6E5ZhXs0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                  status: "read",
+                  finished: "2023-03",
+                }}
+              />
+              <Book
+                book={{
+                  title: "Sapiens",
+                  author: "Yuval Noah Harari",
+                  img: "http://books.google.com/books/content?id=1EiJAwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                  status: "reading",
+                }}
+              />
+              <Book
+                book={{
+                  title: "Stories of Breece D'J Pancake",
+                  author: "Breece D'J Pancake",
+                  img: "http://books.google.com/books/content?id=jWs5AQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                  status: "to-read",
+                }}
+              />
+              <Book
+                book={{
+                  title: "Slaughterhouse-Five",
+                  author: "Kurt Vonnegut",
+                  img: "http://books.google.com/books/content?id=DLCSm6whrnEC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+                  status: "to-read",
+                }}
+              />
+              <Book
+                book={{
+                  title: "Fellowship of the Ring",
+                  author: "J.R.R. Tolkien",
+                  img: "http://books.google.com/books/content?id=xFr92V2k3PIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                  status: "reading",
+                }}
+              />
+              <Book
+                book={{
+                  title: "Fire & Blood",
+                  author: "George R.R. Martin",
+                  img: "http://books.google.com/books/content?id=Mj5XDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
+                  status: "read",
+                  finished: "2023-03",
+                }}
+              />
             </div>
           </>
         )}
