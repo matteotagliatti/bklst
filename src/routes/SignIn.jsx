@@ -6,7 +6,7 @@ import Label from "../components/UI/Form/Label";
 import Input from "../components/UI/Form/Input";
 import Submit from "../components/UI/Form/Submit";
 
-export default function Login({ pb, setUser }) {
+export default function SignIn({ pb, setUser }) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -30,8 +30,8 @@ export default function Login({ pb, setUser }) {
       <Back to="/" />
       <div className="max-w-md">
         <h2 className="mb-2 text-2xl">Login</h2>
-        <p className="mb-10 text-sm text-neutral-400">
-          Login with the credential provided. If you don't have one, please{" "}
+        <p className="mb-12 text-sm text-neutral-400">
+          Sign in with the credential provided. If you don't have one, please{" "}
           <a
             className="underline"
             target="_blank"

@@ -40,7 +40,7 @@ export default function Home({
               </p>
               <a
                 href="mailto:matteotagliatti@gmail.com"
-                className="text-sm flex items-center border border-neutral-200 rounded-full px-2 py-1 w-fit gap-2"
+                className="text-sm flex items-center border border-neutral-200 hover:border-neutral-300 rounded-full px-2 py-1 w-fit gap-2"
               >
                 <svg
                   width="16"

@@ -33,9 +33,9 @@ export default function Header({ user, setUser, pb }) {
         ) : (
           <Link
             className="text-sm text-neutral-400 hover:underline"
-            to="/login"
+            to="/sign-in"
           >
-            Login
+            Sign In
           </Link>
         )}
       </nav>

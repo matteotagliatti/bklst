@@ -6,7 +6,7 @@ import Home from "./routes/Home";
 import Search from "./routes/Search";
 import Book from "./routes/Book";
 import Add from "./routes/Add";
-import Login from "./routes/Login";
+import SignIn from "./routes/SignIn";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -32,8 +32,8 @@ function App() {
       ),
     },
     {
-      path: "/login",
-      element: <Login pb={pb} setUser={setUser} />,
+      path: "/sign-in",
+      element: <SignIn pb={pb} setUser={setUser} />,
     },
     {
       path: "/search",
