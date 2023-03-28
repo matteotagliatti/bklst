@@ -1,7 +1,8 @@
 import Header from "../components/Shared/Header";
 import Layout from "../components/Shared/Layout";
-import Booklist from "../components/Home/Booklist";
 import Book from "../components/Shared/Book";
+import BooksContainer from "../components/Shared/BooksContainer";
+import SectionTitle from "../components/Home/SectionTitle";
 
 export default function Home({
   user,
@@ -17,10 +18,52 @@ export default function Home({
       <Header user={user} setUser={setUser} pb={pb} />
       <Layout variant={"Home"}>
         {user ? (
-          <div>{/*  */}</div>
+          <BooksContainer>
+            {booksReading.length > 0 ? (
+              <>
+                <SectionTitle
+                  title="Reading"
+                  description="Books I'm currently reading."
+                />
+                {booksReading.map((book) => (
+                  <>
+                    <Book key={book.id} to={`/book/${book.id}`} book={book} />
+                  </>
+                ))}
+              </>
+            ) : null}
+
+            {booksRead.length > 0 ? (
+              <>
+                <SectionTitle
+                  title="Read"
+                  description="The last books you've read."
+                />
+                {booksRead.map((book) => (
+                  <>
+                    <Book key={book.id} to={`/book/${book.id}`} book={book} />
+                  </>
+                ))}
+              </>
+            ) : null}
+
+            {booksToRead.length > 0 ? (
+              <>
+                <SectionTitle
+                  title="To Read"
+                  description="Books to read in the future."
+                />
+                {booksToRead.map((book) => (
+                  <>
+                    <Book key={book.id} to={`/book/${book.id}`} book={book} />
+                  </>
+                ))}
+              </>
+            ) : null}
+          </BooksContainer>
         ) : (
           <>
-            <div className="md:max-w-md">
+            <div className="md:max-w-md mb-10">
               <h1 className="text-4xl mb-2">
                 Your <span className="italic">simple</span> and
                 <br /> <span className="italic">personal</span> booklist
@@ -65,7 +108,7 @@ export default function Home({
                 Request an invite
               </a>
             </div>
-            <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <BooksContainer>
               <Book
                 book={{
                   title: "East of Eden",
@@ -116,7 +159,7 @@ export default function Home({
                   finished: "2023-03",
                 }}
               />
-            </div>
+            </BooksContainer>
           </>
         )}
       </Layout>
