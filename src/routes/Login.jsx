@@ -1,6 +1,10 @@
 import { useRef } from "react";
 import Layout from "../components/Shared/Layout";
 import Back from "../components/UI/Back";
+import InputContainer from "../components/UI/Form/InputContainer";
+import Label from "../components/UI/Form/Label";
+import Input from "../components/UI/Form/Input";
+import Submit from "../components/UI/Form/Submit";
 
 export default function Login({ pb, setUser }) {
   const emailRef = useRef();
@@ -36,27 +40,28 @@ export default function Login({ pb, setUser }) {
         </a>
         .
       </p>
-      <form
-        onSubmit={login}
-        className="flex flex-col justify-start gap-y-1 md:flex-row md:justify-between"
-      >
-        <input
-          type="text"
-          placeholder="email"
-          defaultValue={"matteotagliatti@gmail.com"}
-          ref={emailRef}
-        />
-        <input
-          type="password"
-          placeholder="***"
-          defaultValue={"password"}
-          ref={passwordRef}
-        />
-        <input
-          className="w-fit hover:cursor-pointer hover:underline"
-          type="submit"
-          value="Login"
-        />
+      <form onSubmit={login} className="flex flex-col">
+        <InputContainer>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            required={true}
+            type="text"
+            placeholder="yourname@email.com"
+            inputRef={emailRef}
+            defaultValue="matteotagliatti@gmail.com"
+          />
+        </InputContainer>
+        <InputContainer>
+          <Label htmlFor="email">Password</Label>
+          <Input
+            required={true}
+            type="password"
+            placeholder="Your password"
+            inputRef={passwordRef}
+            defaultValue="password"
+          />
+        </InputContainer>
+        <Submit value={"Sign In"} />
       </form>
     </Layout>
   );
