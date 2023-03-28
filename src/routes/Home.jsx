@@ -37,7 +37,7 @@ export default function Home({
               <>
                 <SectionTitle
                   title="Read ->"
-                  description="The last books you've read."
+                  description="The last books I've read."
                 />
                 {booksRead.map((book) => (
                   <>
