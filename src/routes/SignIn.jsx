@@ -26,7 +26,7 @@ export default function SignIn({ pb, setUser }) {
   }
 
   return (
-    <Layout>
+    <Layout variant={"small"}>
       <Back to="/" />
       <div className="max-w-md">
         <h2 className="mb-2 text-2xl">Login</h2>

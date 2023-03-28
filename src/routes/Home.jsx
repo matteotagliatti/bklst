@@ -16,7 +16,7 @@ export default function Home({
   return (
     <>
       <Header user={user} setUser={setUser} pb={pb} />
-      <Layout variant={"Home"}>
+      <Layout>
         {user ? (
           <BooksContainer>
             {booksReading.length > 0 ? (
