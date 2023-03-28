@@ -26,9 +26,7 @@ export default function Home({
                   description="Books I'm currently reading."
                 />
                 {booksReading.map((book) => (
-                  <>
-                    <Book key={book.id} to={`/book/${book.id}`} book={book} />
-                  </>
+                  <Book key={book.id} to={`/book/${book.id}`} book={book} />
                 ))}
               </>
             ) : null}
@@ -40,9 +38,7 @@ export default function Home({
                   description="The last books I've read."
                 />
                 {booksRead.map((book) => (
-                  <>
-                    <Book key={book.id} to={`/book/${book.id}`} book={book} />
-                  </>
+                  <Book key={book.id} to={`/book/${book.id}`} book={book} />
                 ))}
               </>
             ) : null}
@@ -54,9 +50,7 @@ export default function Home({
                   description="Books to read in the future."
                 />
                 {booksToRead.map((book) => (
-                  <>
-                    <Book key={book.id} to={`/book/${book.id}`} book={book} />
-                  </>
+                  <Book key={book.id} to={`/book/${book.id}`} book={book} />
                 ))}
               </>
             ) : null}
