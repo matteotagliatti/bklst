@@ -22,7 +22,7 @@ export default function Home({
             {booksReading.length > 0 ? (
               <>
                 <SectionTitle
-                  title="Reading ->"
+                  title="Reading"
                   description="Books I'm currently reading."
                 />
                 {booksReading.map((book) => (
@@ -36,7 +36,7 @@ export default function Home({
             {booksRead.length > 0 ? (
               <>
                 <SectionTitle
-                  title="Read ->"
+                  title="Read"
                   description="The last books I've read."
                 />
                 {booksRead.map((book) => (
@@ -50,7 +50,7 @@ export default function Home({
             {booksToRead.length > 0 ? (
               <>
                 <SectionTitle
-                  title="To Read ->"
+                  title="To Read"
                   description="Books to read in the future."
                 />
                 {booksToRead.map((book) => (
