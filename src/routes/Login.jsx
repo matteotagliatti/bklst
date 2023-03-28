@@ -28,19 +28,22 @@ export default function Login({ pb, setUser }) {
   return (
     <Layout>
       <Back to="/" />
-      <h2 className="mb-2 text-2xl">Login</h2>
-      <p className="mb-10 text-sm text-neutral-400">
-        Login with the credential provided. If you don't have one, please{" "}
-        <a
-          className="underline"
-          target="_blank"
-          href="mailto:matteotagliatti@gmail.com"
-        >
-          contact me
-        </a>
-        .
-      </p>
-      <form onSubmit={login} className="flex flex-col">
+      <div className="max-w-md">
+        <h2 className="mb-2 text-2xl">Login</h2>
+        <p className="mb-10 text-sm text-neutral-400">
+          Login with the credential provided. If you don't have one, please{" "}
+          <a
+            className="underline"
+            target="_blank"
+            href="mailto:matteotagliatti@gmail.com"
+          >
+            contact me
+          </a>
+          .
+        </p>
+      </div>
+
+      <form onSubmit={login} className="flex flex-col md:max-w-md">
         <InputContainer>
           <Label htmlFor="email">Email</Label>
           <Input

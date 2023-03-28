@@ -14,7 +14,7 @@ export default function Home({
   return (
     <>
       <Header user={user} setUser={setUser} pb={pb} />
-      <Layout>
+      <Layout variant={"Home"}>
         {user ? (
           <Booklist
             books={books}
