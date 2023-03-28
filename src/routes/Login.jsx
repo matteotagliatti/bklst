@@ -26,8 +26,15 @@ export default function Login({ pb, setUser }) {
       <Back to="/" />
       <h2 className="mb-2 text-2xl">Login</h2>
       <p className="mb-10 text-sm text-neutral-400">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto dicta
-        dolorum.
+        Login with the credential provided. If you don't have one, please{" "}
+        <a
+          className="underline"
+          target="_blank"
+          href="mailto:matteotagliatti@gmail.com"
+        >
+          contact me
+        </a>
+        .
       </p>
       <form
         onSubmit={login}

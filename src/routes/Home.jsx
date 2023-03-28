@@ -30,8 +30,16 @@ export default function Home({
             </h1>
             <p className="text-sm text-neutral-400 mb-5">
               A very simple way to keep track of the books you read. No social
-              media function, no ads, no tracking. Just you and your books. All
-              in a very simple and clean interface. Forever free.
+              media functions, no ads, no tracking. Just you and your books in a
+              very clean interface. Forever free and{" "}
+              <a
+                className="underline"
+                target="_blank"
+                href="https://github.com/matteotagliatti/booklist"
+              >
+                open source
+              </a>
+              .
             </p>
             <a
               href="mailto:matteotagliatti@gmail.com"
