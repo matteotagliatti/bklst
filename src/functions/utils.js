@@ -5,5 +5,3 @@ export function firstLetterUppercase(string) {
 export function formatDate(string) {
   return string.replace(/ .*/, "").slice(2);
 }
-
-export { firstLetterUppercase };
