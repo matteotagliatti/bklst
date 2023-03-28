@@ -25,9 +25,25 @@ export default function Home({
                   title="Reading"
                   description="Books I'm currently reading."
                 />
-                {booksReading.map((book) => (
-                  <Book key={book.id} to={`/book/${book.id}`} book={book} />
-                ))}
+                {booksReading
+                  .map((book) => {
+                    if (book.finished) {
+                      return {
+                        ...book,
+                        finishedDate: new Date(book.finished),
+                      };
+                    }
+                    return book;
+                  })
+                  .sort((a, b) => {
+                    if (a.finishedDate && b.finishedDate) {
+                      return b.finishedDate - a.finishedDate;
+                    }
+                    return 0;
+                  })
+                  .map((book) => (
+                    <Book key={book.id} to={`/book/${book.id}`} book={book} />
+                  ))}
               </>
             ) : null}
 
