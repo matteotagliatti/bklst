@@ -31,7 +31,7 @@ export default function Home({
             <p className="text-sm text-neutral-400 mb-5">
               A very simple way to keep track of the books you read. No social
               media function, no ads, no tracking. Just you and your books. All
-              in a very simple and clean interface.
+              in a very simple and clean interface. Forever free.
             </p>
             <a
               href="mailto:matteotagliatti@gmail.com"
