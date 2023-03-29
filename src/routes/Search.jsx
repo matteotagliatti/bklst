@@ -2,12 +2,14 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import Layout from "../components/Shared/Layout";
 import Back from "../components/UI/Back";
+import FormContainer from "../components/UI/Form/FormContainer";
 import InputContainer from "../components/UI/Form/InputContainer";
 import Label from "../components/UI/Form/Label";
 import Input from "../components/UI/Form/Input";
 import Submit from "../components/UI/Form/Submit";
 import BooksContainer from "../components/Shared/BooksContainer";
 import Book from "../components/Shared/Book";
+import Title from "../components/Shared/Title";
 
 export default function Search() {
   const api_key = import.meta.env.VITE_GOOGLE_API_KEY;
@@ -35,13 +37,11 @@ export default function Search() {
   return (
     <Layout>
       <Back to="/" />
-      <div className="max-w-md">
-        <h2 className="mb-2 text-2xl">Search</h2>
-        <p className="mb-12 text-sm text-neutral-400">
-          Search for a book and add it to your booklist.
-        </p>
-      </div>
-      <form onSubmit={fetchBooks} className="flex flex-col md:max-w-md mb-12">
+      <Title
+        title={"Search"}
+        description={"Search for a book and add it to your booklist."}
+      />
+      <FormContainer onSubmit={fetchBooks}>
         <InputContainer>
           <Label htmlFor="title">Title</Label>
           <Input
@@ -61,7 +61,7 @@ export default function Search() {
           />
         </InputContainer>
         <Submit value={"Search"} />
-      </form>
+      </FormContainer>
       {searchedBooks.length > 0 ? (
         <BooksContainer>
           {searchedBooks.map((searchedBook) => {
@@ -72,7 +72,7 @@ export default function Search() {
               img: searchedBook.volumeInfo.imageLinks.thumbnail,
             };
 
-            return <Book key={book.id} to={`/book/${book.id}`} book={book} />;
+            return <Book key={book.id} to={`/add`} book={book} />;
           })}
         </BooksContainer>
       ) : null}

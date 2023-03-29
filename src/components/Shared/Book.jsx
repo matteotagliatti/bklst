@@ -31,7 +31,7 @@ export default function Book({ link, to, book }) {
   }
 
   return (
-    <Link to={to} className={classNames}>
+    <Link to={to} state={{ book }} className={classNames}>
       {innerElements}
     </Link>
   );

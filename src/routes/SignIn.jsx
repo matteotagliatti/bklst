@@ -1,6 +1,8 @@
 import { useRef } from "react";
 import Layout from "../components/Shared/Layout";
 import Back from "../components/UI/Back";
+import Title from "../components/Shared/Title";
+import FormContainer from "../components/UI/Form/FormContainer";
 import InputContainer from "../components/UI/Form/InputContainer";
 import Label from "../components/UI/Form/Label";
 import Input from "../components/UI/Form/Input";
@@ -28,22 +30,13 @@ export default function SignIn({ pb, setUser }) {
   return (
     <Layout variant={"small"}>
       <Back to="/" />
-      <div className="max-w-md">
-        <h2 className="mb-2 text-2xl">Login</h2>
-        <p className="mb-12 text-sm text-neutral-400">
-          Sign in with the credential provided. If you don't have one, please{" "}
-          <a
-            className="underline"
-            target="_blank"
-            href="mailto:matteotagliatti@gmail.com"
-          >
-            contact me
-          </a>
-          .
-        </p>
-      </div>
-
-      <form onSubmit={login} className="flex flex-col md:max-w-md">
+      <Title
+        title={"Login"}
+        description={
+          "Sign in with the credential provided. If you don't have one, please contant via the button on the homepage."
+        }
+      />
+      <FormContainer onSubmit={login}>
         <InputContainer>
           <Label htmlFor="email">Email</Label>
           <Input
@@ -65,7 +58,7 @@ export default function SignIn({ pb, setUser }) {
           />
         </InputContainer>
         <Submit value={"Sign In"} />
-      </form>
+      </FormContainer>
     </Layout>
   );
 }
