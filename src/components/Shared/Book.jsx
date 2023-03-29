@@ -13,19 +13,14 @@ export default function Book({ link, to, book }) {
       />
       <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
         <div>
-          <div className="flex gap-1 text-neutral-400">
-            <small>{book.status}</small>
-            {book.status === "read" ? (
-              <>
-                <small>-</small>
-                <small>{formatDate(book.finished)}</small>
-              </>
-            ) : null}
-          </div>
+          <small className="block text-neutral-400">{book.author}</small>
           <p className="text-sm">{book.title}</p>
         </div>
-        <div>
-          <p className="text-sm text-right">{book.author}</p>
+        <div className="text-neutral-400 text-right">
+          <small className="block text-sm">{book.status}</small>
+          {book.status === "read" ? (
+            <small className="block">{formatDate(book.finished)}</small>
+          ) : null}
         </div>
       </div>
     </>
