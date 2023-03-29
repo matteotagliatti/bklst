@@ -24,6 +24,7 @@ export default function Home({
                 <SectionTitle
                   title="Reading"
                   description="Books I'm currently reading."
+                  noptmobile={true}
                 />
                 {booksReading
                   .map((book) => {
