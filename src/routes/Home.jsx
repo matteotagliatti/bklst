@@ -2,6 +2,7 @@ import Header from "../components/Shared/Header";
 import Layout from "../components/Shared/Layout";
 import Book from "../components/Shared/Book";
 import BooksContainer from "../components/Shared/BooksContainer";
+import BooksContainerInner from "../components/Home/BooksContainerInner";
 import SectionTitle from "../components/Home/SectionTitle";
 
 export default function Home({
@@ -24,11 +25,12 @@ export default function Home({
                 <SectionTitle
                   title="Reading"
                   description="Books I'm currently reading."
-                  noptmobile={true}
                 />
-                {booksReading.map((book) => (
-                  <Book key={book.id} to={`/book/${book.id}`} book={book} />
-                ))}
+                <BooksContainerInner>
+                  {booksReading.map((book) => (
+                    <Book key={book.id} to={`/book/${book.id}`} book={book} />
+                  ))}
+                </BooksContainerInner>
               </>
             ) : null}
 
@@ -38,25 +40,27 @@ export default function Home({
                   title="Read"
                   description="The last books I've read."
                 />
-                {booksRead
-                  .map((book) => {
-                    if (book.finished) {
-                      return {
-                        ...book,
-                        finishedDate: new Date(book.finished),
-                      };
-                    }
-                    return book;
-                  })
-                  .sort((a, b) => {
-                    if (a.finishedDate && b.finishedDate) {
-                      return b.finishedDate - a.finishedDate;
-                    }
-                    return 0;
-                  })
-                  .map((book) => (
-                    <Book key={book.id} to={`/book/${book.id}`} book={book} />
-                  ))}
+                <BooksContainerInner>
+                  {booksRead
+                    .map((book) => {
+                      if (book.finished) {
+                        return {
+                          ...book,
+                          finishedDate: new Date(book.finished),
+                        };
+                      }
+                      return book;
+                    })
+                    .sort((a, b) => {
+                      if (a.finishedDate && b.finishedDate) {
+                        return b.finishedDate - a.finishedDate;
+                      }
+                      return 0;
+                    })
+                    .map((book) => (
+                      <Book key={book.id} to={`/book/${book.id}`} book={book} />
+                    ))}
+                </BooksContainerInner>
               </>
             ) : null}
 
@@ -66,9 +70,11 @@ export default function Home({
                   title="To Read"
                   description="Books to read in the future."
                 />
-                {booksToRead.map((book) => (
-                  <Book key={book.id} to={`/book/${book.id}`} book={book} />
-                ))}
+                <BooksContainerInner>
+                  {booksToRead.map((book) => (
+                    <Book key={book.id} to={`/book/${book.id}`} book={book} />
+                  ))}
+                </BooksContainerInner>
               </>
             ) : null}
           </BooksContainer>
