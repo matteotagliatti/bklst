@@ -72,7 +72,10 @@ export default function Book({ pb }) {
                   >
                     Cancel
                   </a>
-                  <button className="w-full text-sm text-center border border-red-500 hover:border-red-600 bg-red-500 hover:bg-red-600 text-white rounded-md px-5 py-2 hover:cursor-pointer">
+                  <button
+                    className="w-full text-sm text-center border border-red-500 hover:border-red-600 bg-red-500 hover:bg-red-600 text-white rounded-md px-5 py-2 hover:cursor-pointer"
+                    onClick={deleteBook}
+                  >
                     Delete
                   </button>
                 </div>
