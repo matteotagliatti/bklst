@@ -74,7 +74,7 @@ export default function Home({
           </BooksContainer>
         ) : (
           <>
-            <div className="md:max-w-md mb-10">
+            <div className="md:max-w-md mb-10 md:mt-10">
               <h1 className="text-4xl mb-2">
                 Your <span className="italic">simple</span> and
                 <br /> <span className="italic">personal</span> booklist

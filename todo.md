@@ -7,9 +7,11 @@
 - [x] Implementare Books API
 - [x] Miglior gestione delle date
 - [x] Netlify fix ricarico pagina
-- [ ] UI Overhaul
-  - [ ] Delete Modal
+- [x] UI Overhaul
+  - [x] Delete Modal
 - [ ] Loader
 - [ ] Private Routes
 - [ ] Loading quando non hai libri
 - [ ] Miglior Cerca
+- [ ] Cosa succede quando ci sono tanti libri in Home? Mostro solo gli ultimi e mando a pagine specifiche per le 3 categorie?
+- [ ] Soluzione Finale per DB. Supabase / Pocket su Fly.io
