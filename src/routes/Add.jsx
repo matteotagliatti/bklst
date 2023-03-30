@@ -1,20 +1,18 @@
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Layout from "../components/Shared/Layout";
+import Title from "../components/Shared/Title";
+import Back from "../components/UI/Back";
 import CreateEdit from "../components/Shared/CreateEdit";
 
 export default function Add({ pb, user }) {
   const location = useLocation();
   const locationBook = location.state.book;
-  const book = {
-    title: locationBook.volumeInfo.title,
-    author: locationBook.volumeInfo.authors[0],
-    status: "to-read",
-    img: locationBook.volumeInfo.imageLinks.thumbnail,
-  };
 
   return (
-    <>
-      <Link to="/search">-- back</Link>
-      {user ? <CreateEdit book={book} pb={pb} userID={user.record.id} /> : null}
-    </>
+    <Layout variant={"small"}>
+      <Back to="/search" />
+      <Title title={"Add a book"} description="You can edit the infos below." />
+      <CreateEdit book={locationBook} pb={pb} userID={user.record.id} />
+    </Layout>
   );
 }
