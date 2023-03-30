@@ -132,7 +132,7 @@ export default function Home({
                   author: "John Steinbeck",
                   img: "http://books.google.com/books/content?id=OPy6E5ZhXs0C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                   status: "read",
-                  finished: "23-07-22",
+                  finished: "2023-07-22",
                 }}
               />
               <Book
@@ -173,7 +173,7 @@ export default function Home({
                   author: "George R.R. Martin",
                   img: "http://books.google.com/books/content?id=Mj5XDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
                   status: "read",
-                  finished: "23-03-21",
+                  finished: "2023-03-21",
                 }}
               />
             </BooksContainer>
