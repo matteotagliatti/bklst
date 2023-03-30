@@ -5,7 +5,7 @@ import Label from "../UI/Form/Label";
 import Input from "../UI/Form/Input";
 import Submit from "../UI/Form/Submit";
 
-export default function CreateEdit({ pb, userID, book, bookID }) {
+export default function CreateEdit({ pb, userID, book, bookID, children }) {
   const [bookIsFinished, setBookIsFinished] = useState(false);
   const titleRef = useRef();
   const authorRef = useRef();
@@ -19,8 +19,15 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
       authorRef.current.value = book.author;
       statusRef.current.value = book.status ? book.status : "to-read";
       imgRef.current.value = book.img;
+      finishedRef.current.value = book.finished
+        ? book.finished.replace(/ .*/, "")
+        : null;
     }
   }, [book]);
+
+  useEffect(() => {
+    toggleFinishedBook();
+  }, []);
 
   async function addBook(event) {
     event.preventDefault();
@@ -58,10 +65,6 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
       setBookIsFinished(false);
     }
   }
-
-  useEffect(() => {
-    toggleFinishedBook();
-  });
 
   return (
     <FormContainer onSubmit={bookID ? updateBook : addBook}>
@@ -107,18 +110,15 @@ export default function CreateEdit({ pb, userID, book, bookID }) {
           <option value="read">Read</option>
         </select>
       </InputContainer>
-      {bookIsFinished ? (
-        <InputContainer>
-          <Label htmlFor="finished">Finished</Label>
-          <input
-            className={bookIsFinished ? "visible" : "hidden"}
-            type="date"
-            ref={finishedRef}
-          />
-        </InputContainer>
-      ) : null}
+      <InputContainer hidden={bookIsFinished ? false : true}>
+        <Label htmlFor="finished">Finished</Label>
+        <input type="date" ref={finishedRef} />
+      </InputContainer>
 
-      <Submit value={`${bookID ? "Update" : "Add"}`} />
+      <div className="flex gap-3 items-center">
+        <Submit value={`${bookID ? "Update" : "Add"}`} />
+        {children}
+      </div>
     </FormContainer>
   );
 }
