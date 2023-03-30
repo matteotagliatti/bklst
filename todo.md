@@ -12,7 +12,7 @@
 - [ ] Loader
 - [ ] Private Routes
 - [ ] iPad layout
-- [ ] Loading quando non hai libri
+- [ ] Notificare quando non sono ancora stati aggiunti libri
 - [ ] Miglior Cerca
 - [ ] Cosa succede quando ci sono tanti libri in Home? Mostro solo gli ultimi e mando a pagine specifiche per le 3 categorie?
 - [ ] Soluzione Finale per DB. Supabase / Pocket su Fly.io
