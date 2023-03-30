@@ -35,7 +35,7 @@ export default function Search() {
   }
 
   return (
-    <Layout>
+    <Layout variant={"small"}>
       <Back to="/" />
       <Title
         title={"Search"}
@@ -63,7 +63,7 @@ export default function Search() {
         <Submit value={"Search"} />
       </FormContainer>
       {searchedBooks.length > 0 ? (
-        <BooksContainer>
+        <BooksContainer cols={2}>
           {searchedBooks.map((searchedBook) => {
             const book = {
               id: searchedBook.id,
