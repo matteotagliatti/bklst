@@ -26,7 +26,19 @@ export default function Home({
                   description="Books I'm currently reading."
                   noptmobile={true}
                 />
-                {booksReading
+                {booksReading.map((book) => (
+                  <Book key={book.id} to={`/book/${book.id}`} book={book} />
+                ))}
+              </>
+            ) : null}
+
+            {booksRead.length > 0 ? (
+              <>
+                <SectionTitle
+                  title="Read"
+                  description="The last books I've read."
+                />
+                {booksRead
                   .map((book) => {
                     if (book.finished) {
                       return {
@@ -45,18 +57,6 @@ export default function Home({
                   .map((book) => (
                     <Book key={book.id} to={`/book/${book.id}`} book={book} />
                   ))}
-              </>
-            ) : null}
-
-            {booksRead.length > 0 ? (
-              <>
-                <SectionTitle
-                  title="Read"
-                  description="The last books I've read."
-                />
-                {booksRead.map((book) => (
-                  <Book key={book.id} to={`/book/${book.id}`} book={book} />
-                ))}
               </>
             ) : null}
 
