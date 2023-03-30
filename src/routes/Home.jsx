@@ -93,7 +93,7 @@ export default function Home({
                 .
               </p>
               <a
-                href="mailto:matteotagliatti@gmail.com"
+                href="mailto:matteotagliatti@gmail.com?subject=Request to join Booklist&body=Hello, I'd love to join Booklist."
                 className="text-sm flex items-center border border-neutral-200 hover:border-neutral-300 rounded-full px-2 py-1 w-fit gap-2"
               >
                 <svg
