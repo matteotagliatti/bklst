@@ -70,7 +70,7 @@ export default function CreateEdit({ pb, userID, book, bookID, children }) {
     <FormContainer onSubmit={bookID ? updateBook : addBook}>
       <div className="mb-2 bg-neutral-100 flex items-center justify-center p-10 rounded-lg">
         <img
-          className="w-30 shadow-lg drop-shadow-lg"
+          className="w-36 shadow-lg drop-shadow-lg"
           src={book.img}
           alt={book.title}
         />
