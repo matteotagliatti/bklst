@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "../components/Shared/Header";
 import Layout from "../components/Shared/Layout";
 import Loader from "../components/Shared/Loader";
@@ -25,77 +26,90 @@ export default function Home({
             {loading ? (
               <Loader />
             ) : (
-              <BooksContainer>
-                {booksReading.length > 0 ? (
-                  <>
-                    <SectionTitle
-                      title="Reading"
-                      description="Books I'm currently reading."
-                    />
-                    <BooksContainerInner>
-                      {booksReading.map((book) => (
-                        <Book
-                          key={book.id}
-                          to={`/book/${book.id}`}
-                          book={book}
+              <>
+                {books.length === 0 ? (
+                  <div className="absolute bottom-7 right-0 left-0 lg:bottom-auto flex justify-center">
+                    <Link
+                      to={"/search"}
+                      className="w-fit h-fit text-sm border border-neutral-200 hover:border-neutral-300 rounded-md px-5 py-2 hover:cursor-pointer"
+                    >
+                      Add your first book
+                    </Link>
+                  </div>
+                ) : (
+                  <BooksContainer>
+                    {booksReading.length > 0 ? (
+                      <>
+                        <SectionTitle
+                          title="Reading"
+                          description="Books I'm currently reading."
                         />
-                      ))}
-                    </BooksContainerInner>
-                  </>
-                ) : null}
+                        <BooksContainerInner>
+                          {booksReading.map((book) => (
+                            <Book
+                              key={book.id}
+                              to={`/book/${book.id}`}
+                              book={book}
+                            />
+                          ))}
+                        </BooksContainerInner>
+                      </>
+                    ) : null}
 
-                {booksRead.length > 0 ? (
-                  <>
-                    <SectionTitle
-                      title="Read"
-                      description="The last books I've read."
-                    />
-                    <BooksContainerInner>
-                      {booksRead
-                        .map((book) => {
-                          if (book.finished) {
-                            return {
-                              ...book,
-                              finishedDate: new Date(book.finished),
-                            };
-                          }
-                          return book;
-                        })
-                        .sort((a, b) => {
-                          if (a.finishedDate && b.finishedDate) {
-                            return b.finishedDate - a.finishedDate;
-                          }
-                          return 0;
-                        })
-                        .map((book) => (
-                          <Book
-                            key={book.id}
-                            to={`/book/${book.id}`}
-                            book={book}
-                          />
-                        ))}
-                    </BooksContainerInner>
-                  </>
-                ) : null}
-
-                {booksToRead.length > 0 ? (
-                  <>
-                    <SectionTitle
-                      title="To Read"
-                      description="Books to read in the future."
-                    />
-                    <BooksContainerInner>
-                      {booksToRead.map((book) => (
-                        <Book
-                          key={book.id}
-                          to={`/book/${book.id}`}
-                          book={book}
+                    {booksRead.length > 0 ? (
+                      <>
+                        <SectionTitle
+                          title="Read"
+                          description="The last books I've read."
                         />
-                      ))}
-                    </BooksContainerInner>
-                  </>
-                ) : null}
-              </BooksContainer>
+                        <BooksContainerInner>
+                          {booksRead
+                            .map((book) => {
+                              if (book.finished) {
+                                return {
+                                  ...book,
+                                  finishedDate: new Date(book.finished),
+                                };
+                              }
+                              return book;
+                            })
+                            .sort((a, b) => {
+                              if (a.finishedDate && b.finishedDate) {
+                                return b.finishedDate - a.finishedDate;
+                              }
+                              return 0;
+                            })
+                            .map((book) => (
+                              <Book
+                                key={book.id}
+                                to={`/book/${book.id}`}
+                                book={book}
+                              />
+                            ))}
+                        </BooksContainerInner>
+                      </>
+                    ) : null}
+
+                    {booksToRead.length > 0 ? (
+                      <>
+                        <SectionTitle
+                          title="To Read"
+                          description="Books to read in the future."
+                        />
+                        <BooksContainerInner>
+                          {booksToRead.map((book) => (
+                            <Book
+                              key={book.id}
+                              to={`/book/${book.id}`}
+                              book={book}
+                            />
+                          ))}
+                        </BooksContainerInner>
+                      </>
+                    ) : null}
+                  </BooksContainer>
+                )}
+              </>
             )}
           </>
         ) : (

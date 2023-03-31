@@ -9,10 +9,10 @@
 - [x] Netlify fix ricarico pagina
 - [x] UI Overhaul
   - [x] Delete Modal
-- [ ] Loader
+- [x] Loader
 - [x] Private Routes
+- [x] Notificare quando non sono ancora stati aggiunti libri
 - [ ] iPad layout
-- [ ] Notificare quando non sono ancora stati aggiunti libri
 - [ ] Miglior Cerca
 - [ ] Cosa succede quando ci sono tanti libri in Home? Mostro solo gli ultimi e mando a pagine specifiche per le 3 categorie?
 - [ ] Soluzione Finale per DB. Supabase / Pocket su Fly.io
