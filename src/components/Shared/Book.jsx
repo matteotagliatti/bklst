@@ -3,7 +3,7 @@ import { formatDate } from "../../functions/utils";
 
 export default function Book({ link, to, book }) {
   const classNames =
-    "relative h-96 bg-neutral-100 flex items-center justify-center p-2 rounded-lg hover:bg-[#EEEEF0] transition-colors hover:cursor-pointer group";
+    "relative h-96 bg-neutral-100 flex items-center justify-center p-2 rounded-lg hover:bg-[#EEEEF0] transition-colors group";
   const innerElements = (
     <>
       <img
@@ -31,7 +31,11 @@ export default function Book({ link, to, book }) {
   }
 
   return (
-    <Link to={to} state={{ book }} className={classNames}>
+    <Link
+      to={to}
+      state={{ book }}
+      className={`${classNames} hover:cursor-pointer`}
+    >
       {innerElements}
     </Link>
   );
