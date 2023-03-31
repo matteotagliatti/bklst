@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [books, setBooks] = useState([]);
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksReading, setBooksReading] = useState([]);
@@ -29,6 +30,7 @@ function App() {
           booksReading={booksReading}
           booksRead={booksRead}
           getBooklist={getBooklist}
+          loading={loading}
         />
       ),
     },
@@ -40,7 +42,7 @@ function App() {
       path: "/search",
       element: (
         <PrivateRoute user={user}>
-          <Search />
+          <Search loading={loading} setLoading={setLoading} />
         </PrivateRoute>
       ),
     },
@@ -74,6 +76,7 @@ function App() {
   }, [user]);
 
   async function getBooklist() {
+    setLoading(true);
     const books = await pb.collection("books").getFullList({
       filter: "owner.name = " + '"' + user.record.name + '"',
       sort: "-created",
@@ -85,6 +88,7 @@ function App() {
     setBooksToRead(booksToRead);
     setBooksReading(booksReading);
     setBooksRead(booksRead);
+    setLoading(false);
   }
 
   return <RouterProvider router={router} />;

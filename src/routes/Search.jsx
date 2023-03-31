@@ -11,7 +11,7 @@ import BooksContainer from "../components/Shared/BooksContainer";
 import Book from "../components/Shared/Book";
 import Title from "../components/Shared/Title";
 
-export default function Search() {
+export default function Search({ loading, setLoading }) {
   const api_key = import.meta.env.VITE_GOOGLE_API_KEY;
   const titleRef = useRef();
   const authorRef = useRef();
@@ -19,6 +19,7 @@ export default function Search() {
 
   async function fetchBooks(e) {
     try {
+      setLoading(true);
       setSearchedBooks([]);
       e.preventDefault();
       const response = await axios.get(
@@ -29,6 +30,7 @@ export default function Search() {
           ? response.data.items.slice(0, 6)
           : response.data.items;
       setSearchedBooks(books);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -62,7 +64,9 @@ export default function Search() {
         </InputContainer>
         <Submit value={"Search"} />
       </FormContainer>
-      {searchedBooks.length > 0 ? (
+      {loading > 0 ? (
+        <p>Loading...</p>
+      ) : (
         <BooksContainer cols={2}>
           {searchedBooks.map((searchedBook) => {
             const book = {
@@ -75,7 +79,7 @@ export default function Search() {
             return <Book key={book.id} to={`/add`} book={book} />;
           })}
         </BooksContainer>
-      ) : null}
+      )}
     </Layout>
   );
 }
