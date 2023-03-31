@@ -10,7 +10,7 @@
 - [x] UI Overhaul
   - [x] Delete Modal
 - [ ] Loader
-- [ ] Private Routes
+- [x] Private Routes
 - [ ] iPad layout
 - [ ] Notificare quando non sono ancora stati aggiunti libri
 - [ ] Miglior Cerca

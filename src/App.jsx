@@ -7,13 +7,14 @@ import Search from "./routes/Search";
 import Book from "./routes/Book";
 import Add from "./routes/Add";
 import SignIn from "./routes/SignIn";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
+  const [user, setUser] = useState(null);
   const [books, setBooks] = useState([]);
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksReading, setBooksReading] = useState([]);
   const [booksRead, setBooksRead] = useState([]);
-  const [user, setUser] = useState(null);
 
   const router = createBrowserRouter([
     {
@@ -37,15 +38,27 @@ function App() {
     },
     {
       path: "/search",
-      element: <Search />,
+      element: (
+        <PrivateRoute user={user}>
+          <Search />
+        </PrivateRoute>
+      ),
     },
     {
       path: "/add",
-      element: <Add pb={pb} user={user} />,
+      element: (
+        <PrivateRoute user={user}>
+          <Add pb={pb} user={user} />
+        </PrivateRoute>
+      ),
     },
     {
       path: "/book/:bookID",
-      element: <Book pb={pb} />,
+      element: (
+        <PrivateRoute user={user}>
+          <Book pb={pb} />
+        </PrivateRoute>
+      ),
     },
   ]);
 
