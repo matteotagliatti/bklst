@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import axios from "axios";
 import Layout from "../components/Shared/Layout";
+import Loader from "../components/Shared/Loader";
 import Back from "../components/UI/Back";
 import FormContainer from "../components/UI/Form/FormContainer";
 import InputContainer from "../components/UI/Form/InputContainer";
@@ -65,7 +66,7 @@ export default function Search({ loading, setLoading }) {
         <Submit value={"Search"} />
       </FormContainer>
       {loading > 0 ? (
-        <p>Loading...</p>
+        <Loader />
       ) : (
         <BooksContainer cols={2}>
           {searchedBooks.map((searchedBook) => {

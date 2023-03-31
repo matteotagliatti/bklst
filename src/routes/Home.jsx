@@ -1,5 +1,6 @@
 import Header from "../components/Shared/Header";
 import Layout from "../components/Shared/Layout";
+import Loader from "../components/Shared/Loader";
 import Book from "../components/Shared/Book";
 import BooksContainer from "../components/Shared/BooksContainer";
 import BooksContainerInner from "../components/Home/BooksContainerInner";
@@ -22,7 +23,7 @@ export default function Home({
         {user ? (
           <>
             {loading ? (
-              <p>Loading...</p>
+              <Loader />
             ) : (
               <BooksContainer>
                 {booksReading.length > 0 ? (
