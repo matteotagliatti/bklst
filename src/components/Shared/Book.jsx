@@ -7,7 +7,7 @@ export default function Book({ link, to, book }) {
   const innerElements = (
     <>
       <img
-        className="w-32 md:w-40 group-hover:-translate-y-1 transition-transform ease-in-out shadow-lg drop-shadow-lg"
+        className="w-32 md:w-36 lg:w-40 group-hover:-translate-y-1 transition-transform ease-in-out shadow-lg drop-shadow-lg"
         src={book.img}
         alt={book.title}
       />
