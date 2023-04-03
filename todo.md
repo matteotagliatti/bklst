@@ -13,7 +13,7 @@
 - [x] Private Routes
 - [x] Notificare quando non sono ancora stati aggiunti libri
 - [x] iPad layout
-- [ ] Fix Search quando non c'è .thumbnail
+- [x] Fix Search quando non c'è .thumbnail
 - [ ] Miglior Cerca
 - [ ] Rivedere Home Layout logged user
 - [ ] Cosa succede quando ci sono tanti libri in Home? Mostro solo gli ultimi e mando a pagine specifiche per le 3 categorie?
