@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import axios from "axios";
+import searchBooks from "../functions/search";
 import Layout from "../components/Shared/Layout";
 import Loader from "../components/Shared/Loader";
 import Back from "../components/UI/Back";
@@ -16,6 +16,7 @@ export default function Search({ loading, setLoading }) {
   const api_key = import.meta.env.VITE_GOOGLE_API_KEY;
   const titleRef = useRef();
   const authorRef = useRef();
+  const ISBNRef = useRef();
   const [searchedBooks, setSearchedBooks] = useState([]);
 
   async function fetchBooks(e) {
@@ -23,9 +24,17 @@ export default function Search({ loading, setLoading }) {
       setLoading(true);
       setSearchedBooks([]);
       e.preventDefault();
-      const response = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=${titleRef.current.value}+inauthor:${authorRef.current.value}&orderBy=relevance&printType=BOOKS&key=${api_key}`
-      );
+
+      if (
+        titleRef.current.value === "" &&
+        authorRef.current.value === "" &&
+        ISBNRef.current.value === ""
+      ) {
+        setLoading(false);
+        return;
+      }
+
+      const response = await searchBooks(api_key, titleRef, authorRef, ISBNRef);
       let books =
         response.data.items.length > 6
           ? response.data.items.slice(0, 6)
@@ -42,13 +51,14 @@ export default function Search({ loading, setLoading }) {
       <Back to="/" />
       <Title
         title={"Search"}
-        description={"Search for a book and add it to your booklist."}
+        description={
+          "Search for a book and add it to your booklist. Complete at least one field."
+        }
       />
       <FormContainer onSubmit={fetchBooks}>
         <InputContainer>
           <Label htmlFor="title">Title</Label>
           <Input
-            required={true}
             type="text"
             placeholder="Game of Thrones"
             inputRef={titleRef}
@@ -57,11 +67,14 @@ export default function Search({ loading, setLoading }) {
         <InputContainer>
           <Label htmlFor="author">Author</Label>
           <Input
-            required={true}
             type="text"
             placeholder="George R.R. Martin"
             inputRef={authorRef}
           />
+        </InputContainer>
+        <InputContainer>
+          <Label htmlFor="isbn">ISBN</Label>
+          <Input type="text" placeholder="880475172X" inputRef={ISBNRef} />
         </InputContainer>
         <Submit value={"Search"} />
       </FormContainer>
