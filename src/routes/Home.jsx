@@ -39,73 +39,67 @@ export default function Home({
                 ) : (
                   <BooksContainer>
                     {booksReading.length > 0 ? (
-                      <>
+                      <BooksContainerInner>
                         <SectionTitle
                           title="Reading"
                           description="Books I'm currently reading."
                         />
-                        <BooksContainerInner>
-                          {booksReading.map((book) => (
-                            <Book
-                              key={book.id}
-                              to={`/book/${book.id}`}
-                              book={book}
-                            />
-                          ))}
-                        </BooksContainerInner>
-                      </>
+                        {booksReading.map((book) => (
+                          <Book
+                            key={book.id}
+                            to={`/book/${book.id}`}
+                            book={book}
+                          />
+                        ))}
+                      </BooksContainerInner>
                     ) : null}
 
                     {booksRead.length > 0 ? (
-                      <>
+                      <BooksContainerInner>
                         <SectionTitle
                           title="Read"
                           description="The last books I've read."
                         />
-                        <BooksContainerInner>
-                          {booksRead
-                            .map((book) => {
-                              if (book.finished) {
-                                return {
-                                  ...book,
-                                  finishedDate: new Date(book.finished),
-                                };
-                              }
-                              return book;
-                            })
-                            .sort((a, b) => {
-                              if (a.finishedDate && b.finishedDate) {
-                                return b.finishedDate - a.finishedDate;
-                              }
-                              return 0;
-                            })
-                            .map((book) => (
-                              <Book
-                                key={book.id}
-                                to={`/book/${book.id}`}
-                                book={book}
-                              />
-                            ))}
-                        </BooksContainerInner>
-                      </>
-                    ) : null}
-
-                    {booksToRead.length > 0 ? (
-                      <>
-                        <SectionTitle
-                          title="To Read"
-                          description="Books to read in the future."
-                        />
-                        <BooksContainerInner>
-                          {booksToRead.map((book) => (
+                        {booksRead
+                          .map((book) => {
+                            if (book.finished) {
+                              return {
+                                ...book,
+                                finishedDate: new Date(book.finished),
+                              };
+                            }
+                            return book;
+                          })
+                          .sort((a, b) => {
+                            if (a.finishedDate && b.finishedDate) {
+                              return b.finishedDate - a.finishedDate;
+                            }
+                            return 0;
+                          })
+                          .map((book) => (
                             <Book
                               key={book.id}
                               to={`/book/${book.id}`}
                               book={book}
                             />
                           ))}
-                        </BooksContainerInner>
-                      </>
+                      </BooksContainerInner>
+                    ) : null}
+
+                    {booksToRead.length > 0 ? (
+                      <BooksContainerInner>
+                        <SectionTitle
+                          title="To Read"
+                          description="Books to read in the future."
+                        />
+                        {booksToRead.map((book) => (
+                          <Book
+                            key={book.id}
+                            to={`/book/${book.id}`}
+                            book={book}
+                          />
+                        ))}
+                      </BooksContainerInner>
                     ) : null}
                   </BooksContainer>
                 )}
