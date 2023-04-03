@@ -74,7 +74,9 @@ export default function Search({ loading, setLoading }) {
               id: searchedBook.id,
               title: searchedBook.volumeInfo.title,
               author: searchedBook.volumeInfo.authors[0],
-              img: searchedBook.volumeInfo.imageLinks.thumbnail,
+              img: searchedBook.volumeInfo.imageLinks
+                ? searchedBook.volumeInfo.imageLinks.thumbnail
+                : "https://via.placeholder.com/150x150/e6e6e6/969696?text=No+Cover+Avaiable",
             };
 
             return <Book key={book.id} to={`/add`} book={book} />;
