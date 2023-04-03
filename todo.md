@@ -15,6 +15,5 @@
 - [x] iPad layout
 - [x] Fix Search quando non c'è .thumbnail
 - [x] Miglior Cerca
-- [ ] Rivedere Home Layout logged user
-- [ ] Cosa succede quando ci sono tanti libri in Home? Mostro solo gli ultimi e mando a pagine specifiche per le 3 categorie?
-- [ ] DB. Supabase / Planetscale
+- [x] Rivedere Home Layout logged user
+- [ ] Passare DB Supabase
