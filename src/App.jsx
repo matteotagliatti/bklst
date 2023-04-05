@@ -57,7 +57,7 @@ function App() {
       path: "/add",
       element: (
         <PrivateRoute user={user}>
-          <Add pb={pb} user={user} />
+          <Add pb={pb} user={user} loading={loading} setLoading={setLoading} />
         </PrivateRoute>
       ),
     },
@@ -65,7 +65,7 @@ function App() {
       path: "/book/:bookID",
       element: (
         <PrivateRoute user={user}>
-          <Book pb={pb} />
+          <Book pb={pb} loading={loading} setLoading={setLoading} />
         </PrivateRoute>
       ),
     },

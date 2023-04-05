@@ -5,7 +5,7 @@ import Layout from "../components/Shared/Layout";
 import Title from "../components/Shared/Title";
 import Back from "../components/UI/Back";
 
-export default function Book({ pb }) {
+export default function Book({ pb, loading, setLoading }) {
   const { bookID } = useParams();
   const [book, setBook] = useState(null);
 
@@ -28,7 +28,13 @@ export default function Book({ pb }) {
       <Back to="/" />
       <Title title={"Edit"} description={"Edit the books infos below."} />
       {book ? (
-        <CreateEdit pb={pb} book={book} bookID={bookID}>
+        <CreateEdit
+          pb={pb}
+          book={book}
+          bookID={bookID}
+          loading={loading}
+          setLoading={setLoading}
+        >
           <a
             href="#modal"
             className="mt-7 w-fit text-sm border border-red-500 hover:border-red-600 bg-red-500 hover:bg-red-600 text-white rounded-md px-5 py-2 hover:cursor-pointer"

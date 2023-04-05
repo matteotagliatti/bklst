@@ -5,7 +5,15 @@ import Label from "../UI/Form/Label";
 import Input from "../UI/Form/Input";
 import Submit from "../UI/Form/Submit";
 
-export default function CreateEdit({ pb, userID, book, bookID, children }) {
+export default function CreateEdit({
+  pb,
+  userID,
+  book,
+  bookID,
+  children,
+  loading,
+  setLoading,
+}) {
   const [bookIsFinished, setBookIsFinished] = useState(false);
   const titleRef = useRef();
   const authorRef = useRef();
@@ -31,6 +39,7 @@ export default function CreateEdit({ pb, userID, book, bookID, children }) {
 
   async function addBook(event) {
     event.preventDefault();
+    setLoading(true);
     const data = {
       title: titleRef.current.value,
       author: authorRef.current.value,
@@ -41,11 +50,13 @@ export default function CreateEdit({ pb, userID, book, bookID, children }) {
       owner: userID,
     };
     await pb.collection("books").create(data);
+    setLoading(false);
     window.location.href = "/";
   }
 
   async function updateBook(event) {
     event.preventDefault();
+    setLoading(true);
     const data = {
       title: titleRef.current.value,
       author: authorRef.current.value,
@@ -55,6 +66,7 @@ export default function CreateEdit({ pb, userID, book, bookID, children }) {
       img: imgRef.current.value,
     };
     await pb.collection("books").update(bookID, data);
+    setLoading(false);
     window.location.href = "/";
   }
 
@@ -116,7 +128,7 @@ export default function CreateEdit({ pb, userID, book, bookID, children }) {
       </InputContainer>
 
       <div className="flex gap-3 items-center">
-        <Submit value={`${bookID ? "Update" : "Add"}`} />
+        <Submit value={`${bookID ? "Update" : "Add"}`} loading={loading} />
         {children}
       </div>
     </FormContainer>
