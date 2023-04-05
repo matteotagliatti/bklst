@@ -8,11 +8,12 @@ import Label from "../components/UI/Form/Label";
 import Input from "../components/UI/Form/Input";
 import Submit from "../components/UI/Form/Submit";
 
-export default function SignIn({ pb, setUser }) {
+export default function SignIn({ pb, setUser, loading, setLoading }) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
   async function login(event) {
+    setLoading(true);
     const data = {
       email: emailRef.current.value,
       password: passwordRef.current.value,
@@ -24,6 +25,7 @@ export default function SignIn({ pb, setUser }) {
       .authWithPassword(data.email, data.password);
     setUser(authData);
     sessionStorage.setItem("authData", JSON.stringify(authData));
+    setLoading(false);
     window.location.href = "/";
   }
 
@@ -57,7 +59,7 @@ export default function SignIn({ pb, setUser }) {
             defaultValue="password"
           />
         </InputContainer>
-        <Submit value={"Sign In"} />
+        <Submit value={"Sign In"} loading={loading} />
       </FormContainer>
     </Layout>
   );

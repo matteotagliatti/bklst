@@ -36,7 +36,14 @@ function App() {
     },
     {
       path: "/sign-in",
-      element: <SignIn pb={pb} setUser={setUser} />,
+      element: (
+        <SignIn
+          pb={pb}
+          setUser={setUser}
+          loading={loading}
+          setLoading={setLoading}
+        />
+      ),
     },
     {
       path: "/search",
