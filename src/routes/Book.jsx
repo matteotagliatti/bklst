@@ -4,6 +4,7 @@ import CreateEdit from "../components/Shared/CreateEdit";
 import Layout from "../components/Shared/Layout";
 import Title from "../components/Shared/Title";
 import Back from "../components/UI/Back";
+import Loader from "../components/Shared/Loader";
 
 export default function Book({ pb, loading, setLoading }) {
   const { bookID } = useParams();
@@ -89,7 +90,9 @@ export default function Book({ pb, loading, setLoading }) {
             </div>
           </div>
         </CreateEdit>
-      ) : null}
+      ) : (
+        <Loader />
+      )}
     </Layout>
   );
 }
