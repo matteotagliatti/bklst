@@ -14,7 +14,7 @@ export default function Book({ link, to, book }) {
       <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
         <div>
           <small className="block text-neutral-400">{book.author}</small>
-          <p className="text-sm">{book.title}</p>
+          <p className="text-sm line-clamp-1">{book.title}</p>
         </div>
         <div className="text-neutral-400 text-right">
           <small className="block text-sm">{book.status}</small>
