@@ -16,4 +16,6 @@
 - [x] Fix Search quando non c'è .thumbnail
 - [x] Miglior Cerca
 - [x] Rivedere Home Layout logged user
+- [x] Redirect da SignUp a Home quando utente è loggato
 - [ ] Passare DB Supabase
+- [ ] Favicon

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Layout from "../components/Shared/Layout";
 import Back from "../components/UI/Back";
 import Title from "../components/Shared/Title";
@@ -8,7 +8,7 @@ import Label from "../components/UI/Form/Label";
 import Input from "../components/UI/Form/Input";
 import Submit from "../components/UI/Form/Submit";
 
-export default function SignIn({ pb, setUser, loading, setLoading }) {
+export default function SignIn({ pb, user, setUser, loading, setLoading }) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
@@ -28,6 +28,10 @@ export default function SignIn({ pb, setUser, loading, setLoading }) {
     setLoading(false);
     window.location.href = "/";
   }
+
+  useEffect(() => {
+    if (user) window.location.href = "/";
+  }, [user]);
 
   return (
     <Layout variant={"small"}>

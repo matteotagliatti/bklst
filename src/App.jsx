@@ -39,6 +39,7 @@ function App() {
       element: (
         <SignIn
           pb={pb}
+          user={user}
           setUser={setUser}
           loading={loading}
           setLoading={setLoading}
