@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { supabase } from "../supabase";
 import Layout from "../components/Shared/Layout";
 import Back from "../components/UI/Back";
@@ -10,15 +10,15 @@ import Input from "../components/UI/Form/Input";
 import Submit from "../components/UI/Form/Submit";
 
 export default function SignIn({ user, loading, setLoading }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const emailRef = useRef();
+  const passwordRef = useRef();
 
   async function login(event) {
     setLoading(true);
     event.preventDefault();
     const { error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
+      email: emailRef.current.value,
+      password: passwordRef.current.value,
     });
 
     if (error) {
@@ -48,7 +48,8 @@ export default function SignIn({ user, loading, setLoading }) {
             required={true}
             type="text"
             placeholder="yourname@email.com"
-            onChange={(e) => setEmail(e.target.value)}
+            inputRef={emailRef}
+            defaultValue={"matteotagliatti@gmail.com"}
           />
         </InputContainer>
         <InputContainer>
@@ -57,7 +58,8 @@ export default function SignIn({ user, loading, setLoading }) {
             required={true}
             type="password"
             placeholder="Your password"
-            onChange={(e) => setPassword(e.target.value)}
+            inputRef={passwordRef}
+            defaultValue={"password"}
           />
         </InputContainer>
         <Submit value={"Sign In"} loading={loading} />
