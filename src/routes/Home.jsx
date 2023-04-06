@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Shared/Header";
 import Layout from "../components/Shared/Layout";
@@ -7,19 +8,38 @@ import BooksContainer from "../components/Shared/BooksContainer";
 import BooksContainerInner from "../components/Home/BooksContainerInner";
 import SectionTitle from "../components/Home/SectionTitle";
 
-export default function Home({
-  user,
-  pb,
-  setUser,
-  books,
-  booksToRead,
-  booksReading,
-  booksRead,
-  loading,
-}) {
+export default function Home({ user, loading }) {
+  const [books, setBooks] = useState([]);
+  const [booksToRead, setBooksToRead] = useState([]);
+  const [booksReading, setBooksReading] = useState([]);
+  const [booksRead, setBooksRead] = useState([]);
+
+  useEffect(() => {
+    if (user) {
+      getBooklist();
+    }
+  }, [user]);
+
+  async function getBooklist() {
+    console.log("get");
+    /* setLoading(true);
+    const books = await pb.collection("books").getFullList({
+      filter: "owner.name = " + '"' + user.record.name + '"',
+      sort: "-created",
+    });
+    setBooks(books);
+    const booksToRead = books.filter((book) => book.status === "to-read");
+    const booksReading = books.filter((book) => book.status === "reading");
+    const booksRead = books.filter((book) => book.status === "read");
+    setBooksToRead(booksToRead);
+    setBooksReading(booksReading);
+    setBooksRead(booksRead);
+    setLoading(false); */
+  }
+
   return (
     <>
-      <Header user={user} setUser={setUser} pb={pb} />
+      <Header user={user} />
       <Layout>
         {user ? (
           <>

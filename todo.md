@@ -18,5 +18,5 @@
 - [x] Rivedere Home Layout logged user
 - [x] Redirect da SignUp a Home quando utente è loggato
 - [ ] Passare DB Supabase
-- [ ] State legati ai libri e funzione getBooks in Home
+  - [x] State legati ai libri e funzione getBooks in Home
 - [ ] Favicon
