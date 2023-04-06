@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
+import { supabase } from "../supabase";
 import Layout from "../components/Shared/Layout";
 import Back from "../components/UI/Back";
 import Title from "../components/Shared/Title";
@@ -8,25 +9,23 @@ import Label from "../components/UI/Form/Label";
 import Input from "../components/UI/Form/Input";
 import Submit from "../components/UI/Form/Submit";
 
-export default function SignIn({ pb, user, setUser, loading, setLoading }) {
-  const emailRef = useRef();
-  const passwordRef = useRef();
+export default function SignIn({ user, setUser, loading, setLoading }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   async function login(event) {
     setLoading(true);
-    const data = {
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
-    };
-
     event.preventDefault();
-    const authData = await pb
-      .collection("users")
-      .authWithPassword(data.email, data.password);
-    setUser(authData);
-    sessionStorage.setItem("authData", JSON.stringify(authData));
+    const { user, session, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      alert(error.error_description || error.message);
+    }
+
     setLoading(false);
-    window.location.href = "/";
   }
 
   useEffect(() => {
@@ -49,8 +48,7 @@ export default function SignIn({ pb, user, setUser, loading, setLoading }) {
             required={true}
             type="text"
             placeholder="yourname@email.com"
-            inputRef={emailRef}
-            defaultValue="matteotagliatti@gmail.com"
+            onChange={(e) => setEmail(e.target.value)}
           />
         </InputContainer>
         <InputContainer>
@@ -59,8 +57,7 @@ export default function SignIn({ pb, user, setUser, loading, setLoading }) {
             required={true}
             type="password"
             placeholder="Your password"
-            inputRef={passwordRef}
-            defaultValue="password"
+            onChange={(e) => setPassword(e.target.value)}
           />
         </InputContainer>
         <Submit value={"Sign In"} loading={loading} />

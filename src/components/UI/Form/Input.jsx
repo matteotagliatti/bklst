@@ -4,6 +4,7 @@ export default function Input({
   placeholder,
   defaultValue,
   inputRef,
+  onChange,
 }) {
   return (
     <input
@@ -13,6 +14,7 @@ export default function Input({
       placeholder={placeholder}
       defaultValue={defaultValue}
       ref={inputRef}
+      onChange={onChange}
     />
   );
 }

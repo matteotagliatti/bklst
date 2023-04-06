@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
+import { supabase } from "../../supabase";
 
-export default function Header({ user, setUser, pb }) {
-  function logout() {
-    sessionStorage.removeItem("authData");
-    setUser(null);
-    pb.authStore.clear();
-  }
-
+export default function Header({ user }) {
   return (
     <header className="fixed top-0 left-0 right-0 h-12 px-3 py-4 mx-2 flex justify-between items-center border-b border-neutral-100 bg-white/75 backdrop-blur z-10">
       <div className="flex gap-4">
@@ -26,7 +21,7 @@ export default function Header({ user, setUser, pb }) {
         {user ? (
           <button
             className="text-sm text-neutral-400 hover:underline"
-            onClick={logout}
+            onClick={() => supabase.auth.signOut()}
           >
             Logout
           </button>
