@@ -19,4 +19,8 @@
 - [x] Redirect da SignUp a Home quando utente è loggato
 - [ ] Passare DB Supabase
   - [x] State legati ai libri e funzione getBooks in Home
+  - [ ] Create Book
+  - [ ] Update Book
+  - [ ] Delete Book
+  - [ ] RTL Policies
 - [ ] Favicon
