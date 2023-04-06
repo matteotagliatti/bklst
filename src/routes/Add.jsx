@@ -14,7 +14,7 @@ export default function Add({ user, loading, setLoading }) {
       <Title title={"Add a book"} description="You can edit the infos below." />
       <CreateEdit
         book={locationBook}
-        userID={user.user.id}
+        userID={user.id}
         loading={loading}
         setLoading={setLoading}
       />

@@ -26,7 +26,7 @@ export default function Home({ user, loading, setLoading }) {
     const { data: books, error } = await supabase
       .from("books")
       .select()
-      .eq("owner", user.user.id);
+      .eq("owner", user.id);
 
     if (error) {
       console.log(error);

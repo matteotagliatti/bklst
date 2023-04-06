@@ -18,8 +18,9 @@
 - [x] Rivedere Home Layout logged user
 - [x] Redirect da SignUp a Home quando utente è loggato
 - [ ] Passare DB Supabase
+  - [x] Differenziare Session e User // session ad ogni refresh della pagina causa dei problemi
   - [x] State legati ai libri e funzione getBooks in Home
-  - [ ] Create Book
+  - [x] Create Book
   - [ ] Update Book
   - [ ] Delete Book
   - [ ] RTL Policies

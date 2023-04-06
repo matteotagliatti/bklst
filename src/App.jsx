@@ -9,16 +9,22 @@ import SignIn from "./routes/SignIn";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("user")) || null
+  );
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session);
+      const { user } = session;
+      setUser(user);
+      localStorage.setItem("user", JSON.stringify(user));
     });
 
     supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session);
+      const { user } = session;
+      setUser(user);
+      localStorage.setItem("user", JSON.stringify(user));
     });
   }, []);
 
