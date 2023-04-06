@@ -9,14 +9,14 @@ import Label from "../components/UI/Form/Label";
 import Input from "../components/UI/Form/Input";
 import Submit from "../components/UI/Form/Submit";
 
-export default function SignIn({ user, setUser, loading, setLoading }) {
+export default function SignIn({ user, loading, setLoading }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   async function login(event) {
     setLoading(true);
     event.preventDefault();
-    const { user, session, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     });

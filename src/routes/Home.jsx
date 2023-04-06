@@ -7,8 +7,9 @@ import Book from "../components/Shared/Book";
 import BooksContainer from "../components/Shared/BooksContainer";
 import BooksContainerInner from "../components/Home/BooksContainerInner";
 import SectionTitle from "../components/Home/SectionTitle";
+import { supabase } from "../supabase";
 
-export default function Home({ user, loading }) {
+export default function Home({ user, loading, setLoading }) {
   const [books, setBooks] = useState([]);
   const [booksToRead, setBooksToRead] = useState([]);
   const [booksReading, setBooksReading] = useState([]);
@@ -21,12 +22,14 @@ export default function Home({ user, loading }) {
   }, [user]);
 
   async function getBooklist() {
-    console.log("get");
-    /* setLoading(true);
-    const books = await pb.collection("books").getFullList({
-      filter: "owner.name = " + '"' + user.record.name + '"',
-      sort: "-created",
-    });
+    setLoading(true);
+    const { data: books, error } = await supabase.from("books").select();
+    console.log(books);
+
+    if (error) {
+      console.log(error);
+    }
+
     setBooks(books);
     const booksToRead = books.filter((book) => book.status === "to-read");
     const booksReading = books.filter((book) => book.status === "reading");
@@ -34,7 +37,7 @@ export default function Home({ user, loading }) {
     setBooksToRead(booksToRead);
     setBooksReading(booksReading);
     setBooksRead(booksRead);
-    setLoading(false); */
+    setLoading(false);
   }
 
   return (

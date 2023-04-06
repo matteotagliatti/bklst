@@ -25,18 +25,11 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home user={user} loading={loading} />,
+      element: <Home user={user} loading={loading} setLoading={setLoading} />,
     },
     {
       path: "/sign-in",
-      element: (
-        <SignIn
-          user={user}
-          setUser={setUser}
-          loading={loading}
-          setLoading={setLoading}
-        />
-      ),
+      element: <SignIn user={user} loading={loading} setLoading={setLoading} />,
     },
     {
       path: "/search",
