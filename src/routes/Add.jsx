@@ -4,7 +4,7 @@ import Title from "../components/Shared/Title";
 import Back from "../components/UI/Back";
 import CreateEdit from "../components/Shared/CreateEdit";
 
-export default function Add({ pb, user, loading, setLoading }) {
+export default function Add({ user, loading, setLoading }) {
   const location = useLocation();
   const locationBook = location.state.book;
 
@@ -14,8 +14,7 @@ export default function Add({ pb, user, loading, setLoading }) {
       <Title title={"Add a book"} description="You can edit the infos below." />
       <CreateEdit
         book={locationBook}
-        pb={pb}
-        userID={user.record.id}
+        userID={user.user.id}
         loading={loading}
         setLoading={setLoading}
       />

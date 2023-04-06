@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import searchBooks from "../functions/search";
 import Layout from "../components/Shared/Layout";
-import Loader from "../components/Shared/Loader";
 import Back from "../components/UI/Back";
 import FormContainer from "../components/UI/Form/FormContainer";
 import InputContainer from "../components/UI/Form/InputContainer";

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { supabase } from "../supabase";
 import { Link } from "react-router-dom";
 import Header from "../components/Shared/Header";
 import Layout from "../components/Shared/Layout";
@@ -7,7 +8,6 @@ import Book from "../components/Shared/Book";
 import BooksContainer from "../components/Shared/BooksContainer";
 import BooksContainerInner from "../components/Home/BooksContainerInner";
 import SectionTitle from "../components/Home/SectionTitle";
-import { supabase } from "../supabase";
 
 export default function Home({ user, loading, setLoading }) {
   const [books, setBooks] = useState([]);

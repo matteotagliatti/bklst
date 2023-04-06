@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { supabase } from "../../supabase";
 import FormContainer from "../UI/Form/FormContainer";
 import InputContainer from "../UI/Form/InputContainer";
 import Label from "../UI/Form/Label";
@@ -6,7 +7,6 @@ import Input from "../UI/Form/Input";
 import Submit from "../UI/Form/Submit";
 
 export default function CreateEdit({
-  pb,
   userID,
   book,
   bookID,
@@ -49,9 +49,14 @@ export default function CreateEdit({
         statusRef.current.value === "read" ? finishedRef.current.value : null,
       owner: userID,
     };
-    await pb.collection("books").create(data);
-    setLoading(false);
-    window.location.href = "/";
+    const { error } = await supabase.from("books").insert(data);
+
+    if (error) {
+      console.log(error);
+    } else {
+      setLoading(false);
+      window.location.href = "/";
+    }
   }
 
   async function updateBook(event) {
