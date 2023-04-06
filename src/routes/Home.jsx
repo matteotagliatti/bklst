@@ -23,8 +23,10 @@ export default function Home({ user, loading, setLoading }) {
 
   async function getBooklist() {
     setLoading(true);
-    const { data: books, error } = await supabase.from("books").select();
-    console.log(books);
+    const { data: books, error } = await supabase
+      .from("books")
+      .select()
+      .eq("owner", user.user.id);
 
     if (error) {
       console.log(error);
