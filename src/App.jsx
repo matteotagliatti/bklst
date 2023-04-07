@@ -10,7 +10,7 @@ import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("user")) || null
+    JSON.parse(sessionStorage.getItem("user")) || null
   );
   const [loading, setLoading] = useState(false);
 
@@ -18,13 +18,13 @@ function App() {
     supabase.auth.getSession().then(({ data: { session } }) => {
       const { user } = session;
       setUser(user);
-      localStorage.setItem("user", JSON.stringify(user));
+      sessionStorage.setItem("user", JSON.stringify(user));
     });
 
     supabase.auth.onAuthStateChange((_event, session) => {
       const { user } = session;
       setUser(user);
-      localStorage.setItem("user", JSON.stringify(user));
+      sessionStorage.setItem("user", JSON.stringify(user));
     });
   }, []);
 
