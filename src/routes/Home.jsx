@@ -152,7 +152,7 @@ export default function Home({ user, loading, setLoading }) {
                 .
               </p>
               <a
-                href="mailto:matteotagliatti@gmail.com?subject=Request to join Basic Booklist&body=Hello, I'd love to join Basic Booklist."
+                href="mailto:matteotagliatti@gmail.com?subject=Request to join Bklst&body=Hello, I'd love to join Bklst."
                 className="text-sm flex items-center border border-neutral-200 hover:border-neutral-300 rounded-full px-2 py-1 w-fit gap-2"
                 target="_blank"
               >
