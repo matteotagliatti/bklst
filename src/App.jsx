@@ -16,17 +16,24 @@ function App() {
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
-      const { user } = session;
-      setUser(user);
-      sessionStorage.setItem("user", JSON.stringify(user));
+      setSession(session);
     });
 
     supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session);
+    });
+  }, []);
+
+  function setSession(session) {
+    if (session) {
       const { user } = session;
       setUser(user);
       sessionStorage.setItem("user", JSON.stringify(user));
-    });
-  }, []);
+    } else {
+      setUser(null);
+      sessionStorage.removeItem("user");
+    }
+  }
 
   const router = createBrowserRouter([
     {
