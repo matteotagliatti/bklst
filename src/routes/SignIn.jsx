@@ -49,7 +49,6 @@ export default function SignIn({ user, loading, setLoading }) {
             type="text"
             placeholder="yourname@email.com"
             inputRef={emailRef}
-            defaultValue={"matteotagliatti@gmail.com"}
           />
         </InputContainer>
         <InputContainer>
@@ -59,7 +58,6 @@ export default function SignIn({ user, loading, setLoading }) {
             type="password"
             placeholder="Your password"
             inputRef={passwordRef}
-            defaultValue={"password"}
           />
         </InputContainer>
         <Submit value={"Sign In"} loading={loading} />
