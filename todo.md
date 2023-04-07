@@ -26,3 +26,4 @@
   - [ ] Gestire errori (Magari con notifica?)
   - [x] RTL Policies
 - [ ] Favicon
+- [ ] Readme

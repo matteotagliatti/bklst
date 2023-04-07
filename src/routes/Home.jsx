@@ -141,7 +141,7 @@ export default function Home({ user, loading, setLoading }) {
               <p className="text-sm text-neutral-400 mb-5">
                 A very simple way to keep track of the books you read. No social
                 media functions, no ads, no tracking. Just you and your books in
-                a very clean interface. Forever free and{" "}
+                a very clean interface. Forever{" "}
                 <a
                   className="underline"
                   target="_blank"
@@ -152,8 +152,9 @@ export default function Home({ user, loading, setLoading }) {
                 .
               </p>
               <a
-                href="mailto:matteotagliatti@gmail.com?subject=Request to join Booklist&body=Hello, I'd love to join Booklist."
+                href="mailto:matteotagliatti@gmail.com?subject=Request to join Basic Booklist&body=Hello, I'd love to join Basic Booklist."
                 className="text-sm flex items-center border border-neutral-200 hover:border-neutral-300 rounded-full px-2 py-1 w-fit gap-2"
+                target="_blank"
               >
                 <svg
                   width="16"
