@@ -21,7 +21,8 @@
   - [x] Differenziare Session e User // session ad ogni refresh della pagina causa dei problemi
   - [x] State legati ai libri e funzione getBooks in Home
   - [x] Create Book
-  - [ ] Update Book
-  - [ ] Delete Book
-  - [ ] RTL Policies
+  - [x] Update Book
+  - [x] Delete Book
+  - [ ] Gestire errori (Magari con notifica?)
+  - [x] RTL Policies
 - [ ] Favicon

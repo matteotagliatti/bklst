@@ -53,16 +53,16 @@ export default function CreateEdit({
 
     if (error) {
       console.log(error);
-    } else {
-      setLoading(false);
-      window.location.href = "/";
     }
+
+    setLoading(false);
+    window.location.href = "/";
   }
 
   async function updateBook(event) {
     event.preventDefault();
     setLoading(true);
-    const data = {
+    const bookData = {
       title: titleRef.current.value,
       author: authorRef.current.value,
       status: statusRef.current.value,
@@ -70,9 +70,17 @@ export default function CreateEdit({
         statusRef.current.value === "read" ? finishedRef.current.value : null,
       img: imgRef.current.value,
     };
-    await pb.collection("books").update(bookID, data);
-    setLoading(false);
+    const { error } = await supabase
+      .from("books")
+      .update(bookData)
+      .eq("id", bookID);
+
+    if (error) {
+      console.log(error);
+    }
+
     window.location.href = "/";
+    setLoading(false);
   }
 
   function toggleFinishedBook() {

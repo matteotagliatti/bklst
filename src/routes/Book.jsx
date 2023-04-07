@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { supabase } from "../supabase";
 import CreateEdit from "../components/Shared/CreateEdit";
 import Layout from "../components/Shared/Layout";
 import Title from "../components/Shared/Title";
 import Back from "../components/UI/Back";
 import Loader from "../components/Shared/Loader";
 
-export default function Book({ pb, loading, setLoading }) {
+export default function Book({ loading, setLoading }) {
   const { bookID } = useParams();
   const [book, setBook] = useState(null);
 
@@ -15,12 +16,25 @@ export default function Book({ pb, loading, setLoading }) {
   }, [bookID]);
 
   async function getBook() {
-    const book = await pb.collection("books").getOne(bookID);
-    setBook(book);
+    const { data: book, error } = await supabase
+      .from("books")
+      .select()
+      .eq("id", bookID);
+
+    if (error) {
+      console.log(error);
+    }
+
+    setBook(book[0]);
   }
 
   async function deleteBook() {
-    await pb.collection("books").delete(bookID);
+    const { error } = await supabase.from("books").delete().eq("id", bookID);
+
+    if (error) {
+      console.log(error);
+    }
+
     window.location.href = "/";
   }
 
@@ -30,7 +44,6 @@ export default function Book({ pb, loading, setLoading }) {
       <Title title={"Edit"} description={"Edit the books infos below."} />
       {book ? (
         <CreateEdit
-          pb={pb}
           book={book}
           bookID={bookID}
           loading={loading}
