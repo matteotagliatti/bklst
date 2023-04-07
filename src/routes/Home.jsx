@@ -68,7 +68,6 @@ export default function Home({ user, loading, setLoading }) {
                         <SectionTitle
                           title="Reading"
                           description="Books I'm currently reading."
-                          noptmobile={true}
                         />
                         {booksReading.map((book) => (
                           <Book
