@@ -145,7 +145,7 @@ export default function Home({ user, loading, setLoading }) {
                 <a
                   className="underline"
                   target="_blank"
-                  href="https://github.com/matteotagliatti/booklist"
+                  href="https://github.com/matteotagliatti/bklst"
                 >
                   open source
                 </a>

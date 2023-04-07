@@ -17,13 +17,12 @@
 - [x] Miglior Cerca
 - [x] Rivedere Home Layout logged user
 - [x] Redirect da SignUp a Home quando utente è loggato
-- [ ] Passare DB Supabase
+- [x] Passare DB Supabase
   - [x] Differenziare Session e User // session ad ogni refresh della pagina causa dei problemi
   - [x] State legati ai libri e funzione getBooks in Home
   - [x] Create Book
   - [x] Update Book
   - [x] Delete Book
-  - [ ] Gestire errori (Magari con notifica?)
   - [x] RTL Policies
 - [ ] Favicon
-- [ ] Readme
+- [x] Readme
