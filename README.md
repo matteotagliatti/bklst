@@ -10,5 +10,5 @@ If you want to use it, [send me an email via the Homepage button](bklst.matteota
 
 If you want to try it out, you can use the following credentials:
 
-- Email: `test@matteotagliatti.it'
+- Email: `test@matteotagliatti.it`
 - Password: `test1234`
