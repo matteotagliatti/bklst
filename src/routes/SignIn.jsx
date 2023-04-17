@@ -46,7 +46,7 @@ export default function SignIn({ user, loading, setLoading }) {
           <Label htmlFor="email">Email</Label>
           <Input
             required={true}
-            type="text"
+            type="email"
             placeholder="yourname@email.com"
             inputRef={emailRef}
           />
