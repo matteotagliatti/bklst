@@ -71,11 +71,7 @@ function App() {
     },
     {
       path: "/password-reset",
-      element: (
-        <PrivateRoute user={user}>
-          <ResetPassword loading={loading} setLoading={setLoading} />
-        </PrivateRoute>
-      ),
+      element: <ResetPassword loading={loading} setLoading={setLoading} />,
     },
   ]);
 

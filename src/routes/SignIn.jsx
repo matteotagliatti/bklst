@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { supabase } from "../supabase";
+import { Link } from "react-router-dom";
 import Layout from "../components/Shared/Layout";
 import Back from "../components/UI/Back";
 import Title from "../components/Shared/Title";
@@ -61,6 +62,12 @@ export default function SignIn({ user, loading, setLoading }) {
           />
         </InputContainer>
         <Submit value={"Sign In"} loading={loading} />
+        <Link
+          className="mt-5 text-sm text-neutral-400 hover:underline"
+          to="/password-reset"
+        >
+          Forgot password?
+        </Link>
       </FormContainer>
     </Layout>
   );

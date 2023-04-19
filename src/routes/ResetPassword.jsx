@@ -25,15 +25,14 @@ export default function ResetPassword({ loading, setLoading }) {
 
     console.log(data, error);
     setLoading(false);
+
+    // add notif to user to check his email
   }
 
   return (
     <Layout variant={"small"}>
       <Back to="/" />
-      <Title
-        title={"Reset Passoword"}
-        description="Specify your email below."
-      />
+      <Title title={"Reset Password"} description="Specify your email below." />
       <FormContainer onSubmit={sendResetPassowrd}>
         <InputContainer>
           <Label htmlFor="email">Email</Label>
