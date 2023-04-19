@@ -7,6 +7,7 @@ import Book from "./routes/Book";
 import Add from "./routes/Add";
 import SignIn from "./routes/SignIn";
 import PrivateRoute from "./components/PrivateRoute";
+import ResetPassword from "./routes/ResetPassword";
 
 function App() {
   const [user, setUser] = useState(
@@ -65,6 +66,14 @@ function App() {
       element: (
         <PrivateRoute user={user}>
           <Book loading={loading} setLoading={setLoading} />
+        </PrivateRoute>
+      ),
+    },
+    {
+      path: "/password-reset",
+      element: (
+        <PrivateRoute user={user}>
+          <ResetPassword loading={loading} setLoading={setLoading} />
         </PrivateRoute>
       ),
     },
