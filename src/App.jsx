@@ -20,8 +20,20 @@ function App() {
       setSession(session);
     });
 
-    supabase.auth.onAuthStateChange((_event, session) => {
+    supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session);
+
+      if (_event == "PASSWORD_RECOVERY") {
+        const newPassword = prompt(
+          "What would you like your new password to be?"
+        );
+        const { data, error } = await supabase.auth.updateUser({
+          password: newPassword,
+        });
+
+        if (data) alert("Password updated successfully!");
+        if (error) alert("There was an error updating your password.");
+      }
     });
   }, []);
 

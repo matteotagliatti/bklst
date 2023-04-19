@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { supabase } from "../supabase";
 import Layout from "../components/Shared/Layout";
 import Title from "../components/Shared/Title";
@@ -11,6 +11,7 @@ import Submit from "../components/UI/Form/Submit";
 
 export default function ResetPassword({ loading, setLoading }) {
   const emailRef = useRef();
+  const [emailIsSend, setEmailIsSend] = useState(false);
 
   async function sendResetPassowrd(event) {
     event.preventDefault();
@@ -23,10 +24,8 @@ export default function ResetPassword({ loading, setLoading }) {
       console.log(error);
     }
 
-    console.log(data, error);
     setLoading(false);
-
-    // add notif to user to check his email
+    setEmailIsSend(true);
   }
 
   return (
@@ -43,6 +42,12 @@ export default function ResetPassword({ loading, setLoading }) {
             inputRef={emailRef}
           />
         </InputContainer>
+        {emailIsSend ? (
+          <p className="mt-2 text-sm text-red-400">
+            Check your email. Even your SPAM folder and click on the link to
+            reset the password.
+          </p>
+        ) : null}
         <Submit value={`Send`} loading={loading} />
       </FormContainer>
     </Layout>
