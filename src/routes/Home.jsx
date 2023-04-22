@@ -6,8 +6,8 @@ import Layout from "../components/Shared/Layout";
 import Loader from "../components/Shared/Loader";
 import Book from "../components/Shared/Book";
 import BooksContainer from "../components/Shared/BooksContainer";
-import BooksContainerInner from "../components/Home/BooksContainerInner";
-import SectionTitle from "../components/Home/SectionTitle";
+import BooksContainerInner from "../components/Shared/BooksContainerInner";
+import SectionTitle from "../components/Shared/SectionTitle";
 
 export default function Home({
   user,

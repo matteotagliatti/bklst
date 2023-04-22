@@ -8,6 +8,7 @@ import Add from "./routes/Add";
 import SignIn from "./routes/SignIn";
 import PrivateRoute from "./components/PrivateRoute";
 import ResetPassword from "./routes/ResetPassword";
+import Books from "./routes/Books";
 
 function App() {
   const [user, setUser] = useState(
@@ -92,6 +93,45 @@ function App() {
           booksReading={booksReading}
           booksToRead={booksToRead}
         />
+      ),
+    },
+    {
+      path: "/reading",
+      element: (
+        <PrivateRoute user={user}>
+          <Books
+            user={user}
+            books={booksReading}
+            title={"Reading"}
+            description={"Books i'm currently reading"}
+          />
+        </PrivateRoute>
+      ),
+    },
+    {
+      path: "/to-read",
+      element: (
+        <PrivateRoute user={user}>
+          <Books
+            user={user}
+            books={booksToRead}
+            title={"Read"}
+            description={"Books i've read"}
+          />
+        </PrivateRoute>
+      ),
+    },
+    {
+      path: "/read",
+      element: (
+        <PrivateRoute user={user}>
+          <Books
+            user={user}
+            books={booksRead}
+            title={"To Read"}
+            description={"Books to read"}
+          />
+        </PrivateRoute>
       ),
     },
     {
