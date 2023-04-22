@@ -9,38 +9,17 @@ import BooksContainer from "../components/Shared/BooksContainer";
 import BooksContainerInner from "../components/Home/BooksContainerInner";
 import SectionTitle from "../components/Home/SectionTitle";
 
-export default function Home({ user, loading, setLoading }) {
-  const [books, setBooks] = useState([]);
-  const [booksToRead, setBooksToRead] = useState([]);
-  const [booksReading, setBooksReading] = useState([]);
-  const [booksRead, setBooksRead] = useState([]);
-
-  useEffect(() => {
-    if (user) {
-      getBooklist();
-    }
-  }, [user]);
-
-  async function getBooklist() {
-    setLoading(true);
-    const { data: books, error } = await supabase
-      .from("books")
-      .select()
-      .eq("owner", user.id);
-
-    if (error) {
-      console.log(error);
-    }
-
-    setBooks(books);
-    const booksToRead = books.filter((book) => book.status === "to-read");
-    const booksReading = books.filter((book) => book.status === "reading");
-    const booksRead = books.filter((book) => book.status === "read");
-    setBooksToRead(booksToRead);
-    setBooksReading(booksReading);
-    setBooksRead(booksRead);
-    setLoading(false);
-  }
+export default function Home({
+  user,
+  loading,
+  books,
+  booksToRead,
+  booksReading,
+  booksRead,
+}) {
+  const booksReadingSlice = booksReading.slice(0, 3);
+  const booksToReadSlice = booksToRead.slice(0, 3);
+  const booksReadSlice = booksRead.slice(0, 3);
 
   return (
     <>
@@ -63,7 +42,7 @@ export default function Home({ user, loading, setLoading }) {
                   </div>
                 ) : (
                   <div>
-                    {booksReading.length > 0 ? (
+                    {booksReadingSlice.length > 0 ? (
                       <>
                         <SectionTitle
                           title="Reading"
@@ -71,7 +50,7 @@ export default function Home({ user, loading, setLoading }) {
                           link="/reading"
                         />
                         <BooksContainerInner>
-                          {booksReading.map((book) => (
+                          {booksReadingSlice.map((book) => (
                             <Book
                               key={book.id}
                               to={`/book/${book.id}`}
@@ -82,7 +61,7 @@ export default function Home({ user, loading, setLoading }) {
                       </>
                     ) : null}
 
-                    {booksToRead.length > 0 ? (
+                    {booksToReadSlice.length > 0 ? (
                       <>
                         <SectionTitle
                           title="To Read"
@@ -90,7 +69,7 @@ export default function Home({ user, loading, setLoading }) {
                           link="/to-read"
                         />
                         <BooksContainerInner>
-                          {booksToRead.map((book) => (
+                          {booksToReadSlice.map((book) => (
                             <Book
                               key={book.id}
                               to={`/book/${book.id}`}
@@ -101,7 +80,7 @@ export default function Home({ user, loading, setLoading }) {
                       </>
                     ) : null}
 
-                    {booksRead.length > 0 ? (
+                    {booksReadSlice.length > 0 ? (
                       <>
                         <SectionTitle
                           title="Read"
@@ -109,7 +88,7 @@ export default function Home({ user, loading, setLoading }) {
                           link="/read"
                         />
                         <BooksContainerInner>
-                          {booksRead
+                          {booksReadSlice
                             .map((book) => {
                               if (book.finished) {
                                 return {

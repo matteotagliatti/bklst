@@ -14,6 +14,10 @@ function App() {
     JSON.parse(sessionStorage.getItem("user")) || null
   );
   const [loading, setLoading] = useState(false);
+  const [books, setBooks] = useState([]);
+  const [booksToRead, setBooksToRead] = useState([]);
+  const [booksReading, setBooksReading] = useState([]);
+  const [booksRead, setBooksRead] = useState([]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -48,10 +52,47 @@ function App() {
     }
   }
 
+  useEffect(() => {
+    if (user) {
+      getBooklist();
+    }
+  }, [user]);
+
+  async function getBooklist() {
+    setLoading(true);
+    const { data: books, error } = await supabase
+      .from("books")
+      .select()
+      .eq("owner", user.id);
+
+    if (error) {
+      console.log(error);
+    }
+
+    setBooks(books);
+    const booksToRead = books.filter((book) => book.status === "to-read");
+    const booksReading = books.filter((book) => book.status === "reading");
+    const booksRead = books.filter((book) => book.status === "read");
+    setBooksToRead(booksToRead);
+    setBooksReading(booksReading);
+    setBooksRead(booksRead);
+    setLoading(false);
+  }
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home user={user} loading={loading} setLoading={setLoading} />,
+      element: (
+        <Home
+          user={user}
+          loading={loading}
+          setLoading={setLoading}
+          books={books}
+          booksRead={booksRead}
+          booksReading={booksReading}
+          booksToRead={booksToRead}
+        />
+      ),
     },
     {
       path: "/sign-in",
