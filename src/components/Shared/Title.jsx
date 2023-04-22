@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 
-export default function Title({ title, description, link, nopt }) {
+export default function Title({ title, description, link, nopt, notitlemb }) {
   let pt = "pt-14";
   if (nopt) {
     pt = "pt-0";
+  }
+
+  let mb = "mb-2";
+  if (notitlemb) {
+    mb = "mb-0";
   }
 
   return (
@@ -13,7 +18,7 @@ export default function Title({ title, description, link, nopt }) {
       }`}
     >
       <div>
-        <h2 className="text-2xl mb-2">{title}</h2>
+        <h2 className={`text-2xl ${mb}`}>{title}</h2>
         <p className="text-sm text-neutral-400">{description}</p>
       </div>
       {link ? (

@@ -48,6 +48,7 @@ export default function Home({
                           title="Reading"
                           description="Books I'm currently reading."
                           link="/reading"
+                          notitlemb={true}
                         />
                         <BooksContainerInner>
                           {booksReadingSlice.map((book) => (
@@ -67,6 +68,7 @@ export default function Home({
                           title="To Read"
                           description="Books to read in the future."
                           link="/to-read"
+                          notitlemb={true}
                         />
                         <BooksContainerInner>
                           {booksToReadSlice.map((book) => (
@@ -86,6 +88,7 @@ export default function Home({
                           title="Read"
                           description="The last books I've read."
                           link="/read"
+                          notitlemb={true}
                         />
                         <BooksContainerInner>
                           {booksReadSlice

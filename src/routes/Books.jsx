@@ -10,7 +10,13 @@ export default function BooksReading({ books, title, description, user }) {
     <Layout>
       <Header user={user} />
       <Back to="/" />
-      <Title title={title} description={description} nopt={true} />
+
+      <Title
+        title={title}
+        description={description}
+        nopt={true}
+        notitlemb={true}
+      />
       <BooksContainerInner>
         {books.map((book) => (
           <Book key={book.id} to={`/book/${book.id}`} book={book} />
