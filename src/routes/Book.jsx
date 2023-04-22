@@ -41,7 +41,11 @@ export default function Book({ loading, setLoading }) {
   return (
     <Layout variant={"small"}>
       <Back to="/" />
-      <Title title={"Edit"} description={"Edit the books infos below."} />
+      <Title
+        title={"Edit"}
+        description={"Edit the books infos below."}
+        nopt={true}
+      />
       {book ? (
         <CreateEdit
           book={book}

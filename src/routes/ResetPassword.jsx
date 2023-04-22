@@ -31,7 +31,11 @@ export default function ResetPassword({ loading, setLoading }) {
   return (
     <Layout variant={"small"}>
       <Back to="/" />
-      <Title title={"Reset Password"} description="Specify your email below." />
+      <Title
+        title={"Reset Password"}
+        description="Specify your email below."
+        nopt={true}
+      />
       <FormContainer onSubmit={sendResetPassowrd}>
         <InputContainer>
           <Label htmlFor="email">Email</Label>

@@ -11,7 +11,11 @@ export default function Add({ user, loading, setLoading }) {
   return (
     <Layout variant={"small"}>
       <Back to="/search" />
-      <Title title={"Add a book"} description="You can edit the infos below." />
+      <Title
+        title={"Add a book"}
+        description="You can edit the infos below."
+        nopt={true}
+      />
       <CreateEdit
         book={locationBook}
         userID={user.id}
