@@ -1,4 +1,4 @@
-import SectionTitle from "../components/Shared/SectionTitle";
+import Title from "../components/Shared/Title";
 import Layout from "../components/Shared/Layout";
 import Book from "../components/Shared/Book";
 import BooksContainerInner from "../components/Shared/BooksContainerInner";
@@ -10,7 +10,7 @@ export default function BooksReading({ books, title, description, user }) {
     <Layout>
       <Header user={user} />
       <Back to="/" />
-      <SectionTitle title={title} description={description} nopt={true} />
+      <Title title={title} description={description} nopt={true} />
       <BooksContainerInner>
         {books.map((book) => (
           <Book key={book.id} to={`/book/${book.id}`} book={book} />

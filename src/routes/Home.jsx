@@ -7,7 +7,7 @@ import Loader from "../components/Shared/Loader";
 import Book from "../components/Shared/Book";
 import BooksContainer from "../components/Shared/BooksContainer";
 import BooksContainerInner from "../components/Shared/BooksContainerInner";
-import SectionTitle from "../components/Shared/SectionTitle";
+import Title from "../components/Shared/Title";
 
 export default function Home({
   user,
@@ -44,7 +44,7 @@ export default function Home({
                   <div>
                     {booksReadingSlice.length > 0 ? (
                       <>
-                        <SectionTitle
+                        <Title
                           title="Reading"
                           description="Books I'm currently reading."
                           link="/reading"
@@ -63,7 +63,7 @@ export default function Home({
 
                     {booksToReadSlice.length > 0 ? (
                       <>
-                        <SectionTitle
+                        <Title
                           title="To Read"
                           description="Books to read in the future."
                           link="/to-read"
@@ -82,7 +82,7 @@ export default function Home({
 
                     {booksReadSlice.length > 0 ? (
                       <>
-                        <SectionTitle
+                        <Title
                           title="Read"
                           description="The last books I've read."
                           link="/read"
