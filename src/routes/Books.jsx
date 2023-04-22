@@ -10,7 +10,6 @@ export default function BooksReading({ books, title, description, user }) {
     <Layout>
       <Header user={user} />
       <Back to="/" />
-
       <Title
         title={title}
         description={description}

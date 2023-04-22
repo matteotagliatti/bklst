@@ -49,6 +49,7 @@ export default function Home({
                           description="Books I'm currently reading."
                           link="/reading"
                           notitlemb={true}
+                          nopt={true}
                         />
                         <BooksContainerInner>
                           {booksReadingSlice.map((book) => (
