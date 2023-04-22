@@ -106,7 +106,7 @@ function App() {
             user={user}
             books={booksReading}
             title={"Reading"}
-            description={"Books i'm currently reading"}
+            description={"Books I'm currently reading."}
           />
         </PrivateRoute>
       ),
@@ -119,7 +119,7 @@ function App() {
             user={user}
             books={booksToRead}
             title={"Read"}
-            description={"Books i've read"}
+            description={"Books to read in the future."}
           />
         </PrivateRoute>
       ),
@@ -132,7 +132,7 @@ function App() {
             user={user}
             books={booksRead}
             title={"To Read"}
-            description={"Books to read"}
+            description={"The last books I've read."}
           />
         </PrivateRoute>
       ),
