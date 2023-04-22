@@ -74,6 +74,9 @@ function App() {
     const booksToRead = books.filter((book) => book.status === "to-read");
     const booksReading = books.filter((book) => book.status === "reading");
     const booksRead = books.filter((book) => book.status === "read");
+    booksToRead.reverse();
+    booksReading.reverse();
+    booksRead.reverse();
     setBooksToRead(booksToRead);
     setBooksReading(booksReading);
     setBooksRead(booksRead);
