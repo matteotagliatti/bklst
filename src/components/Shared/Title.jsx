@@ -13,7 +13,7 @@ export default function Title({ title, description, link, nopt, notitlemb }) {
 
   return (
     <div
-      className={`flex flex-row ${pt} pb-4 gap-2 justify-between items-center ${
+      className={`flex flex-row ${pt} pb-4 gap-2 justify-between items-end ${
         link ? null : "max-w-md"
       }`}
     >
