@@ -137,7 +137,11 @@ export default function CreateEdit({
       </InputContainer>
       <InputContainer hidden={bookIsFinished ? false : true}>
         <Label htmlFor="finished">Finished</Label>
-        <input type="date" ref={finishedRef} />
+        <input
+          required={bookIsFinished ? true : false}
+          type="date"
+          ref={finishedRef}
+        />
       </InputContainer>
 
       <div className="flex gap-3 items-center">
