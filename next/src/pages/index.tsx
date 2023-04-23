@@ -1,17 +1,19 @@
-import { useSession } from "@supabase/auth-helpers-react";
+import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import Layout from "@/components/Layout";
 import Header from "@/components/Header";
 import BooksContainer from "@/components/BooksContainer";
 import Book from "@/components/Book";
 
-export default function Home() {
-  const session = useSession();
+interface HomeProps {
+  user: any;
+}
 
+export default function Home({ user }: HomeProps) {
   return (
     <>
       <Header />
       <Layout>
-        {!session ? (
+        {!user ? (
           <>
             <div className="md:max-w-md mb-10 md:mt-10">
               <h1 className="text-4xl mb-2">
@@ -125,3 +127,27 @@ export default function Home() {
     </>
   );
 }
+
+export const getServerSideProps = async (ctx: any) => {
+  const supabase = createServerSupabaseClient(ctx);
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (session)
+    return {
+      props: {
+        initialSession: session,
+        user: session.user,
+      },
+    };
+
+  if (!session)
+    return {
+      props: {
+        initialSession: null,
+        user: null,
+      },
+    };
+};
