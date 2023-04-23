@@ -1,12 +1,11 @@
 import Image from "next/image";
-import { Inter } from "next/font/google";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 
-const inter = Inter({ subsets: ["latin"] });
+import Layout from "@/components/Layout";
 
 export default function Home() {
-  return (
-    <main className={` ${inter.className}`}>
-      <h1>Prova</h1>
-    </main>
-  );
+  const session = useSession();
+  const supabase = useSupabaseClient();
+
+  return <Layout>{!session ? <p>Not logged</p> : <p>Logged</p>}</Layout>;
 }
