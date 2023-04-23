@@ -1,11 +1,14 @@
-import Image from "next/image";
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-
+import { useSession } from "@supabase/auth-helpers-react";
 import Layout from "@/components/Layout";
+import Header from "@/components/Header";
 
 export default function Home() {
   const session = useSession();
-  const supabase = useSupabaseClient();
 
-  return <Layout>{!session ? <p>Not logged</p> : <p>Logged</p>}</Layout>;
+  return (
+    <>
+      <Header />
+      <Layout>{!session ? <p>Not logged</p> : <p>Logged</p>}</Layout>
+    </>
+  );
 }
