@@ -1,9 +1,11 @@
+import { InputHTMLAttributes } from "react";
+
 interface InputProps {
   type: string;
   required: boolean;
   placeholder: string;
   defaultValue?: string;
-  inputRef: React.MutableRefObject<HTMLInputElement>;
+  inputRef: any;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

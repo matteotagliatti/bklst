@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import Layout from "@/components/Layout";
 import BackIcon from "@/components/Back";
 import Title from "@/components/Title";
@@ -13,24 +13,32 @@ import Submit from "@/components/Form/Submit";
 export default function SignIn() {
   const supabase = useSupabaseClient();
   const user = useUser();
-  const emailRef = useRef();
-  const passwordRef = useRef();
+  const router = useRouter();
+  const emailRef: any = useRef();
+  const passwordRef: any = useRef();
 
-  async function login(event) {
+  interface LoginEvent extends React.FormEvent<HTMLFormElement> {
+    preventDefault: () => void;
+  }
+
+  async function login(event: LoginEvent) {
     event.preventDefault();
+
     const { error } = await supabase.auth.signInWithPassword({
       email: emailRef.current.value,
       password: passwordRef.current.value,
     });
 
     if (error) {
-      alert(error.error_description || error.message);
+      alert(error.message);
     }
 
-    if (!error) {
-      alert("You have successfully signed in!");
-    }
+    router.push("/");
   }
+
+  useEffect(() => {
+    if (user) router.push("/");
+  }, [user]);
 
   return (
     <Layout variant="small">
@@ -62,12 +70,6 @@ export default function SignIn() {
           />
         </InputContainer>
         <Submit value={"Sign In"} />
-        <Link
-          className="mt-5 text-sm text-neutral-400 hover:underline"
-          href="/password-reset"
-        >
-          Forgot password?
-        </Link>
       </FormContainer>
     </Layout>
   );
