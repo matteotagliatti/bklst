@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import Layout from "@/components/Layout";
@@ -16,12 +16,14 @@ export default function SignIn() {
   const router = useRouter();
   const emailRef: any = useRef();
   const passwordRef: any = useRef();
+  const [loading, setLoading] = useState(false);
 
   interface LoginEvent extends React.FormEvent<HTMLFormElement> {
     preventDefault: () => void;
   }
 
   async function login(event: LoginEvent) {
+    setLoading(true);
     event.preventDefault();
 
     const { error } = await supabase.auth.signInWithPassword({
@@ -34,6 +36,7 @@ export default function SignIn() {
     }
 
     router.push("/");
+    setLoading(false);
   }
 
   useEffect(() => {
@@ -69,7 +72,7 @@ export default function SignIn() {
             inputRef={passwordRef}
           />
         </InputContainer>
-        <Submit value={"Sign In"} />
+        <Submit value={"Sign In"} loading={loading} />
       </FormContainer>
     </Layout>
   );
