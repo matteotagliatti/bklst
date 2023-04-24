@@ -6,7 +6,7 @@ interface BookProps {
   book: any;
 }
 
-export default function Book({ link, href, book }: BookProps) {
+export default function Book({ href, book }: BookProps) {
   function formatDate(string: string) {
     return string.replace(/ .*/, "").slice(2);
   }
@@ -35,13 +35,13 @@ export default function Book({ link, href, book }: BookProps) {
     </>
   );
 
-  if (link === false) {
+  if (!href) {
     return <div className={classNames}>{innerElements}</div>;
-  } else if (href) {
-    return (
-      <Link href={href} className={`${classNames} hover:cursor-pointer`}>
-        {innerElements}
-      </Link>
-    );
   }
+
+  return (
+    <Link href={href} className={`${classNames} hover:cursor-pointer`}>
+      {innerElements}
+    </Link>
+  );
 }
