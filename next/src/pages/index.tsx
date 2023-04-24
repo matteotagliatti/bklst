@@ -37,8 +37,8 @@ export default function Home({ data }: any) {
 
   return (
     <>
-      <Header />
       <Layout>
+        <Header />
         {!session ? (
           <>
             <div className="md:max-w-md mb-10 md:mt-10">
