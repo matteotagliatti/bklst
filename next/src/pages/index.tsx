@@ -149,6 +149,7 @@ export default function Home({ data }: any) {
                       title="Reading"
                       description="Books I'm currently reading."
                       link="/reading"
+                      bookLength={booksReadingFilter.length}
                       notitlemb={true}
                       nopt={true}
                     />
@@ -184,6 +185,7 @@ export default function Home({ data }: any) {
                       description="Books to read in the future."
                       link="/to-read"
                       notitlemb={true}
+                      bookLength={booksToReadFilter.length}
                     />
                     <BooksContainerInner>
                       {booksToReadFilter
@@ -217,6 +219,7 @@ export default function Home({ data }: any) {
                       description="The last books I've read."
                       link="/read"
                       notitlemb={true}
+                      bookLength={booksReadFilter.length}
                     />
                     <BooksContainerInner>
                       {booksReadFilter

@@ -6,6 +6,7 @@ interface TitleProps {
   link?: string;
   nopt?: boolean;
   notitlemb?: boolean;
+  bookLength?: number;
 }
 
 export default function Title({
@@ -14,6 +15,7 @@ export default function Title({
   link,
   nopt,
   notitlemb,
+  bookLength,
 }: TitleProps) {
   let pt = "pt-14";
   if (nopt) {
@@ -35,13 +37,17 @@ export default function Title({
         <h2 className={`text-2xl ${mb}`}>{title}</h2>
         <p className="text-sm text-neutral-400">{description}</p>
       </div>
-      {link ? (
-        <Link
-          className="group text-sm text-neutral-400 hover:underline"
-          href={link}
-        >
-          See more →
-        </Link>
+      {link && bookLength ? (
+        <>
+          {bookLength > 3 ? (
+            <Link
+              className="group text-sm text-neutral-400 hover:underline"
+              href={link}
+            >
+              See more →
+            </Link>
+          ) : null}
+        </>
       ) : null}
     </div>
   );
