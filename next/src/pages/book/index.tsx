@@ -37,7 +37,7 @@ export default function Book({ book }: { book: BookType }) {
         nopt={true}
       />
 
-      <CreateEdit book={book}>
+      <CreateEdit book={book} edit={true}>
         <a
           href="#modal"
           className="mt-7 w-fit text-sm border border-red-500 hover:border-red-600 bg-red-500 hover:bg-red-600 text-white rounded-md px-5 py-2 hover:cursor-pointer"

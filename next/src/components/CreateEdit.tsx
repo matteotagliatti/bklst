@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRouter } from "next/router";
 import FormContainer from "@/components/Form/FormContainer";
 import InputContainer from "@/components/Form/InputContainer";
 import Label from "@/components/Form/Label";
@@ -9,11 +10,13 @@ import Submit from "@/components/Form/Submit";
 interface CreateEditProps {
   book?: any;
   children?: React.ReactNode;
+  edit?: boolean;
 }
 
-export default function CreateEdit({ book, children }: CreateEditProps) {
+export default function CreateEdit({ book, children, edit }: CreateEditProps) {
   const supabase = useSupabaseClient();
   const session: any = useSession();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [bookIsFinished, setBookIsFinished] = useState(false);
   const titleRef: any = useRef();
@@ -56,8 +59,33 @@ export default function CreateEdit({ book, children }: CreateEditProps) {
       console.log(error);
     }
 
+    router.push("/");
     setLoading(false);
+  }
+
+  async function updateBook(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setLoading(true);
+    const data = {
+      title: titleRef.current.value,
+      author: authorRef.current.value,
+      status: statusRef.current.value,
+      img: imgRef.current.value,
+      finished:
+        statusRef.current.value === "read" ? finishedRef.current.value : null,
+      owner: session.user.id,
+    };
+    const { error } = await supabase
+      .from("books")
+      .update(data)
+      .eq("id", book.id);
+
+    if (error) {
+      console.log(error);
+    }
+
     window.location.href = "/";
+    setLoading(false);
   }
 
   function toggleFinishedBook() {
@@ -69,7 +97,7 @@ export default function CreateEdit({ book, children }: CreateEditProps) {
   }
 
   return (
-    <FormContainer onSubmit={addBook}>
+    <FormContainer onSubmit={edit ? updateBook : addBook}>
       <div className="mb-2 bg-neutral-100 flex items-center justify-center p-10 rounded-lg">
         <img
           className="w-36 shadow-lg drop-shadow-lg"
@@ -122,7 +150,7 @@ export default function CreateEdit({ book, children }: CreateEditProps) {
       </InputContainer>
 
       <div className="flex gap-3 items-center">
-        <Submit value={`Add`} loading={loading} />
+        <Submit value={edit ? `Update` : `Add`} loading={loading} />
         {children}
       </div>
     </FormContainer>
