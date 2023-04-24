@@ -5,4 +5,5 @@ export interface Book {
   img: string;
   status: string;
   finished?: string;
+  created_at: string;
 }

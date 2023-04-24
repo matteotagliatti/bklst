@@ -24,9 +24,6 @@ export default function Home({ data }: any) {
   const booksReadFilter = books.filter(
     (book: BookType) => book.status === "read"
   );
-  const booksReadingSlice = booksReadingFilter.slice(0, 3);
-  const booksToReadSlice = booksToReadFilter.slice(0, 3);
-  const booksReadSlice = booksReadFilter.slice(0, 3);
 
   return (
     <>
@@ -146,7 +143,7 @@ export default function Home({ data }: any) {
               </div>
             ) : (
               <div>
-                {booksReadingSlice.length > 0 ? (
+                {booksReadingFilter.length > 0 ? (
                   <>
                     <Title
                       title="Reading"
@@ -156,13 +153,23 @@ export default function Home({ data }: any) {
                       nopt={true}
                     />
                     <BooksContainerInner>
-                      {booksReadingSlice
+                      {booksReadingFilter
+                        .map((book: BookType) => {
+                          if (book.created_at) {
+                            return {
+                              ...book,
+                              createdDate: new Date(book.created_at),
+                            };
+                          }
+                          return book;
+                        })
                         .sort((a: any, b: any) => {
-                          if (a.created_at && b.created_at) {
-                            return b.created_at - a.created_at;
+                          if (a.createdDate && b.createdDate) {
+                            return b.createdDate - a.createdDate;
                           }
                           return 0;
                         })
+                        .slice(0, 3)
                         .map((book: BookType) => (
                           <Book
                             key={book.id}
@@ -174,7 +181,7 @@ export default function Home({ data }: any) {
                   </>
                 ) : null}
 
-                {booksToReadSlice.length > 0 ? (
+                {booksToReadFilter.length > 0 ? (
                   <>
                     <Title
                       title="To Read"
@@ -183,13 +190,23 @@ export default function Home({ data }: any) {
                       notitlemb={true}
                     />
                     <BooksContainerInner>
-                      {booksToReadSlice
+                      {booksToReadFilter
+                        .map((book: BookType) => {
+                          if (book.created_at) {
+                            return {
+                              ...book,
+                              createdDate: new Date(book.created_at),
+                            };
+                          }
+                          return book;
+                        })
                         .sort((a: any, b: any) => {
-                          if (a.created_at && b.created_at) {
-                            return b.created_at - a.created_at;
+                          if (a.createdDate && b.createdDate) {
+                            return b.createdDate - a.createdDate;
                           }
                           return 0;
                         })
+                        .slice(0, 3)
                         .map((book: BookType) => (
                           <Book
                             key={book.id}
@@ -201,7 +218,7 @@ export default function Home({ data }: any) {
                   </>
                 ) : null}
 
-                {booksReadSlice.length > 0 ? (
+                {booksReadFilter.length > 0 ? (
                   <>
                     <Title
                       title="Read"
@@ -210,7 +227,7 @@ export default function Home({ data }: any) {
                       notitlemb={true}
                     />
                     <BooksContainerInner>
-                      {booksReadSlice
+                      {booksReadFilter
                         .map((book: BookType) => {
                           if (book.finished) {
                             return {
@@ -226,6 +243,7 @@ export default function Home({ data }: any) {
                           }
                           return 0;
                         })
+                        .slice(0, 3)
                         .map((book: BookType) => (
                           <Book
                             key={book.id}

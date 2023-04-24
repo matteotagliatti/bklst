@@ -21,9 +21,18 @@ export default function Reading({ books }: any) {
       />
       <BooksContainerInner>
         {books
+          .map((book: BookType) => {
+            if (book.created_at) {
+              return {
+                ...book,
+                createdDate: new Date(book.created_at),
+              };
+            }
+            return book;
+          })
           .sort((a: any, b: any) => {
-            if (a.created_at && b.created_at) {
-              return b.created_at - a.created_at;
+            if (a.createdDate && b.createdDate) {
+              return b.createdDate - a.createdDate;
             }
             return 0;
           })
