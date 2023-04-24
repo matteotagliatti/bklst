@@ -27,8 +27,6 @@ export default function Home({ data }: any) {
   const booksReadingSlice = booksReadingFilter.slice(0, 3);
   const booksToReadSlice = booksToReadFilter.slice(0, 3);
   const booksReadSlice = booksReadFilter.slice(0, 3);
-  booksReadSlice.reverse();
-  booksToReadSlice.reverse();
 
   return (
     <>
@@ -158,13 +156,20 @@ export default function Home({ data }: any) {
                       nopt={true}
                     />
                     <BooksContainerInner>
-                      {booksReadingSlice.map((book: BookType) => (
-                        <Book
-                          key={book.id}
-                          href={`/book/${book.id}`}
-                          book={book}
-                        />
-                      ))}
+                      {booksReadingSlice
+                        .sort((a: any, b: any) => {
+                          if (a.created_at && b.created_at) {
+                            return b.created_at - a.created_at;
+                          }
+                          return 0;
+                        })
+                        .map((book: BookType) => (
+                          <Book
+                            key={book.id}
+                            href={`/book/${book.id}`}
+                            book={book}
+                          />
+                        ))}
                     </BooksContainerInner>
                   </>
                 ) : null}
@@ -178,13 +183,20 @@ export default function Home({ data }: any) {
                       notitlemb={true}
                     />
                     <BooksContainerInner>
-                      {booksToReadSlice.map((book: BookType) => (
-                        <Book
-                          key={book.id}
-                          href={`/book/${book.id}`}
-                          book={book}
-                        />
-                      ))}
+                      {booksToReadSlice
+                        .sort((a: any, b: any) => {
+                          if (a.created_at && b.created_at) {
+                            return b.created_at - a.created_at;
+                          }
+                          return 0;
+                        })
+                        .map((book: BookType) => (
+                          <Book
+                            key={book.id}
+                            href={`/book/${book.id}`}
+                            book={book}
+                          />
+                        ))}
                     </BooksContainerInner>
                   </>
                 ) : null}
