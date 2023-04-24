@@ -52,7 +52,7 @@ export default function Book({ href, book }: BookProps) {
 
   return (
     <Link
-      href={{ pathname: href }}
+      href={{ pathname: href, query: { id: book.id } }}
       className={`${classNames} hover:cursor-pointer`}
     >
       {innerElements}

@@ -171,11 +171,7 @@ export default function Home({ data }: any) {
                         })
                         .slice(0, 3)
                         .map((book: BookType) => (
-                          <Book
-                            key={book.id}
-                            href={`/book/${book.id}`}
-                            book={book}
-                          />
+                          <Book key={book.id} href={`/book`} book={book} />
                         ))}
                     </BooksContainerInner>
                   </>
@@ -208,11 +204,7 @@ export default function Home({ data }: any) {
                         })
                         .slice(0, 3)
                         .map((book: BookType) => (
-                          <Book
-                            key={book.id}
-                            href={`/book/${book.id}`}
-                            book={book}
-                          />
+                          <Book key={book.id} href={`/book`} book={book} />
                         ))}
                     </BooksContainerInner>
                   </>
@@ -245,11 +237,7 @@ export default function Home({ data }: any) {
                         })
                         .slice(0, 3)
                         .map((book: BookType) => (
-                          <Book
-                            key={book.id}
-                            href={`/book/${book.id}`}
-                            book={book}
-                          />
+                          <Book key={book.id} href={`/book`} book={book} />
                         ))}
                     </BooksContainerInner>
                   </>
@@ -264,9 +252,7 @@ export default function Home({ data }: any) {
 }
 
 export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  // Create authenticated Supabase Client
   const supabase = createServerSupabaseClient(ctx);
-  // Check if we have a session
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -278,7 +264,6 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
       },
     };
 
-  // Run queries with RLS on the server
   const { data: books } = await supabase
     .from("books")
     .select()

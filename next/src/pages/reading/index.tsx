@@ -37,7 +37,7 @@ export default function Reading({ books }: any) {
             return 0;
           })
           .map((book: BookType) => (
-            <Book key={book.id} href={`/book/${book.id}`} book={book} />
+            <Book key={book.id} href={`/book`} book={book} />
           ))}
       </BooksContainerInner>
     </Layout>
