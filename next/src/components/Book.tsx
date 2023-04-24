@@ -40,7 +40,10 @@ export default function Book({ href, book }: BookProps) {
   }
 
   return (
-    <Link href={href} className={`${classNames} hover:cursor-pointer`}>
+    <Link
+      href={{ pathname: href, query: book }}
+      className={`${classNames} hover:cursor-pointer`}
+    >
       {innerElements}
     </Link>
   );
