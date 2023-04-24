@@ -11,15 +11,23 @@ export async function middleware(req: NextRequest) {
 
   // Auth condition met, continue to route.
   if (session) {
+    if (req.nextUrl.pathname === "/signin") {
+      const redirectUrl = req.nextUrl.clone();
+      redirectUrl.pathname = "/";
+      return NextResponse.redirect(redirectUrl);
+    }
+
     return res;
   }
 
-  // Auth condition not met, redirect to home page.
-  const redirectUrl = req.nextUrl.clone();
-  redirectUrl.pathname = "/";
-  return NextResponse.redirect(redirectUrl);
+  if (req.nextUrl.pathname !== "/signin") {
+    // Auth condition not met, redirect to home page.
+    const redirectUrl = req.nextUrl.clone();
+    redirectUrl.pathname = "/";
+    return NextResponse.redirect(redirectUrl);
+  }
 }
 
 export const config = {
-  matcher: ["/reading", "/read", "/to-read"],
+  matcher: ["/signin", "/reading", "/read", "/to-read"],
 };

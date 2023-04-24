@@ -1,5 +1,5 @@
-import { useRef, useEffect, useState } from "react";
-import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useRef, useState } from "react";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import Layout from "@/components/Layout";
 import BackIcon from "@/components/Back";
@@ -12,7 +12,6 @@ import Submit from "@/components/Form/Submit";
 
 export default function SignIn() {
   const supabase = useSupabaseClient();
-  const user = useUser();
   const router = useRouter();
   const emailRef: any = useRef();
   const passwordRef: any = useRef();
@@ -38,10 +37,6 @@ export default function SignIn() {
     router.push("/");
     setLoading(false);
   }
-
-  useEffect(() => {
-    if (user) router.push("/");
-  }, [user]);
 
   return (
     <Layout variant="small">
