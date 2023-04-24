@@ -1,25 +1,31 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { GetServerSidePropsContext } from "next";
 import CreateEdit from "@/components/CreateEdit";
 import Layout from "@/components/Layout";
 import Title from "@/components/Title";
 import BackIcon from "@/components/Back";
 import { Book as BookType } from "@/global/types";
-import { Anybody } from "next/font/google";
+import LoaderIcon from "@/components/LoaderIcon";
 
 export default function Book({ book }: { book: BookType }) {
-  console.log(book);
+  const supabase = useSupabaseClient();
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
-  async function deleteBook() {
-    /* const { error } = await supabase.from("books").delete().eq("id", bookID);
+  async function deleteBook(event: any) {
+    event.preventDefault();
+    setLoading(true);
+    const { error } = await supabase.from("books").delete().eq("id", book.id);
 
     if (error) {
       console.log(error);
     }
 
-    window.location.href = "/"; */
+    router.push("/");
+    setLoading(false);
   }
 
   return (
@@ -76,9 +82,10 @@ export default function Book({ book }: { book: BookType }) {
                   Cancel
                 </a>
                 <button
-                  className="w-full text-sm text-center border border-red-500 hover:border-red-600 bg-red-500 hover:bg-red-600 text-white rounded-md px-5 py-2 hover:cursor-pointer"
-                  onClick={deleteBook}
+                  className="w-full text-sm text-center border border-red-500 hover:border-red-600 bg-red-500 hover:bg-red-600 text-white rounded-md px-5 py-2 hover:cursor-pointer flex items-center justify-center gap-2"
+                  onClick={(e) => deleteBook(e)}
                 >
+                  {loading ? <LoaderIcon /> : null}
                   Delete
                 </button>
               </div>
