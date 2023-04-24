@@ -9,31 +9,26 @@ import Title from "@/components/Title";
 import BooksContainer from "@/components/BooksContainer";
 import BooksContainerInner from "@/components/BookContainerInner";
 import Book from "@/components/Book";
-
-interface Book {
-  id: string;
-  title: string;
-  author: string;
-  img: string;
-  status: string;
-  finished?: string;
-}
+import { Book as BookType } from "@/global/types";
 
 export default function Home({ data }: any) {
   const session = useSession();
   const [books, setBooks] = useState(data);
 
-  books.reverse();
   const booksToReadFilter = books.filter(
-    (book: Book) => book.status === "to-read"
+    (book: BookType) => book.status === "to-read"
   );
   const booksReadingFilter = books.filter(
-    (book: Book) => book.status === "reading"
+    (book: BookType) => book.status === "reading"
   );
-  const booksReadFilter = books.filter((book: Book) => book.status === "read");
+  const booksReadFilter = books.filter(
+    (book: BookType) => book.status === "read"
+  );
   const booksReadingSlice = booksReadingFilter.slice(0, 3);
   const booksToReadSlice = booksToReadFilter.slice(0, 3);
   const booksReadSlice = booksReadFilter.slice(0, 3);
+  booksReadSlice.reverse();
+  booksToReadSlice.reverse();
 
   return (
     <>
@@ -163,7 +158,7 @@ export default function Home({ data }: any) {
                       nopt={true}
                     />
                     <BooksContainerInner>
-                      {booksReadingSlice.map((book: Book) => (
+                      {booksReadingSlice.map((book: BookType) => (
                         <Book
                           key={book.id}
                           href={`/book/${book.id}`}
@@ -183,7 +178,7 @@ export default function Home({ data }: any) {
                       notitlemb={true}
                     />
                     <BooksContainerInner>
-                      {booksToReadSlice.map((book: Book) => (
+                      {booksToReadSlice.map((book: BookType) => (
                         <Book
                           key={book.id}
                           href={`/book/${book.id}`}
@@ -204,7 +199,7 @@ export default function Home({ data }: any) {
                     />
                     <BooksContainerInner>
                       {booksReadSlice
-                        .map((book: Book) => {
+                        .map((book: BookType) => {
                           if (book.finished) {
                             return {
                               ...book,
@@ -219,7 +214,7 @@ export default function Home({ data }: any) {
                           }
                           return 0;
                         })
-                        .map((book: Book) => (
+                        .map((book: BookType) => (
                           <Book
                             key={book.id}
                             href={`/book/${book.id}`}
@@ -262,7 +257,6 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   return {
     props: {
       initialSession: session,
-      user: session.user,
       data: books,
     },
   };
