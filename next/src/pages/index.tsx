@@ -89,7 +89,6 @@ export default function Home({ data }: any) {
             </div>
             <BooksContainer>
               <Book
-                link={false}
                 book={{
                   title: "East of Eden",
                   author: "John Steinbeck",
@@ -99,7 +98,6 @@ export default function Home({ data }: any) {
                 }}
               />
               <Book
-                link={false}
                 book={{
                   title: "Sapiens",
                   author: "Yuval Noah Harari",
@@ -108,7 +106,6 @@ export default function Home({ data }: any) {
                 }}
               />
               <Book
-                link={false}
                 book={{
                   title: "Stories of Breece D'J Pancake",
                   author: "Breece D'J Pancake",
@@ -117,7 +114,6 @@ export default function Home({ data }: any) {
                 }}
               />
               <Book
-                link={false}
                 book={{
                   title: "Slaughterhouse-Five",
                   author: "Kurt Vonnegut",
@@ -126,7 +122,6 @@ export default function Home({ data }: any) {
                 }}
               />
               <Book
-                link={false}
                 book={{
                   title: "Fellowship of the Ring",
                   author: "J.R.R. Tolkien",
@@ -135,7 +130,6 @@ export default function Home({ data }: any) {
                 }}
               />
               <Book
-                link={false}
                 book={{
                   title: "Fire & Blood",
                   author: "George R.R. Martin",

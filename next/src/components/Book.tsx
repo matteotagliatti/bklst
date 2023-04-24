@@ -37,11 +37,11 @@ export default function Book({ link, href, book }: BookProps) {
 
   if (link === false) {
     return <div className={classNames}>{innerElements}</div>;
+  } else if (href) {
+    return (
+      <Link href={href} className={`${classNames} hover:cursor-pointer`}>
+        {innerElements}
+      </Link>
+    );
   }
-
-  return (
-    <Link href={href} className={`${classNames} hover:cursor-pointer`}>
-      {innerElements}
-    </Link>
-  );
 }
