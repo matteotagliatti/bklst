@@ -32,6 +32,8 @@ export default function SignIn() {
 
     if (error) {
       alert(error.message);
+      setLoading(false);
+      return;
     }
 
     router.push("/");
