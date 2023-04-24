@@ -116,6 +116,12 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     .select()
     .eq("id", bookID);
 
+  if (!book) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       initialSession: session,
