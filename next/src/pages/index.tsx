@@ -1,19 +1,45 @@
+import { useState } from "react";
+import Link from "next/link";
+import { useSession } from "@supabase/auth-helpers-react";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { GetServerSidePropsContext } from "next";
 import Layout from "@/components/Layout";
 import Header from "@/components/Header";
+import Title from "@/components/Title";
 import BooksContainer from "@/components/BooksContainer";
+import BooksContainerInner from "@/components/BookContainerInner";
 import Book from "@/components/Book";
 
-interface HomeProps {
-  user: any;
+interface Book {
+  id: string;
+  title: string;
+  author: string;
+  img: string;
+  status: string;
+  finished?: string;
 }
 
-export default function Home({ user }: HomeProps) {
+export default function Home({ data }: any) {
+  const session = useSession();
+  const [books, setBooks] = useState(data);
+
+  books.reverse();
+  const booksToReadFilter = books.filter(
+    (book: Book) => book.status === "to-read"
+  );
+  const booksReadingFilter = books.filter(
+    (book: Book) => book.status === "reading"
+  );
+  const booksReadFilter = books.filter((book: Book) => book.status === "read");
+  const booksReadingSlice = booksReadingFilter.slice(0, 3);
+  const booksToReadSlice = booksToReadFilter.slice(0, 3);
+  const booksReadSlice = booksReadFilter.slice(0, 3);
+
   return (
     <>
       <Header />
       <Layout>
-        {!user ? (
+        {!session ? (
           <>
             <div className="md:max-w-md mb-10 md:mt-10">
               <h1 className="text-4xl mb-2">
@@ -121,33 +147,129 @@ export default function Home({ user }: HomeProps) {
             </BooksContainer>
           </>
         ) : (
-          <p>Logged</p>
+          <>
+            {books.length === 0 ? (
+              <div className="absolute bottom-7 right-0 left-0 lg:bottom-auto flex justify-center">
+                <Link
+                  href={"/search"}
+                  className="w-fit h-fit text-sm border border-neutral-200 hover:border-neutral-300 rounded-md px-5 py-2 hover:cursor-pointer"
+                >
+                  Add your first book
+                </Link>
+              </div>
+            ) : (
+              <div>
+                {booksReadingSlice.length > 0 ? (
+                  <>
+                    <Title
+                      title="Reading"
+                      description="Books I'm currently reading."
+                      link="/reading"
+                      notitlemb={true}
+                      nopt={true}
+                    />
+                    <BooksContainerInner>
+                      {booksReadingSlice.map((book: Book) => (
+                        <Book
+                          key={book.id}
+                          href={`/book/${book.id}`}
+                          book={book}
+                        />
+                      ))}
+                    </BooksContainerInner>
+                  </>
+                ) : null}
+
+                {booksToReadSlice.length > 0 ? (
+                  <>
+                    <Title
+                      title="To Read"
+                      description="Books to read in the future."
+                      link="/to-read"
+                      notitlemb={true}
+                    />
+                    <BooksContainerInner>
+                      {booksToReadSlice.map((book: Book) => (
+                        <Book
+                          key={book.id}
+                          href={`/book/${book.id}`}
+                          book={book}
+                        />
+                      ))}
+                    </BooksContainerInner>
+                  </>
+                ) : null}
+
+                {booksReadSlice.length > 0 ? (
+                  <>
+                    <Title
+                      title="Read"
+                      description="The last books I've read."
+                      link="/read"
+                      notitlemb={true}
+                    />
+                    <BooksContainerInner>
+                      {booksReadSlice
+                        .map((book: Book) => {
+                          if (book.finished) {
+                            return {
+                              ...book,
+                              finishedDate: new Date(book.finished),
+                            };
+                          }
+                          return book;
+                        })
+                        .sort((a: any, b: any) => {
+                          if (a.finishedDate && b.finishedDate) {
+                            return b.finishedDate - a.finishedDate;
+                          }
+                          return 0;
+                        })
+                        .map((book: Book) => (
+                          <Book
+                            key={book.id}
+                            href={`/book/${book.id}`}
+                            book={book}
+                          />
+                        ))}
+                    </BooksContainerInner>
+                  </>
+                ) : null}
+              </div>
+            )}
+          </>
         )}
       </Layout>
     </>
   );
 }
 
-export const getServerSideProps = async (ctx: any) => {
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+  // Create authenticated Supabase Client
   const supabase = createServerSupabaseClient(ctx);
-
+  // Check if we have a session
   const {
     data: { session },
   } = await supabase.auth.getSession();
 
-  if (session)
-    return {
-      props: {
-        initialSession: session,
-        user: session.user,
-      },
-    };
-
   if (!session)
     return {
       props: {
-        initialSession: null,
-        user: null,
+        data: [],
       },
     };
+
+  // Run queries with RLS on the server
+  const { data: books } = await supabase
+    .from("books")
+    .select()
+    .eq("owner", session.user.id);
+
+  return {
+    props: {
+      initialSession: session,
+      user: session.user,
+      data: books,
+    },
+  };
 };
