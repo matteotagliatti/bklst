@@ -12,16 +12,18 @@ import Book from "@/components/Book";
 import Title from "@/components/Title";
 
 export default function Search() {
-  const [loading, setLoading] = useState(false);
   const api_key = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
+  const [loading, setLoading] = useState(false);
+  const [searchedBooks, setSearchedBooks] = useState([]);
+  const [noBooksMsg, setNoBooksMsg] = useState(false);
   const titleRef: any = useRef();
   const authorRef: any = useRef();
   const ISBNRef: any = useRef();
-  const [searchedBooks, setSearchedBooks] = useState([]);
 
   async function fetchBooks(e: React.FormEvent<HTMLFormElement>) {
     try {
       setLoading(true);
+      setNoBooksMsg(false);
       setSearchedBooks([]);
       e.preventDefault();
 
@@ -35,6 +37,13 @@ export default function Search() {
       }
 
       const response = await searchBooks(api_key, titleRef, authorRef, ISBNRef);
+
+      if (response.data.totalItems === 0) {
+        setLoading(false);
+        setNoBooksMsg(true);
+        return;
+      }
+
       let books =
         response.data.items.length > 6
           ? response.data.items.slice(0, 6)
@@ -87,18 +96,26 @@ export default function Search() {
         <Submit value={"Search"} loading={loading} />
       </FormContainer>
       <BooksContainer cols={2}>
-        {searchedBooks.map((searchedBook: any) => {
-          const book = {
-            id: searchedBook.id,
-            title: searchedBook.volumeInfo.title,
-            author: searchedBook.volumeInfo.authors[0],
-            img: searchedBook.volumeInfo.imageLinks
-              ? searchedBook.volumeInfo.imageLinks.thumbnail
-              : "https://via.placeholder.com/150x150/e6e6e6/969696?text=No+Cover+Avaiable",
-          };
+        {noBooksMsg ? (
+          <p className="text-sm">
+            No books found!<br></br>Do another search.
+          </p>
+        ) : (
+          <>
+            {searchedBooks.map((searchedBook: any) => {
+              const book = {
+                id: searchedBook.id,
+                title: searchedBook.volumeInfo.title,
+                author: searchedBook.volumeInfo.authors[0],
+                img: searchedBook.volumeInfo.imageLinks
+                  ? searchedBook.volumeInfo.imageLinks.thumbnail
+                  : "https://via.placeholder.com/150x150/e6e6e6/969696?text=No+Cover+Avaiable",
+              };
 
-          return <Book key={book.id} href={`/add`} book={book} />;
-        })}
+              return <Book key={book.id} href={`/add`} book={book} />;
+            })}
+          </>
+        )}
       </BooksContainer>
     </Layout>
   );
