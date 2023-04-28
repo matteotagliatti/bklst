@@ -122,6 +122,13 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     };
   }
 
+  // Prevents users from editing other users books
+  if (session.user.id !== book[0].owner) {
+    return {
+      notFound: true,
+    };
+  }
+
   return {
     props: {
       initialSession: session,
