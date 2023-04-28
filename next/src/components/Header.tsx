@@ -1,9 +1,18 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { log } from "console";
 
 export default function Header() {
   const user = useUser();
   const supabase = useSupabaseClient();
+  const router = useRouter();
+
+  function logout() {
+    console.log("logout");
+    supabase.auth.signOut();
+    router.push("/");
+  }
 
   return (
     <header className="fixed top-0 left-0 right-0 h-12 px-3 py-4 mx-2 flex justify-between items-center border-b border-neutral-100 bg-white/75 backdrop-blur z-10">
@@ -24,7 +33,7 @@ export default function Header() {
         {user ? (
           <button
             className="text-sm text-neutral-400 hover:underline"
-            onClick={() => supabase.auth.signOut()}
+            onClick={() => logout()}
           >
             Logout
           </button>
