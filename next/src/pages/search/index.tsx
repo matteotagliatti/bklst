@@ -106,7 +106,9 @@ export default function Search() {
               const book = {
                 id: searchedBook.id,
                 title: searchedBook.volumeInfo.title,
-                author: searchedBook.volumeInfo.authors[0],
+                author: searchedBook.volumeInfo.authors
+                  ? searchedBook.volumeInfo.authors[0]
+                  : "Unknown",
                 img: searchedBook.volumeInfo.imageLinks
                   ? searchedBook.volumeInfo.imageLinks.thumbnail
                   : "https://via.placeholder.com/150x150/e6e6e6/969696?text=No+Cover+Avaiable",
