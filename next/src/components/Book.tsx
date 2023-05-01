@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 interface BookProps {
   link?: boolean;
@@ -15,8 +16,11 @@ export default function Book({ href, book }: BookProps) {
     "relative h-96 bg-neutral-100 flex items-center justify-center p-2 rounded-lg hover:bg-[#EEEEF0] transition-colors group";
   const innerElements = (
     <>
-      <img
+      <Image
         className="w-32 md:w-36 lg:w-40 group-hover:-translate-y-1 transition-transform ease-in-out shadow-lg drop-shadow-lg"
+        width={400}
+        height={400}
+        priority
         src={book.img}
         alt={book.title}
       />

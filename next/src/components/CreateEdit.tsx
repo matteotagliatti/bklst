@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import FormContainer from "@/components/Form/FormContainer";
 import InputContainer from "@/components/Form/InputContainer";
 import Label from "@/components/Form/Label";
@@ -99,8 +100,11 @@ export default function CreateEdit({ book, children, edit }: CreateEditProps) {
   return (
     <FormContainer onSubmit={edit ? updateBook : addBook}>
       <div className="mb-2 bg-neutral-100 flex items-center justify-center p-10 rounded-lg">
-        <img
+        <Image
           className="w-36 shadow-lg drop-shadow-lg"
+          width={400}
+          height={400}
+          priority
           src={book.img}
           alt={book.title}
         />
