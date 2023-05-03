@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
 import Layout from "@/components/Layout";
@@ -13,12 +13,20 @@ import Submit from "@/components/Form/Submit";
 export default function SignIn() {
   const supabase = useSupabaseClient();
   const router = useRouter();
-  const emailRef: any = useRef();
-  const passwordRef: any = useRef();
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
   const [loading, setLoading] = useState(false);
 
   interface LoginEvent extends React.FormEvent<HTMLFormElement> {
     preventDefault: () => void;
+  }
+
+  function handleEmailChange(e: any): void {
+    setEmailValue(e.target.value);
+  }
+
+  function handlePasswordChange(e: any): void {
+    setPasswordValue(e.target.value);
   }
 
   async function login(event: LoginEvent) {
@@ -26,8 +34,8 @@ export default function SignIn() {
     event.preventDefault();
 
     const { error } = await supabase.auth.signInWithPassword({
-      email: emailRef.current.value,
-      password: passwordRef.current.value,
+      email: emailValue,
+      password: passwordValue,
     });
 
     if (error) {
@@ -57,7 +65,7 @@ export default function SignIn() {
             required={true}
             type="email"
             placeholder="yourname@email.com"
-            inputRef={emailRef}
+            onChange={handleEmailChange}
           />
         </InputContainer>
         <InputContainer>
@@ -66,7 +74,7 @@ export default function SignIn() {
             required={true}
             type="password"
             placeholder="Your password"
-            inputRef={passwordRef}
+            onChange={handlePasswordChange}
           />
         </InputContainer>
         <Submit value={"Sign In"} loading={loading} />

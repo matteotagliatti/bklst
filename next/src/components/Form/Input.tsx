@@ -5,7 +5,7 @@ interface InputProps {
   required: boolean;
   placeholder: string;
   defaultValue?: string;
-  inputRef: any;
+  inputRef?: any;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
