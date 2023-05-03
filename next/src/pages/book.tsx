@@ -26,8 +26,6 @@ export default function Book() {
       .eq("id", router.query.id)
       .single();
 
-    console.log(data);
-
     if (error) {
       console.log(error);
     }
