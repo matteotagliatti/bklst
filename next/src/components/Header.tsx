@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useUser, useSupabaseClient } from "@supabase/auth-helpers-react";
-import { log } from "console";
 
 export default function Header() {
   const user = useUser();
@@ -9,7 +8,6 @@ export default function Header() {
   const router = useRouter();
 
   function logout() {
-    console.log("logout");
     supabase.auth.signOut();
     router.push("/");
   }

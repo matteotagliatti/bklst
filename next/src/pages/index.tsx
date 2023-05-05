@@ -13,7 +13,7 @@ import { Book as BookType } from "@/global/types";
 
 export default function Home({ data }: any) {
   const session = useSession();
-  const [books, setBooks] = useState(data);
+  const [books] = useState(data);
 
   const booksToReadFilter = books.filter(
     (book: BookType) => book.status === "to-read"

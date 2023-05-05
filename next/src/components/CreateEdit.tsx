@@ -85,7 +85,7 @@ export default function CreateEdit({ book, children, edit }: CreateEditProps) {
       console.log(error);
     }
 
-    window.location.href = "/";
+    router.push("/");
     setLoading(false);
   }
 
