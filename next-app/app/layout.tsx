@@ -1,8 +1,9 @@
 import "./globals.css";
-import Header from "./components/header";
 import { Inter } from "next/font/google";
-
 const inter = Inter({ subsets: ["latin"] });
+
+import Header from "./components/header";
+import SupabaseProvider from "./supabase-provider";
 
 export const metadata = {
   title: "Bklst",
@@ -21,10 +22,12 @@ export default function RootLayout({ children, variant }: LayoutProps) {
 
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        <main className={classNames}>{children}</main>
-      </body>
+      <SupabaseProvider>
+        <body className={inter.className}>
+          <Header />
+          <main className={classNames}>{children}</main>
+        </body>
+      </SupabaseProvider>
     </html>
   );
 }
