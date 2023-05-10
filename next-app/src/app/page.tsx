@@ -1,5 +1,5 @@
-import Book from "./components/book";
-import BooksContainer from "./components/bookscontainer";
+import Book from "@/components/Book";
+import BooksContainer from "@/components/BooksContainer";
 
 export default function Home() {
   return (

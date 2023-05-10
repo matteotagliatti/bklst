@@ -2,8 +2,8 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
-import Header from "./components/header";
-import SupabaseProvider from "./supabase-provider";
+import Header from "@/components/Header";
+import SupabaseProvider from "@/app/supabase-provider";
 
 export const metadata = {
   title: "Bklst",

@@ -1,4 +1,4 @@
-import LoaderIcon from "../loadericon";
+import LoaderIcon from "../LoaderIcon";
 
 interface SubmitProps {
   value: string;

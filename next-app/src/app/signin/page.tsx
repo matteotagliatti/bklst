@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { useSupabase } from "@/supabase-provider";
+import { useSupabase } from "@/app/supabase-provider";
 import { useRouter } from "next/navigation";
-import BackIcon from "@/components/back";
-import Title from "@/components/title";
-import FormContainer from "@/components/form/formcontainer";
-import InputContainer from "@/components/form/inputcontainer";
-import Label from "@/components/form/label";
-import Input from "@/components/form/input";
-import Submit from "@/components/form/submit";
+import BackIcon from "@/components/Back";
+import Title from "@/components/Title";
+import FormContainer from "@/components/Form/FormContainer";
+import InputContainer from "@/components/Form/InputContainer";
+import Label from "@/components/Form/Label";
+import Input from "@/components/Form/Input";
+import Submit from "@/components/Form/Submit";
 
 export default function SignIn() {
   const { supabase } = useSupabase();
