@@ -1,7 +1,21 @@
+import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
+import { headers, cookies } from "next/headers";
+
 import Book from "@/components/Book";
 import BooksContainer from "@/components/BooksContainer";
 
-export default function Home() {
+export default async function Home() {
+  const supabase = createServerComponentSupabaseClient<any>({
+    headers,
+    cookies,
+  });
+  const { data } = await supabase.auth.getUser();
+  const user = data.user;
+
+  if (user) {
+    return <p>logged</p>;
+  }
+
   return (
     <>
       <div className="md:max-w-md mb-10 md:mt-10">
