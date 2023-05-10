@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { headers, cookies } from "next/headers";
-
 import Logout from "@/components/Logout";
 
 export default async function Header() {
