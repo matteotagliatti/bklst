@@ -1,8 +1,13 @@
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { headers, cookies } from "next/headers";
+import Link from "next/link";
 
 import Book from "@/components/Book";
 import BooksContainer from "@/components/BooksContainer";
+import Title from "@/components/Title";
+import BooksContainerInner from "@/components/BookContainerInner";
+
+import { Book as BookType } from "./types";
 
 export default async function Home() {
   const supabase = createServerComponentSupabaseClient<any>({
@@ -13,7 +18,142 @@ export default async function Home() {
   const user = data.user;
 
   if (user) {
-    return <p>logged</p>;
+    const { data: books } = await supabase
+      .from("books")
+      .select()
+      .eq("owner", user.id);
+
+    if (!books) {
+      return <p>no books</p>;
+    }
+
+    const booksToReadFilter = books.filter(
+      (book: any) => book.status === "to-read"
+    );
+    const booksReadingFilter = books.filter(
+      (book: any) => book.status === "reading"
+    );
+    const booksReadFilter = books.filter((book: any) => book.status === "read");
+
+    return (
+      <>
+        {books.length === 0 ? (
+          <div className="absolute bottom-7 right-0 left-0 lg:bottom-auto flex justify-center">
+            <Link
+              href={"/search"}
+              className="w-fit h-fit text-sm border border-neutral-200 hover:border-neutral-300 rounded-md px-5 py-2 hover:cursor-pointer"
+            >
+              Add your first book
+            </Link>
+          </div>
+        ) : (
+          <div>
+            {booksReadingFilter.length > 0 ? (
+              <>
+                <Title
+                  title="Reading"
+                  description="Books I'm currently reading."
+                  link="/reading"
+                  bookLength={booksReadingFilter.length}
+                  notitlemb={true}
+                  nopt={true}
+                />
+                <BooksContainerInner>
+                  {booksReadingFilter
+                    .map((book: any) => {
+                      if (book.created_at) {
+                        return {
+                          ...book,
+                          createdDate: new Date(book.created_at),
+                        };
+                      }
+                      return book;
+                    })
+                    .sort((a: any, b: any) => {
+                      if (a.createdDate && b.createdDate) {
+                        return b.createdDate - a.createdDate;
+                      }
+                      return 0;
+                    })
+                    .slice(0, 3)
+                    .map((book: any) => (
+                      <Book key={book.id} href={`/book`} book={book} />
+                    ))}
+                </BooksContainerInner>
+              </>
+            ) : null}
+
+            {booksToReadFilter.length > 0 ? (
+              <>
+                <Title
+                  title="To Read"
+                  description="Books to read in the future."
+                  link="/to-read"
+                  notitlemb={true}
+                  bookLength={booksToReadFilter.length}
+                />
+                <BooksContainerInner>
+                  {booksToReadFilter
+                    .map((book: any) => {
+                      if (book.created_at) {
+                        return {
+                          ...book,
+                          createdDate: new Date(book.created_at),
+                        };
+                      }
+                      return book;
+                    })
+                    .sort((a: any, b: any) => {
+                      if (a.createdDate && b.createdDate) {
+                        return b.createdDate - a.createdDate;
+                      }
+                      return 0;
+                    })
+                    .slice(0, 3)
+                    .map((book: any) => (
+                      <Book key={book.id} href={`/book`} book={book} />
+                    ))}
+                </BooksContainerInner>
+              </>
+            ) : null}
+
+            {booksReadFilter.length > 0 ? (
+              <>
+                <Title
+                  title="Read"
+                  description="The last books I've read."
+                  link="/read"
+                  notitlemb={true}
+                  bookLength={booksReadFilter.length}
+                />
+                <BooksContainerInner>
+                  {booksReadFilter
+                    .map((book: any) => {
+                      if (book.finished) {
+                        return {
+                          ...book,
+                          finishedDate: new Date(book.finished),
+                        };
+                      }
+                      return book;
+                    })
+                    .sort((a: any, b: any) => {
+                      if (a.finishedDate && b.finishedDate) {
+                        return b.finishedDate - a.finishedDate;
+                      }
+                      return 0;
+                    })
+                    .slice(0, 3)
+                    .map((book: any) => (
+                      <Book key={book.id} href={`/book`} book={book} />
+                    ))}
+                </BooksContainerInner>
+              </>
+            ) : null}
+          </div>
+        )}
+      </>
+    );
   }
 
   return (
