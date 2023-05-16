@@ -11,7 +11,7 @@
 # next.js
 /.next/
 /out/
-
+w::
 # production
 /build
 
@@ -35,3 +35,4 @@ yarn-error.log*
 next-env.d.ts
 
 todo.md
+design.jpg
