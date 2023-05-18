@@ -54,11 +54,7 @@ export default function Book() {
   return (
     <Layout variant={"small"}>
       <BackIcon href="/" />
-      <Title
-        title={"Edit"}
-        description={"Edit the books infos below."}
-        nopt={true}
-      />
+      <Title title={"Edit"} description={"Edit the books infos below."} />
       {!book ? (
         <Loader />
       ) : (

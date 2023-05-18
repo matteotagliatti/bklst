@@ -6,13 +6,14 @@ import Layout from "@/components/Layout";
 import Header from "@/components/Header";
 import BooksContainer from "@/components/BooksContainer";
 import Book from "@/components/Book";
+import Title from "@/components/Title";
 import { Book as BookType } from "@/global/types";
 
 export default function Home({ data }: any) {
   const session = useSession();
 
   if (data.length > 0) {
-    data = data.slice(0, 8);
+    data = data.slice(0, 9);
 
     // reorganize data
     // first put data.status === "reading"
@@ -146,38 +147,19 @@ export default function Home({ data }: any) {
                 </Link>
               </div>
             ) : (
-              <BooksContainer>
-                <div>
-                  <div className="flex flex-col gap-4 items-start">
-                    <p className="text-[12px] text-neutral-400">Categories</p>
-                    <div className="flex flex-col gap-2">
-                      <Link href={"/read"} className="text-sm hover:underline">
-                        Read
-                      </Link>
-                      <Link
-                        href={"/reading"}
-                        className="text-sm hover:underline"
-                      >
-                        Reading
-                      </Link>
-                      <Link
-                        href={"/to-read"}
-                        className="text-sm hover:underline"
-                      >
-                        To Read
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-                {data.map((book: BookType) => (
-                  <Book
-                    key={book.id}
-                    book={book}
-                    href={"/book"}
-                    status={true}
-                  />
-                ))}
-              </BooksContainer>
+              <>
+                <Title title={"Books"} description={"All your books."} />
+                <BooksContainer>
+                  {data.map((book: BookType) => (
+                    <Book
+                      key={book.id}
+                      book={book}
+                      href={"/book"}
+                      status={true}
+                    />
+                  ))}
+                </BooksContainer>
+              </>
             )}
           </>
         )}

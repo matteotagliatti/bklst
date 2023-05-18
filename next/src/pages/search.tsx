@@ -63,7 +63,6 @@ export default function Search() {
         description={
           "Search for a book and add it to your booklist. Complete at least one field."
         }
-        nopt={true}
       />
       <FormContainer onSubmit={fetchBooks}>
         <InputContainer>

@@ -56,7 +56,6 @@ export default function SignIn() {
         description={
           "Sign in with the credential provided. If you don't have one, please contant via the button on the homepage."
         }
-        nopt={true}
       />
       <FormContainer onSubmit={login}>
         <InputContainer>

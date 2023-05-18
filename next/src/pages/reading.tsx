@@ -13,12 +13,7 @@ export default function Reading({ books }: any) {
     <Layout>
       <Header />
       <BackIcon href="/" />
-      <Title
-        title={"Reading"}
-        description={"Books I'm currently reading."}
-        nopt={true}
-        notitlemb={true}
-      />
+      <Title title={"Reading"} description={"Books I'm currently reading."} />
       <BooksContainer>
         {books
           .map((book: BookType) => {

@@ -11,11 +11,7 @@ export default function Add() {
   return (
     <Layout variant={"small"}>
       <BackIcon href="/search" />
-      <Title
-        title={"Add a book"}
-        description="You can edit the infos below."
-        nopt={true}
-      />
+      <Title title={"Add a book"} description="You can edit the infos below." />
       <CreateEdit book={book} />
     </Layout>
   );
