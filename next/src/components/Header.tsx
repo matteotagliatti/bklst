@@ -19,12 +19,14 @@ export default function Header() {
           Index
         </Link>
         {user ? (
-          <Link
-            className="text-sm text-neutral-400 hover:underline"
-            href="/search"
-          >
-            Search
-          </Link>
+          <>
+            <Link
+              className="text-sm text-neutral-400 hover:underline"
+              href="/search"
+            >
+              Search
+            </Link>
+          </>
         ) : null}
       </div>
       <nav>

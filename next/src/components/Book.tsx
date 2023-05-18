@@ -2,12 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 
 interface BookProps {
-  link?: boolean;
   href?: string;
+  status?: boolean;
   book: any;
 }
 
-export default function Book({ href, book }: BookProps) {
+export default function Book({ href, status, book }: BookProps) {
   function formatDate(string: string) {
     return string.replace(/ .*/, "").slice(2);
   }
@@ -30,6 +30,9 @@ export default function Book({ href, book }: BookProps) {
           <p className="text-sm line-clamp-2 md:line-clamp-1">{book.title}</p>
         </div>
         <div className="absolute bottom-3 left-3 right-3 md:relative md:bottom-0 md:left-0 md:right-0 text-neutral-400 text-right">
+          {status ? (
+            <small className="block text-sm">{book.status}</small>
+          ) : null}
           {book.status === "read" ? (
             <small className="block">{formatDate(book.finished)}</small>
           ) : null}
