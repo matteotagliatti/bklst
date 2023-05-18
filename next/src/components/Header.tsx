@@ -32,14 +32,14 @@ export default function Header() {
                 Categories
               </p>
               <div className="text-neutral-400 hidden absolute top-5 left-0 group-hover:flex flex-col gap-2 rounded bg-white p-2 shadow">
-                <Link href={"/read"} className="text-sm hover:underline">
-                  Read
-                </Link>
                 <Link href={"/reading"} className="text-sm hover:underline">
                   Reading
                 </Link>
                 <Link href={"/to-read"} className="text-sm hover:underline">
                   To Read
+                </Link>
+                <Link href={"/read"} className="text-sm hover:underline">
+                  Read
                 </Link>
               </div>
             </div>

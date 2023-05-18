@@ -17,16 +17,20 @@ export default function Home({ data }: any) {
 
     // reorganize data
     // first put data.status === "reading"
-    // then put data.status === "read"
     // then put data.status === "to-read"
+    // then put data.status === "read"
     data.sort((a: BookType, b: BookType) => {
-      if (a.status === "reading" && b.status !== "reading") return -1;
-      if (a.status !== "reading" && b.status === "reading") return 1;
-      if (a.status === "read" && b.status !== "read") return -1;
-      if (a.status !== "read" && b.status === "read") return 1;
-      if (a.status === "to-read" && b.status !== "to-read") return -1;
-      if (a.status !== "to-read" && b.status === "to-read") return 1;
-      return 0;
+      if (a.status === "reading" && b.status !== "reading") {
+        return -1;
+      } else if (a.status !== "reading" && b.status === "reading") {
+        return 1;
+      } else if (a.status === "to-read" && b.status === "read") {
+        return -1;
+      } else if (a.status === "read" && b.status === "to-read") {
+        return 1;
+      } else {
+        return 0;
+      }
     });
   }
 
