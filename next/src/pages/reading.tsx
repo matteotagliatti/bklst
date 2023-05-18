@@ -4,7 +4,7 @@ import Layout from "@/components/Layout";
 import Title from "@/components/Title";
 import Header from "@/components/Header";
 import BackIcon from "@/components/Back";
-import BooksContainerInner from "@/components/BookContainerInner";
+import BooksContainer from "@/components/BooksContainer";
 import Book from "@/components/Book";
 import { Book as BookType } from "@/global/types";
 
@@ -19,7 +19,7 @@ export default function Reading({ books }: any) {
         nopt={true}
         notitlemb={true}
       />
-      <BooksContainerInner>
+      <BooksContainer>
         {books
           .map((book: BookType) => {
             if (book.created_at) {
@@ -39,7 +39,7 @@ export default function Reading({ books }: any) {
           .map((book: BookType) => (
             <Book key={book.id} href={`/book`} book={book} />
           ))}
-      </BooksContainerInner>
+      </BooksContainer>
     </Layout>
   );
 }

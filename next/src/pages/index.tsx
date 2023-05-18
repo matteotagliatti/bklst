@@ -1,13 +1,10 @@
-import { useState } from "react";
 import Link from "next/link";
 import { useSession } from "@supabase/auth-helpers-react";
 import { createServerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { GetServerSidePropsContext } from "next";
 import Layout from "@/components/Layout";
 import Header from "@/components/Header";
-import Title from "@/components/Title";
 import BooksContainer from "@/components/BooksContainer";
-import BooksContainerInner from "@/components/BookContainerInner";
 import Book from "@/components/Book";
 import { Book as BookType } from "@/global/types";
 
