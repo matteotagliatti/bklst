@@ -1,12 +1,10 @@
 <script>
+  import Layout from "$lib/components/Layout.svelte";
+  import Header from "$lib/components/Header.svelte";
 </script>
 
-<svelte:head>
-  <title>Home</title>
-  <meta name="description" content="Svelte demo app" />
-</svelte:head>
-
-<section>
+<Layout>
+  <Header />
   <h1 class="font-bold">Ciao</h1>
   <p>Prova per vedere se font è veramente Inter</p>
-</section>
+</Layout>
