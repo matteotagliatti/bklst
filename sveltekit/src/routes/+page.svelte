@@ -8,4 +8,5 @@
 
 <section>
   <h1 class="font-bold">Ciao</h1>
+  <p>Prova per vedere se font è veramente Inter</p>
 </section>
