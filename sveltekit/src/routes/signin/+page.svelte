@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { browser } from "$app/environment";
+  import { goto } from "$app/navigation";
   import BackIcon from "$lib/components/BackIcon.svelte";
   import Layout from "$lib/components/Layout.svelte";
   import Title from "$lib/components/Title.svelte";
@@ -8,15 +10,33 @@
   import Input from "$lib/components/Form/Input.svelte";
   import Submit from "$lib/components/Form/Submit.svelte";
 
-  let data = {
+  export let data;
+
+  let formData = {
     email: "",
     password: "",
   };
 
   let loading = false;
 
-  function login() {
-    console.log(data);
+  async function login() {
+    const { supabase } = data;
+    loading = true;
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email: formData.email,
+      password: formData.password,
+    });
+
+    if (error) {
+      console.log(error);
+    }
+
+    if (browser && data.session) {
+      goto("/");
+    }
+
+    loading = false;
   }
 </script>
 
@@ -33,7 +53,7 @@
         required={true}
         type="email"
         placeholder="yourname@email.com"
-        bind:value={data.email}
+        bind:value={formData.email}
       />
     </InputContainer>
     <InputContainer>
@@ -42,7 +62,7 @@
         required={true}
         type="password"
         placeholder="Your password"
-        bind:value={data.password}
+        bind:value={formData.password}
       />
     </InputContainer>
     <Submit value={"Sign In"} {loading} />
