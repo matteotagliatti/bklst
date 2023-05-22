@@ -3,14 +3,43 @@
   import Header from "$lib/components/Header.svelte";
   import BooksContainer from "$lib/components/BooksContainer.svelte";
   import Book from "$lib/components/Book.svelte";
+  import Title from "$lib/components/Title.svelte";
   export let data;
   const { session } = data;
+  let { books } = data;
+
+  $: books = books?.slice(0, 8);
+  books?.sort((a, b) => {
+    if (a.status === "reading" && b.status !== "reading") return -1;
+    if (a.status === "to-read" && b.status === "read") return -1;
+    if (a.status === "to-read" && b.status === "reading") return 1;
+    if (a.status === "read" && b.status !== "read") return 1;
+    return 0;
+  });
 </script>
 
 <Layout>
   <Header {data} />
   {#if session}
-    <!-- Logged -->
+    {#if books?.length === 0}
+      <div
+        class="absolute bottom-7 right-0 left-0 lg:bottom-auto flex justify-center"
+      >
+        <a
+          href="/search"
+          class="w-fit h-fit text-sm border border-neutral-200 hover:border-neutral-300 rounded-md px-5 py-2 hover:cursor-pointer"
+        >
+          Add your first book
+        </a>
+      </div>
+    {:else}
+      <Title title={"Books"} description={"All your books."} />
+      <BooksContainer>
+        {#each books as book}
+          <Book {book} status={true} />
+        {/each}
+      </BooksContainer>
+    {/if}
   {:else}
     <div class="md:max-w-md mb-10 md:mt-10">
       <h1 class="text-4xl mb-2">
