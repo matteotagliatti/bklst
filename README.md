@@ -1,6 +1,6 @@
 # bklst
 
-![Cover](./spa/public/cover.png)
+![Cover](./react-spa/public/cover.png)
 
 Simple app to keep track of books you want to read, are currently reading, or have already read. All with a nice and simple UI. Books are fetched from the [Google Books API](https://developers.google.com/books).
 
