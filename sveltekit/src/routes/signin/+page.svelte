@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
   import BackIcon from "$lib/components/BackIcon.svelte";
   import Layout from "$lib/components/Layout.svelte";
@@ -29,13 +28,12 @@
     });
 
     if (error) {
-      console.log(error);
+      alert(error.message);
+      loading = false;
+      return;
     }
 
-    if (browser && data.session) {
-      goto("/");
-    }
-
+    goto("/");
     loading = false;
   }
 </script>
@@ -65,6 +63,6 @@
         bind:value={formData.password}
       />
     </InputContainer>
-    <Submit value={"Sign In"} {loading} />
+    <Submit value={"Sign In"} bind:loading />
   </FormContainer>
 </Layout>

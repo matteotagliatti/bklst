@@ -11,8 +11,8 @@
       console.log(error);
     }
 
-    if (browser && data.session) {
-      goto("/");
+    if (browser) {
+      window.location.reload();
     }
   }
 </script>
