@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let hw: string = "";
+  export let hw: string = "h-4 w-4";
 </script>
 
 <span
