@@ -5,11 +5,10 @@
   import Book from "$lib/components/Book.svelte";
   import Title from "$lib/components/Title.svelte";
   export let data;
-  const { session } = data;
-  $: user = session;
-  let { books } = data;
 
-  $: books = books?.slice(0, 8);
+  $: ({ session, books } = data);
+
+  books?.slice(0, 8);
   books?.sort((a, b) => {
     if (a.status === "reading" && b.status !== "reading") return -1;
     if (a.status === "to-read" && b.status === "read") return -1;
@@ -21,7 +20,7 @@
 
 <Layout>
   <Header {data} />
-  {#if user}
+  {#if session}
     {#if books?.length === 0}
       <div
         class="absolute bottom-7 right-0 left-0 lg:bottom-auto flex justify-center"

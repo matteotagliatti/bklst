@@ -12,7 +12,7 @@
     }
 
     if (browser) {
-      window.location.reload();
+      goto("/");
     }
   }
 </script>
