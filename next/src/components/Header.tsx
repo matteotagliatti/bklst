@@ -7,8 +7,9 @@ export default function Header() {
   const supabase = useSupabaseClient();
   const router = useRouter();
 
-  function logout() {
-    supabase.auth.signOut();
+  async function logout() {
+    const { error } = await supabase.auth.signOut();
+    if (error) console.log(error);
     router.push("/");
   }
 
