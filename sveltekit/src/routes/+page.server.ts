@@ -12,7 +12,9 @@ export const load: PageServerLoad = async ({
   const { data: books } = await supabase
     .from("books")
     .select("*")
-    .eq("owner", session?.user?.id);
+    .eq("owner", session?.user?.id)
+    .order("created_at", { ascending: false })
+    .limit(9);
 
   return { books };
 };

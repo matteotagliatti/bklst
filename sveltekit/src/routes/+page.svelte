@@ -1,21 +1,11 @@
-<script>
+<script lang="ts">
   import Layout from "$lib/components/Layout.svelte";
   import Header from "$lib/components/Header.svelte";
   import BooksContainer from "$lib/components/BooksContainer.svelte";
   import Book from "$lib/components/Book.svelte";
   import Title from "$lib/components/Title.svelte";
   export let data;
-
   $: ({ session, books } = data);
-
-  books?.slice(0, 8);
-  books?.sort((a, b) => {
-    if (a.status === "reading" && b.status !== "reading") return -1;
-    if (a.status === "to-read" && b.status === "read") return -1;
-    if (a.status === "to-read" && b.status === "reading") return 1;
-    if (a.status === "read" && b.status !== "read") return 1;
-    return 0;
-  });
 </script>
 
 <Layout>

@@ -11,29 +11,6 @@ import { Book as BookType } from "@/global/types";
 
 export default function Home({ data }: any) {
   const session = useSession();
-
-  if (data.length > 0) {
-    data = data.slice(0, 9);
-
-    // reorganize data
-    // first put data.status === "reading"
-    // then put data.status === "to-read"
-    // then put data.status === "read"
-    data.sort((a: BookType, b: BookType) => {
-      if (a.status === "reading" && b.status !== "reading") {
-        return -1;
-      } else if (a.status !== "reading" && b.status === "reading") {
-        return 1;
-      } else if (a.status === "to-read" && b.status === "read") {
-        return -1;
-      } else if (a.status === "read" && b.status === "to-read") {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
-  }
-
   return (
     <>
       <Layout>
@@ -188,7 +165,9 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
   const { data: books } = await supabase
     .from("books")
     .select()
-    .eq("owner", session.user.id);
+    .eq("owner", session.user.id)
+    .order("created_at", { ascending: false })
+    .limit(9);
 
   return {
     props: {
