@@ -22,6 +22,11 @@
 >
   <nav class="flex gap-4">
     <a class="text-sm underline italic" href="/"> Index </a>
+    {#if session}
+      <a class="text-sm text-neutral-400 hover:underline" href="/search">
+        Search</a
+      >
+    {/if}
   </nav>
   <nav>
     {#if session}

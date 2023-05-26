@@ -12,7 +12,7 @@
   class="relative md:h-96 bg-neutral-100 flex gap-5 items-center justify-start md:justify-center p-4 md:p-2 rounded-lg hover:bg-[#EEEEF0] transition-colors group"
 >
   <img
-    class="w-24 md:w-36 lg:w-40 group-hover:-translate-y-1 transition-transform ease-in-out shadow-lg drop-shadow-lg"
+    class="h-32 object-cover w-24 md:w-36 lg:w-40 group-hover:-translate-y-1 transition-transform ease-in-out shadow-lg drop-shadow-lg"
     src={book.img}
     alt={book.title}
   />
@@ -29,7 +29,7 @@
       {#if status}
         <small class="block text-sm">{book.status}</small>
       {/if}
-      {#if book.status === "read"}
+      {#if book.status === "read" && book.finished}
         <small class="block">{formatDate(book.finished)}</small>
       {/if}
     </div>
