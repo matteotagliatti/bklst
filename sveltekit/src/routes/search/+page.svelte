@@ -13,7 +13,7 @@
   import type { BookType } from "$lib/types";
   import { PUBLIC_GOOGLE_API_KEY } from "$env/static/public";
 
-  let books = [];
+  let books = [] as BookType[];
   let loading = false;
   let noBooksMsg = false;
   let inputValues = {
