@@ -1,9 +1,11 @@
 <script lang="ts">
   import Layout from "$lib/components/Layout.svelte";
   import Header from "$lib/components/Header.svelte";
+  import Title from "$lib/components/Title.svelte";
   import BooksContainer from "$lib/components/BooksContainer.svelte";
   import Book from "$lib/components/Book.svelte";
-  import Title from "$lib/components/Title.svelte";
+  import BookLink from "$lib/components/BookLink.svelte";
+  import type { BookType } from "$lib/types";
   export let data;
   $: ({ session, books } = data);
 </script>
@@ -26,7 +28,9 @@
       <Title title={"Books"} description={"All your books."} />
       <BooksContainer>
         {#each books as book}
-          <Book {book} status={true} />
+          <BookLink href="/book/{book.id}">
+            <Book {book} status={true} />
+          </BookLink>
         {/each}
       </BooksContainer>
     {/if}
