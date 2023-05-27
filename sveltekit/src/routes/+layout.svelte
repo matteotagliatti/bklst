@@ -2,8 +2,9 @@
   import "../app.css";
   import { invalidate } from "$app/navigation";
   import { onMount } from "svelte";
+  import type { LayoutData } from "./$types";
 
-  export let data;
+  export let data: LayoutData;
 
   $: ({ supabase, session } = data);
 
