@@ -12,6 +12,11 @@
   let loading: boolean = false;
 
   async function fetchBook() {
+    if (!session) {
+      goto("/login");
+      return;
+    }
+
     const { data, error } = await supabase
       .from("books")
       .select("*")
@@ -23,8 +28,6 @@
       console.log(error);
       return;
     }
-
-    console.log(data);
 
     book = data;
   }
@@ -70,6 +73,8 @@
             class="flex justify-between items-center py-1 px-2 bg-neutral-100 rounded-t-md"
           >
             <small class="text-neutral-500">Delete</small>
+            <!-- svelte-ignore a11y-invalid-attribute -->
+            <!-- svelte-ignore a11y-missing-content -->
             <a href="#" class="bg-neutral-300 w-3 h-3 rounded-full" />
           </div>
           <div class="p-8">
@@ -93,6 +98,7 @@
               </p>
             </div>
             <div class="flex gap-2">
+              <!-- svelte-ignore a11y-invalid-attribute -->
               <a
                 href="#"
                 class="w-full text-sm text-center border border-neutral-200 hover:border-neutral-300 rounded-md px-5 py-2 hover:cursor-pointer"
@@ -101,7 +107,7 @@
               </a>
               <button
                 class="w-full text-sm text-center border border-red-500 hover:border-red-600 bg-red-500 hover:bg-red-600 text-white rounded-md px-5 py-2 hover:cursor-pointer flex items-center justify-center gap-2"
-                on:click|preventDefault={(e) => deleteBook(e)}
+                on:click|preventDefault={deleteBook}
               >
                 {#if loading}
                   <LoaderIcon />
