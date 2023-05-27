@@ -1,0 +1,99 @@
+<script lang="ts">
+  import FormContainer from "./Form/FormContainer.svelte";
+  import InputContainer from "./Form/InputContainer.svelte";
+  import Label from "./Form/Label.svelte";
+  import Input from "./Form/Input.svelte";
+  import Submit from "./Form/Submit.svelte";
+  import type { BookType } from "$lib/types";
+
+  export let book: BookType;
+  export let edit: boolean = false;
+  let bookIsFinished: boolean = false;
+  let loading: boolean = false;
+
+  function toggleFinishedBook() {
+    if (book.status === "read") {
+      bookIsFinished = true;
+    } else {
+      bookIsFinished = false;
+    }
+  }
+
+  async function updateBook() {
+    try {
+      /*  */
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function addBook() {
+    try {
+      /*  */
+    } catch (error) {
+      console.log(error);
+    }
+  }
+</script>
+
+<FormContainer onSubmit={edit ? updateBook : addBook}>
+  <div
+    class="mb-2 bg-neutral-100 flex items-center justify-center p-10 rounded-lg"
+  >
+    <img
+      class="w-36 shadow-lg drop-shadow-lg"
+      src={book.img}
+      alt={book.title}
+    />
+  </div>
+  <InputContainer>
+    <Label htmlFor="img-url">Img URL:</Label>
+    <Input
+      required={true}
+      type="text"
+      placeholder="https://example.com/image.jpg"
+      bind:value={book.img}
+    />
+  </InputContainer>
+  <InputContainer>
+    <Label htmlFor="title">Title</Label>
+    <Input
+      required={true}
+      type="text"
+      placeholder="Game of Thrones"
+      bind:value={book.title}
+    />
+  </InputContainer>
+  <InputContainer>
+    <Label htmlFor="author">Author</Label>
+    <Input
+      required={true}
+      type="text"
+      placeholder="George R. R. Martin"
+      bind:value={book.author}
+    />
+  </InputContainer>
+  <InputContainer>
+    <Label htmlFor="status">Status</Label>
+    <select
+      class="w-fit"
+      bind:value={book.status}
+      on:change={toggleFinishedBook}
+    >
+      <option value="to-read">To Read</option>
+      <option value="reading">Reading</option>
+      <option value="read">Read</option>
+    </select>
+  </InputContainer>
+  {#if bookIsFinished}
+    <InputContainer>
+      <Label htmlFor="finished">Finished</Label>
+      <input required type="date" bind:value={book.finished} />
+    </InputContainer>
+  {/if}
+
+  <div class="flex gap-3 items-center">
+    <Submit value={edit ? `Update` : `Add`} bind:loading />
+    <slot />
+  </div>
+</FormContainer>
