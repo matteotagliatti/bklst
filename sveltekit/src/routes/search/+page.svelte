@@ -9,6 +9,7 @@
   import Submit from "$lib/components/Form/Submit.svelte";
   import BooksContainer from "$lib/components/BooksContainer.svelte";
   import Book from "$lib/components/Book.svelte";
+  import BookLink from "$lib/components/BookLink.svelte";
   import searchBooks from "$lib/functions/search";
   import type { BookType } from "$lib/types";
   import { PUBLIC_GOOGLE_API_KEY } from "$env/static/public";
@@ -114,7 +115,11 @@
       <p class="text-sm">No books found! Do another search.</p>
     {:else}
       {#each books as book}
-        <Book {book} />
+        <BookLink
+          href="add?title={book.title}&author={book.author}&img={book.img}"
+        >
+          <Book {book} />
+        </BookLink>
       {/each}
     {/if}
   </BooksContainer>
