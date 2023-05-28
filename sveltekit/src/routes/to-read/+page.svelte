@@ -1,5 +1,4 @@
 <script lang="ts">
-  import BackIcon from "$lib/components/BackIcon.svelte";
   import BooksContainer from "$lib/components/BooksContainer.svelte";
   import Header from "$lib/components/Header.svelte";
   import Layout from "$lib/components/Layout.svelte";
@@ -12,7 +11,6 @@
 
 <Layout>
   <Header {data} />
-  <BackIcon />
   <Title title="To Read" description="Books to read in the future." />
   <BooksContainer>
     {#each books as book}
