@@ -1,8 +1,8 @@
 <script lang="ts">
   import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
-  export let data: any;
-  $: ({ supabase, session } = data);
+  export let data;
+  const { session, supabase } = data;
 
   async function logout() {
     const { error } = await supabase.auth.signOut();
@@ -43,3 +43,19 @@
     {/if}
   </nav>
 </header>
+
+{#if session}
+  <nav
+    class="z-10 fixed bottom-4 md:bottom-7 right-0 left-0 flex justify-center"
+  >
+    <div
+      class="flex gap-5 bg-white px-3 py-2 rounded shadow border border-neutral-100 bg-white/75 backdrop-blur z-10"
+    >
+      <a href="/reading" class="text-sm">Reading</a>
+      <div class="w-[1px] h-full bg-neutral-200" />
+      <a href="/read" class="text-sm">Read</a>
+      <div class="w-[1px] h-full bg-neutral-200" />
+      <a href="/to-read" class="text-sm">To Read</a>
+    </div>
+  </nav>
+{/if}
