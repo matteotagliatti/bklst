@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
   import FormContainer from "./Form/FormContainer.svelte";
   import InputContainer from "./Form/InputContainer.svelte";
   import Label from "./Form/Label.svelte";
@@ -6,22 +7,28 @@
   import Submit from "./Form/Submit.svelte";
   import type { BookType } from "$lib/types";
 
+  export let session: any;
+  export let supabase: any;
   export let book: BookType;
   export let edit: boolean = false;
-  let bookIsFinished: boolean = false;
   let loading: boolean = false;
-
-  function toggleFinishedBook() {
-    if (book.status === "read") {
-      bookIsFinished = true;
-    } else {
-      bookIsFinished = false;
-    }
-  }
 
   async function updateBook() {
     try {
-      /*  */
+      loading = true;
+      if (!book.finished || book.status !== "read") book.finished = null;
+
+      const { error } = await supabase
+        .from("books")
+        .update(book)
+        .eq("id", book.id);
+
+      if (error) {
+        console.log(error);
+      }
+
+      goto("/");
+      loading = false;
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +36,18 @@
 
   async function addBook() {
     try {
-      /*  */
+      loading = true;
+      book.owner = session.user.id;
+      if (!book.finished || book.status !== "read") book.finished = null;
+
+      const { error } = await supabase.from("books").insert(book);
+
+      if (error) {
+        console.log(error);
+      }
+
+      goto("/");
+      loading = false;
     } catch (error) {
       console.log(error);
     }
@@ -75,17 +93,13 @@
   </InputContainer>
   <InputContainer>
     <Label htmlFor="status">Status</Label>
-    <select
-      class="w-fit"
-      bind:value={book.status}
-      on:change={toggleFinishedBook}
-    >
+    <select class="w-fit" bind:value={book.status}>
       <option value="to-read">To Read</option>
       <option value="reading">Reading</option>
       <option value="read">Read</option>
     </select>
   </InputContainer>
-  {#if bookIsFinished}
+  {#if book.status === "read"}
     <InputContainer>
       <Label htmlFor="finished">Finished</Label>
       <input required type="date" bind:value={book.finished} />

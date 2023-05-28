@@ -116,7 +116,11 @@
     {:else}
       {#each books as book}
         <BookLink
-          href="add?title={book.title}&author={book.author}&img={book.img}"
+          href="add?title={book.title}&author={book.author}&img={book.img
+            .replace(/:/g, '%3A')
+            .replace(/\?/g, '%3F')
+            .replace(/=/g, '%3D')
+            .replace(/&/g, '%26')}"
         >
           <Book {book} />
         </BookLink>

@@ -4,5 +4,6 @@ export interface BookType {
   author: string;
   img: string;
   status: string;
-  finished?: string;
+  finished?: string | null;
+  owner?: string;
 }
