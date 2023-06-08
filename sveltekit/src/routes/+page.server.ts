@@ -11,10 +11,10 @@ export const load: PageServerLoad = async ({
 
   const { data: books } = await supabase
     .from("books")
-    .select("*")
-    .eq("owner", session?.user?.id)
-    .order("created_at", { ascending: false })
-    .limit(9);
+    .select()
+    .eq("owner", session.user.id)
+    .eq("status", "reading")
+    .order("created_at", { ascending: false });
 
   return { books };
 };

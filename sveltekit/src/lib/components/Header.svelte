@@ -51,8 +51,6 @@
     <div
       class="flex gap-5 bg-white px-3 py-2 rounded shadow border border-neutral-100 bg-white/75 backdrop-blur z-10"
     >
-      <a href="/reading" class="text-sm">Reading</a>
-      <div class="w-[1px] h-full bg-neutral-200" />
       <a href="/read" class="text-sm">Read</a>
       <div class="w-[1px] h-full bg-neutral-200" />
       <a href="/to-read" class="text-sm">To Read</a>

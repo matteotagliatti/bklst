@@ -25,7 +25,7 @@
         </a>
       </div>
     {:else}
-      <Title title={"Books"} description={"All your books."} />
+      <Title title="Reading" description="Books I'm currently reading." />
       <BooksContainer>
         {#each books as book}
           <BookLink href="/book/{book.id}">
