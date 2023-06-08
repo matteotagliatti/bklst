@@ -13,7 +13,8 @@ export const load: PageServerLoad = async ({
     .from("books")
     .select()
     .eq("owner", session.user.id)
-    .eq("status", "read");
+    .eq("status", "read")
+    .order("finished", { ascending: false });
 
   return { books };
 };
