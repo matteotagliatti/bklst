@@ -21,7 +21,7 @@
           href="/search"
           class="w-fit h-fit text-sm border border-neutral-200 hover:border-neutral-300 rounded-md px-5 py-2 hover:cursor-pointer"
         >
-          Add your first book
+          Add a book you're reading
         </a>
       </div>
     {:else}
