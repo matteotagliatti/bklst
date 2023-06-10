@@ -6,4 +6,6 @@ export interface BookType {
   status: string;
   finished?: string | null;
   owner?: string;
+  created_at?: string;
+  updated_at?: string;
 }

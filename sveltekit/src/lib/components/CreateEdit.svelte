@@ -18,6 +18,8 @@
       loading = true;
       if (!book.finished || book.status !== "read") book.finished = null;
 
+      book.updated_at = new Date().toISOString();
+
       const { error } = await supabase
         .from("books")
         .update(book)

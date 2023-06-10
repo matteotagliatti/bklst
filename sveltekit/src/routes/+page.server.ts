@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({
     .select()
     .eq("owner", session.user.id)
     .eq("status", "reading")
-    .order("created_at", { ascending: false });
+    .order("updated_at", { ascending: false });
 
   return { books };
 };
