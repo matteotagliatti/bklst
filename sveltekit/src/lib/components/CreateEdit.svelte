@@ -6,6 +6,7 @@
   import Input from "./Form/Input.svelte";
   import Submit from "./Form/Submit.svelte";
   import type { BookType } from "$lib/types";
+  import Hearth from "./Form/Hearth.svelte";
 
   export let session: any;
   export let supabase: any;
@@ -58,14 +59,18 @@
 
 <FormContainer onSubmit={edit ? updateBook : addBook}>
   <div
-    class="mb-2 bg-neutral-100 flex items-center justify-center p-10 rounded-lg"
+    class="relative mb-2 bg-neutral-100 flex items-center justify-center p-10 rounded-lg"
   >
     <img
       class="w-36 shadow-lg drop-shadow-lg"
       src={book.img}
       alt={book.title}
     />
+    <div class="absolute bottom-3 right-3">
+      <Hearth id={book.id} bind:checked={book.favorite} />
+    </div>
   </div>
+
   <InputContainer>
     <Label htmlFor="img-url">Img URL:</Label>
     <Input
