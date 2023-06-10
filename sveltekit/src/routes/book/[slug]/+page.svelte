@@ -10,6 +10,7 @@
   const { supabase, session, id } = data;
   let book: any;
   let loading: boolean = false;
+  let href: string = "/";
 
   async function fetchBook() {
     if (!session) {
@@ -29,6 +30,7 @@
       return;
     }
 
+    if (data.status !== "reading") href = `/${data.status}`;
     book = data;
   }
 
@@ -51,7 +53,7 @@
 </script>
 
 <Layout small={true}>
-  <BackIcon href="/" />
+  <BackIcon {href} />
   <Title title="Edit" description="Edit the books infos below." />
   {#await fetchBook()}
     <Loader />
