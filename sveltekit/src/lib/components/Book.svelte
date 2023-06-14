@@ -1,6 +1,16 @@
 <script lang="ts">
   import Hearth from "./Form/Hearth.svelte";
-  import type { BookType } from "$lib/types";
+
+  interface BookType {
+    id?: string;
+    title: string;
+    author: string;
+    img: string;
+    favorite?: boolean;
+    status?: string;
+    finished?: string;
+  }
+
   export let book: BookType;
   export let status: boolean = false;
 
@@ -14,7 +24,7 @@
 >
   {#if book.favorite}
     <div class="absolute top-3 right-3">
-      <Hearth id={book.id} bind:checked={book.favorite} />
+      <Hearth disabled={true} id={book.id} bind:checked={book.favorite} />
     </div>
   {/if}
 

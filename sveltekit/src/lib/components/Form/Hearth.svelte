@@ -1,10 +1,12 @@
 <script lang="ts">
-  export let id: string;
+  export let id: string | undefined;
   export let checked: boolean;
+  export let disabled: boolean | undefined = false;
 </script>
 
 <div class="flex">
   <input
+    {disabled}
     {id}
     class="relative peer appearance-none shrink-0 w-4 h-4"
     type="checkbox"
