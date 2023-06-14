@@ -5,7 +5,6 @@
   import BooksContainer from "$lib/components/BooksContainer.svelte";
   import Book from "$lib/components/Book.svelte";
   import BookLink from "$lib/components/BookLink.svelte";
-  import type { BookType } from "$lib/types";
   export let data;
   $: ({ session, books } = data);
 </script>
@@ -29,7 +28,7 @@
       <BooksContainer>
         {#each books as book}
           <BookLink href="/book/{book.id}">
-            <Book {book} status={true} />
+            <Book {book} />
           </BookLink>
         {/each}
       </BooksContainer>
@@ -90,6 +89,7 @@
           status: "read",
           finished: "2023-07-22",
         }}
+        status={true}
       />
       <Book
         book={{
@@ -98,6 +98,7 @@
           img: "http://books.google.com/books/content?id=1EiJAwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
           status: "reading",
         }}
+        status={true}
       />
       <Book
         book={{
@@ -106,6 +107,7 @@
           img: "http://books.google.com/books/content?id=jWs5AQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
           status: "to-read",
         }}
+        status={true}
       />
       <Book
         book={{
@@ -114,6 +116,7 @@
           img: "http://books.google.com/books/content?id=DLCSm6whrnEC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
           status: "to-read",
         }}
+        status={true}
       />
       <Book
         book={{
@@ -122,6 +125,7 @@
           img: "http://books.google.com/books/content?id=xFr92V2k3PIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
           status: "reading",
         }}
+        status={true}
       />
       <Book
         book={{
@@ -131,6 +135,7 @@
           status: "read",
           finished: "2023-03-21",
         }}
+        status={true}
       />
     </BooksContainer>
   {/if}

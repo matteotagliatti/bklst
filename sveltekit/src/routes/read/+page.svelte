@@ -15,7 +15,7 @@
   <BooksContainer>
     {#each books as book}
       <BookLink href="/book/{book.id}">
-        <Book {book} status={true} />
+        <Book {book} />
       </BookLink>
     {/each}
   </BooksContainer>
