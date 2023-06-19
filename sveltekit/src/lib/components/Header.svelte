@@ -2,9 +2,11 @@
   import { browser } from "$app/environment";
   import { goto } from "$app/navigation";
   import { page } from "$app/stores";
+  import type { Session } from "@supabase/supabase-js";
 
+  export let session: Session | null;
   export let data;
-  const { session, supabase } = data;
+  let { supabase } = data;
 
   async function logout() {
     const { error } = await supabase.auth.signOut();

@@ -1,16 +1,16 @@
 <script lang="ts">
-  import Layout from "$lib/components/Layout.svelte";
-  import Header from "$lib/components/Header.svelte";
-  import Title from "$lib/components/Title.svelte";
-  import BooksContainer from "$lib/components/BooksContainer.svelte";
   import Book from "$lib/components/Book.svelte";
   import BookLink from "$lib/components/BookLink.svelte";
+  import BooksContainer from "$lib/components/BooksContainer.svelte";
+  import Header from "$lib/components/Header.svelte";
+  import Layout from "$lib/components/Layout.svelte";
+  import Title from "$lib/components/Title.svelte";
   export let data;
   $: ({ session, books } = data);
 </script>
 
 <Layout>
-  <Header {data} />
+  <Header {data} {session} />
   {#if session}
     {#if books?.length === 0}
       <div
