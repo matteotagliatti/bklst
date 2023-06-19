@@ -1,14 +1,14 @@
-import { error } from "@sveltejs/kit";
-import type { PageLoad } from "./$types";
+import { error } from '@sveltejs/kit';
+import type { PageLoad } from './$types';
 
 export const load = (({ params }) => {
-  if (params) {
-    const id = params.slug;
+	if (params) {
+		const id = params.slug;
 
-    return {
-      id,
-    };
-  }
+		return {
+			id
+		};
+	}
 
-  throw error(404, "Not found");
+	throw error(404, 'Not found');
 }) satisfies PageLoad;

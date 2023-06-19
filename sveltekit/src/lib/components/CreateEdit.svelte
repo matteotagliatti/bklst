@@ -1,120 +1,101 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
-  import FormContainer from "./Form/FormContainer.svelte";
-  import InputContainer from "./Form/InputContainer.svelte";
-  import Label from "./Form/Label.svelte";
-  import Input from "./Form/Input.svelte";
-  import Submit from "./Form/Submit.svelte";
-  import type { BookType } from "$lib/types";
-  import Hearth from "./Form/Hearth.svelte";
+	import { goto } from '$app/navigation';
+	import FormContainer from './Form/FormContainer.svelte';
+	import InputContainer from './Form/InputContainer.svelte';
+	import Label from './Form/Label.svelte';
+	import Input from './Form/Input.svelte';
+	import Submit from './Form/Submit.svelte';
+	import type { BookType } from '$lib/types';
+	import Hearth from './Form/Hearth.svelte';
 
-  export let session: any;
-  export let supabase: any;
-  export let book: BookType;
-  export let edit: boolean = false;
-  let loading: boolean = false;
+	export let session: any;
+	export let supabase: any;
+	export let book: BookType;
+	export let edit: boolean = false;
+	let loading: boolean = false;
 
-  async function updateBook() {
-    try {
-      loading = true;
-      if (!book.finished || book.status !== "read") book.finished = null;
+	async function updateBook() {
+		try {
+			loading = true;
+			if (!book.finished || book.status !== 'read') book.finished = null;
 
-      book.updated_at = new Date().toISOString();
+			book.updated_at = new Date().toISOString();
 
-      const { error } = await supabase
-        .from("books")
-        .update(book)
-        .eq("id", book.id);
+			const { error } = await supabase.from('books').update(book).eq('id', book.id);
 
-      if (error) {
-        console.log(error);
-      }
+			if (error) {
+				console.log(error);
+			}
 
-      goto("/");
-      loading = false;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+			goto('/');
+			loading = false;
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
-  async function addBook() {
-    try {
-      loading = true;
-      book.owner = session.user.id;
-      if (!book.finished || book.status !== "read") book.finished = null;
+	async function addBook() {
+		try {
+			loading = true;
+			book.owner = session.user.id;
+			if (!book.finished || book.status !== 'read') book.finished = null;
 
-      const { error } = await supabase.from("books").insert(book);
+			const { error } = await supabase.from('books').insert(book);
 
-      if (error) {
-        console.log(error);
-      }
+			if (error) {
+				console.log(error);
+			}
 
-      goto("/");
-      loading = false;
-    } catch (error) {
-      console.log(error);
-    }
-  }
+			goto('/');
+			loading = false;
+		} catch (error) {
+			console.log(error);
+		}
+	}
 </script>
 
 <FormContainer onSubmit={edit ? updateBook : addBook}>
-  <div
-    class="relative mb-2 bg-neutral-100 flex items-center justify-center p-10 rounded-lg"
-  >
-    <img
-      class="w-36 shadow-lg drop-shadow-lg"
-      src={book.img}
-      alt={book.title}
-    />
-    <div class="absolute bottom-3 right-3">
-      <Hearth id={book.id} bind:checked={book.favorite} />
-    </div>
-  </div>
+	<div class="relative mb-2 bg-neutral-100 flex items-center justify-center p-10 rounded-lg">
+		<img class="w-36 shadow-lg drop-shadow-lg" src={book.img} alt={book.title} />
+		<div class="absolute bottom-3 right-3">
+			<Hearth id={book.id} bind:checked={book.favorite} />
+		</div>
+	</div>
 
-  <InputContainer>
-    <Label htmlFor="img-url">Img URL:</Label>
-    <Input
-      required={true}
-      type="text"
-      placeholder="https://example.com/image.jpg"
-      bind:value={book.img}
-    />
-  </InputContainer>
-  <InputContainer>
-    <Label htmlFor="title">Title</Label>
-    <Input
-      required={true}
-      type="text"
-      placeholder="Game of Thrones"
-      bind:value={book.title}
-    />
-  </InputContainer>
-  <InputContainer>
-    <Label htmlFor="author">Author</Label>
-    <Input
-      required={true}
-      type="text"
-      placeholder="George R. R. Martin"
-      bind:value={book.author}
-    />
-  </InputContainer>
-  <InputContainer>
-    <Label htmlFor="status">Status</Label>
-    <select class="w-fit" bind:value={book.status}>
-      <option value="to-read">To Read</option>
-      <option value="reading">Reading</option>
-      <option value="read">Read</option>
-    </select>
-  </InputContainer>
-  {#if book.status === "read"}
-    <InputContainer>
-      <Label htmlFor="finished">Finished</Label>
-      <input required type="date" bind:value={book.finished} />
-    </InputContainer>
-  {/if}
+	<InputContainer>
+		<Label htmlFor="img-url">Img URL:</Label>
+		<Input
+			required={true}
+			type="text"
+			placeholder="https://example.com/image.jpg"
+			bind:value={book.img}
+		/>
+	</InputContainer>
+	<InputContainer>
+		<Label htmlFor="title">Title</Label>
+		<Input required={true} type="text" placeholder="Game of Thrones" bind:value={book.title} />
+	</InputContainer>
+	<InputContainer>
+		<Label htmlFor="author">Author</Label>
+		<Input required={true} type="text" placeholder="George R. R. Martin" bind:value={book.author} />
+	</InputContainer>
+	<InputContainer>
+		<Label htmlFor="status">Status</Label>
+		<select class="w-fit" bind:value={book.status}>
+			<option value="to-read">To Read</option>
+			<option value="reading">Reading</option>
+			<option value="read">Read</option>
+		</select>
+	</InputContainer>
+	{#if book.status === 'read'}
+		<InputContainer>
+			<Label htmlFor="finished">Finished</Label>
+			<input required type="date" bind:value={book.finished} />
+		</InputContainer>
+	{/if}
 
-  <div class="flex gap-3 items-center">
-    <Submit value={edit ? `Update` : `Add`} bind:loading />
-    <slot />
-  </div>
+	<div class="flex gap-3 items-center">
+		<Submit value={edit ? `Update` : `Add`} bind:loading />
+		<slot />
+	</div>
 </FormContainer>

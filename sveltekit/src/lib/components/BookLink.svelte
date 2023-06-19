@@ -1,7 +1,7 @@
 <script lang="ts">
-  export let href: string;
+	export let href: string;
 </script>
 
 <a {href} class="cursor-pointer">
-  <slot />
+	<slot />
 </a>

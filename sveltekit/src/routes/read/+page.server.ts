@@ -1,20 +1,18 @@
-import type { PageServerLoad } from "./$types";
+import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({
-  locals: { supabase, getSession },
-}) => {
-  const session = await getSession();
+export const load: PageServerLoad = async ({ locals: { supabase, getSession } }) => {
+	const session = await getSession();
 
-  if (!session) {
-    return;
-  }
+	if (!session) {
+		return;
+	}
 
-  const { data: books } = await supabase
-    .from("books")
-    .select()
-    .eq("owner", session.user.id)
-    .eq("status", "read")
-    .order("finished", { ascending: false });
+	const { data: books } = await supabase
+		.from('books')
+		.select()
+		.eq('owner', session.user.id)
+		.eq('status', 'read')
+		.order('finished', { ascending: false });
 
-  return { books };
+	return { books };
 };
