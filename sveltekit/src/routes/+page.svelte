@@ -41,9 +41,8 @@
 				A very simple way to keep track of the books you read. No social media functions, no ads, no
 				tracking. Just you and your books in a very clean interface. Forever{' '}
 				<a class="underline" target="_blank" href="https://github.com/matteotagliatti/bklst">
-					open source
+					open source.
 				</a>
-				.
 			</p>
 			<a
 				href="mailto:matteotagliatti@gmail.com?subject=Request to join Bklst&body=Hello, I'd love to join Bklst."
