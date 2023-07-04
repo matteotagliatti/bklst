@@ -8,7 +8,7 @@
 	<input
 		{disabled}
 		{id}
-		class="peer relative h-4 w-4 shrink-0 appearance-none border-none bg-transparent text-transparent"
+		class="peer relative h-4 w-4 shrink-0 appearance-none border-none bg-transparent text-transparent focus-within:ring-0 focus:outline-none focus:ring-0 focus:ring-offset-0"
 		type="checkbox"
 		bind:checked
 	/>
