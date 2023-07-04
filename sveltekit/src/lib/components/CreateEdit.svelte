@@ -14,9 +14,14 @@
 	export let edit: boolean = false;
 	let loading: boolean = false;
 
+	function handleFavorite() {
+		if (book.status !== 'read') book.favorite = false;
+	}
+
 	async function updateBook() {
 		try {
 			loading = true;
+			handleFavorite();
 			if (!book.finished || book.status !== 'read') book.finished = null;
 
 			book.updated_at = new Date().toISOString();
@@ -37,6 +42,7 @@
 	async function addBook() {
 		try {
 			loading = true;
+			handleFavorite();
 			book.owner = session.user.id;
 			if (!book.finished || book.status !== 'read') book.finished = null;
 
@@ -58,7 +64,9 @@
 	<div class="relative mb-2 flex items-center justify-center rounded-lg bg-neutral-100 p-10">
 		<img class="w-36 shadow-lg drop-shadow-lg" src={book.img} alt={book.title} />
 		<div class="absolute bottom-3 right-3">
-			<Hearth id={book.id} bind:checked={book.favorite} />
+			{#if book.status === 'read'}
+				<Hearth id={book.id} bind:checked={book.favorite} />
+			{/if}
 		</div>
 	</div>
 
