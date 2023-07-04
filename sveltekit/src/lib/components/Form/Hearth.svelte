@@ -8,12 +8,12 @@
 	<input
 		{disabled}
 		{id}
-		class="relative peer appearance-none shrink-0 w-4 h-4"
+		class="peer relative h-4 w-4 shrink-0 appearance-none text-transparent"
 		type="checkbox"
 		bind:checked
 	/>
 	<svg
-		class="absolute w-4 h-4 pointer-events-none stroke-red-500 fill-none peer-checked:!fill-red-500"
+		class="pointer-events-none absolute h-4 w-4 fill-none stroke-red-500 peer-checked:!fill-red-500"
 		xmlns="http://www.w3.org/2000/svg"
 		width="24"
 		height="24"

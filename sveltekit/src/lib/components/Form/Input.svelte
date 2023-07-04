@@ -12,7 +12,7 @@
 </script>
 
 <input
-	class="text-sm shrink grow"
+	class="shrink grow border-none p-0 text-sm focus-within:ring-0 focus:outline-none focus:ring-0"
 	{type}
 	{required}
 	{placeholder}

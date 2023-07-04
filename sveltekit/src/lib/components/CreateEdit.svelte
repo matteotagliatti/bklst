@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
+	import type { BookType } from '$lib/types';
 	import FormContainer from './Form/FormContainer.svelte';
+	import Hearth from './Form/Hearth.svelte';
+	import Input from './Form/Input.svelte';
 	import InputContainer from './Form/InputContainer.svelte';
 	import Label from './Form/Label.svelte';
-	import Input from './Form/Input.svelte';
 	import Submit from './Form/Submit.svelte';
-	import type { BookType } from '$lib/types';
-	import Hearth from './Form/Hearth.svelte';
 
 	export let session: any;
 	export let supabase: any;
@@ -55,7 +55,7 @@
 </script>
 
 <FormContainer onSubmit={edit ? updateBook : addBook}>
-	<div class="relative mb-2 bg-neutral-100 flex items-center justify-center p-10 rounded-lg">
+	<div class="relative mb-2 flex items-center justify-center rounded-lg bg-neutral-100 p-10">
 		<img class="w-36 shadow-lg drop-shadow-lg" src={book.img} alt={book.title} />
 		<div class="absolute bottom-3 right-3">
 			<Hearth id={book.id} bind:checked={book.favorite} />
@@ -81,7 +81,10 @@
 	</InputContainer>
 	<InputContainer>
 		<Label htmlFor="status">Status</Label>
-		<select class="w-fit" bind:value={book.status}>
+		<select
+			class="border-none py-0 pl-0 pr-3 text-sm focus-within:ring-0 focus:outline-none focus:ring-0"
+			bind:value={book.status}
+		>
 			<option value="to-read">To Read</option>
 			<option value="reading">Reading</option>
 			<option value="read">Read</option>
@@ -90,11 +93,16 @@
 	{#if book.status === 'read'}
 		<InputContainer>
 			<Label htmlFor="finished">Finished</Label>
-			<input required type="date" bind:value={book.finished} />
+			<input
+				required
+				type="date"
+				class="border-none py-0 pl-0 pr-3 text-sm focus-within:ring-0 focus:outline-none focus:ring-0"
+				bind:value={book.finished}
+			/>
 		</InputContainer>
 	{/if}
 
-	<div class="flex gap-3 items-center">
+	<div class="flex items-center gap-3">
 		<Submit value={edit ? `Update` : `Add`} bind:loading />
 		<slot />
 	</div>
