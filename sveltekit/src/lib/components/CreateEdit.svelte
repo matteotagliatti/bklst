@@ -90,8 +90,12 @@
 	<InputContainer>
 		<Label htmlFor="status">Status</Label>
 		<select
-			class="border-none py-0 pl-0 pr-3 text-sm focus-within:ring-0 focus:outline-none focus:ring-0"
+			class="border-none py-0 pl-0 pr-8 text-sm focus-within:ring-0 focus:outline-none focus:ring-0"
 			bind:value={book.status}
+			on:change={() => {
+				if (book.status === 'read') book.finished = new Date().toISOString().split('T')[0];
+				else book.finished = null;
+			}}
 		>
 			<option value="to-read">To Read</option>
 			<option value="reading">Reading</option>
@@ -104,7 +108,7 @@
 			<input
 				required
 				type="date"
-				class="border-none py-0 pl-0 pr-3 text-sm focus-within:ring-0 focus:outline-none focus:ring-0"
+				class="border-none p-0 text-sm focus-within:ring-0 focus:outline-none focus:ring-0"
 				bind:value={book.finished}
 			/>
 		</InputContainer>
