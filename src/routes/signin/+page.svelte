@@ -1,11 +1,13 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
   import BackIcon from "$lib/components/BackIcon.svelte";
+  import ErrorMessage from "$lib/components/Form/ErrorMessage.svelte";
   import FormContainer from "$lib/components/Form/FormContainer.svelte";
   import Input from "$lib/components/Form/Input.svelte";
   import InputContainer from "$lib/components/Form/InputContainer.svelte";
   import Label from "$lib/components/Form/Label.svelte";
   import Submit from "$lib/components/Form/Submit.svelte";
+  import SubmitContainer from "$lib/components/Form/SubmitContainer.svelte";
   import Layout from "$lib/components/Layout.svelte";
   import Title from "$lib/components/Title.svelte";
 
@@ -66,11 +68,11 @@
         bind:value={formData.password}
       />
     </InputContainer>
-    <div class="mt-7 flex items-center justify-start gap-4">
+    <SubmitContainer>
       <Submit value={"Sign In"} bind:loading />
       {#if errorMessage}
-        <p class="text-sm text-red-500">{errorMessage}</p>
+        <ErrorMessage message={errorMessage} />
       {/if}
-    </div>
+    </SubmitContainer>
   </FormContainer>
 </Layout>

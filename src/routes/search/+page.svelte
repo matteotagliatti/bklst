@@ -1,119 +1,142 @@
 <script lang="ts">
-	import Layout from '$lib/components/Layout.svelte';
-	import BackIcon from '$lib/components/BackIcon.svelte';
-	import Title from '$lib/components/Title.svelte';
-	import FormContainer from '$lib/components/Form/FormContainer.svelte';
-	import InputContainer from '$lib/components/Form/InputContainer.svelte';
-	import Label from '$lib/components/Form/Label.svelte';
-	import Input from '$lib/components/Form/Input.svelte';
-	import Submit from '$lib/components/Form/Submit.svelte';
-	import BooksContainer from '$lib/components/BooksContainer.svelte';
-	import Book from '$lib/components/Book.svelte';
-	import BookLink from '$lib/components/BookLink.svelte';
-	import searchBooks from '$lib/functions/search';
-	import type { BookType } from '$lib/types';
-	import { PUBLIC_GOOGLE_API_KEY } from '$env/static/public';
+  import { PUBLIC_GOOGLE_API_KEY } from "$env/static/public";
+  import BackIcon from "$lib/components/BackIcon.svelte";
+  import Book from "$lib/components/Book.svelte";
+  import BookLink from "$lib/components/BookLink.svelte";
+  import BooksContainer from "$lib/components/BooksContainer.svelte";
+  import ErrorMessage from "$lib/components/Form/ErrorMessage.svelte";
+  import FormContainer from "$lib/components/Form/FormContainer.svelte";
+  import Input from "$lib/components/Form/Input.svelte";
+  import InputContainer from "$lib/components/Form/InputContainer.svelte";
+  import Label from "$lib/components/Form/Label.svelte";
+  import Submit from "$lib/components/Form/Submit.svelte";
+  import SubmitContainer from "$lib/components/Form/SubmitContainer.svelte";
+  import Layout from "$lib/components/Layout.svelte";
+  import Title from "$lib/components/Title.svelte";
+  import searchBooks from "$lib/functions/search";
+  import type { BookType } from "$lib/types";
 
-	let books = [] as BookType[];
-	let loading = false;
-	let noBooksMsg = false;
-	let inputValues = {
-		title: '',
-		author: '',
-		isbn: ''
-	};
+  let books = [] as BookType[];
+  let loading = false;
+  let errorMessage: string | null = null;
+  let noBooksMsg = false;
 
-	async function fetchBooks() {
-		try {
-			loading = true;
+  interface Values {
+    title: string | null;
+    author: string | null;
+    isbn: string | null;
+  }
 
-			if (inputValues.title === '' && inputValues.author === '' && inputValues.isbn === '') {
-				alert('Complete at least one field.');
-				loading = false;
-				return;
-			}
+  let inputValues: Values = {
+    title: null,
+    author: null,
+    isbn: null,
+  };
 
-			const res = await searchBooks(
-				PUBLIC_GOOGLE_API_KEY,
-				inputValues.title,
-				inputValues.author,
-				inputValues.isbn
-			);
+  async function fetchBooks() {
+    try {
+      loading = true;
+      errorMessage = null;
 
-			if (res.data.totalItems === 0) {
-				loading = false;
-				noBooksMsg = true;
-				return;
-			}
+      if (!inputValues.title && !inputValues.author && !inputValues.isbn) {
+        errorMessage = "Complete at least one field.";
+        loading = false;
+        return;
+      }
 
-			res.data.items = res.data.items.slice(0, 6);
+      const res = await searchBooks(
+        PUBLIC_GOOGLE_API_KEY,
+        inputValues.title,
+        inputValues.author,
+        inputValues.isbn
+      );
 
-			books = res.data.items.map((book: any) => {
-				const title = book.volumeInfo.title;
-				const author = book.volumeInfo.authors ? book.volumeInfo.authors[0] : 'Unknown';
-				const img = book.volumeInfo.imageLinks
-					? book.volumeInfo.imageLinks.thumbnail
-					: 'https://via.placeholder.com/150x150/e6e6e6/969696?text=No+Cover+Avaiable';
-				return {
-					title,
-					author,
-					img
-				};
-			});
+      if (res.data.totalItems === 0) {
+        loading = false;
+        noBooksMsg = true;
+        return;
+      }
 
-			loading = false;
-		} catch (error) {
-			console.log(error);
-		}
-	}
+      res.data.items = res.data.items.slice(0, 6);
+
+      books = res.data.items.map((book: any) => {
+        const title = book.volumeInfo.title;
+        const author = book.volumeInfo.authors
+          ? book.volumeInfo.authors[0]
+          : "Unknown";
+        const img = book.volumeInfo.imageLinks
+          ? book.volumeInfo.imageLinks.thumbnail
+          : "https://via.placeholder.com/150x150/e6e6e6/969696?text=No+Cover+Avaiable";
+        return {
+          title,
+          author,
+          img,
+        };
+      });
+
+      loading = false;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 </script>
 
 <Layout small={true}>
-	<BackIcon href="/" />
-	<Title
-		title="Search"
-		description="Search for a book and add it to your booklist. Complete at least one field."
-	/>
-	<FormContainer onSubmit={fetchBooks}>
-		<InputContainer>
-			<Label htmlFor="title">Title</Label>
-			<Input
-				required={false}
-				type="text"
-				placeholder="Game of Thrones"
-				bind:value={inputValues.title}
-			/>
-		</InputContainer>
-		<InputContainer>
-			<Label htmlFor="author">Author</Label>
-			<Input
-				required={false}
-				type="text"
-				placeholder="George R.R. Martin"
-				bind:value={inputValues.author}
-			/>
-		</InputContainer>
-		<InputContainer>
-			<Label htmlFor="isbn">ISBN</Label>
-			<Input required={false} type="text" placeholder="880475172X" bind:value={inputValues.isbn} />
-		</InputContainer>
-		<Submit value={'Search'} bind:loading />
-	</FormContainer>
-	<BooksContainer cols={2}>
-		{#if noBooksMsg}
-			<p class="text-sm">No books found! Do another search.</p>
-		{:else}
-			{#each books as book}
-				<BookLink
-					href="add?title={book.title}&author={book.author}&img={book.img
-						.replace(/:/g, '%3A')
-						.replace(/\?/g, '%3F')
-						.replace(/=/g, '%3D')
-						.replace(/&/g, '%26')}"
-				>
-					<Book {book} />
-				</BookLink>
-			{/each}
-		{/if}
-	</BooksContainer>
+  <BackIcon href="/" />
+  <Title
+    title="Search"
+    description="Search for a book and add it to your booklist. Complete at least one field."
+  />
+  <FormContainer onSubmit={fetchBooks}>
+    <InputContainer>
+      <Label htmlFor="title">Title</Label>
+      <Input
+        required={false}
+        type="text"
+        placeholder="Game of Thrones"
+        bind:value={inputValues.title}
+      />
+    </InputContainer>
+    <InputContainer>
+      <Label htmlFor="author">Author</Label>
+      <Input
+        required={false}
+        type="text"
+        placeholder="George R.R. Martin"
+        bind:value={inputValues.author}
+      />
+    </InputContainer>
+    <InputContainer>
+      <Label htmlFor="isbn">ISBN</Label>
+      <Input
+        required={false}
+        type="text"
+        placeholder="880475172X"
+        bind:value={inputValues.isbn}
+      />
+    </InputContainer>
+    <SubmitContainer>
+      <Submit value={"Search"} bind:loading />
+      {#if errorMessage}
+        <ErrorMessage message={errorMessage} />
+      {/if}
+    </SubmitContainer>
+  </FormContainer>
+  <BooksContainer cols={2}>
+    {#if noBooksMsg}
+      <p class="text-sm">No books found! Do another search.</p>
+    {:else}
+      {#each books as book}
+        <BookLink
+          href="add?title={book.title}&author={book.author}&img={book.img
+            .replace(/:/g, '%3A')
+            .replace(/\?/g, '%3F')
+            .replace(/=/g, '%3D')
+            .replace(/&/g, '%26')}"
+        >
+          <Book {book} />
+        </BookLink>
+      {/each}
+    {/if}
+  </BooksContainer>
 </Layout>
