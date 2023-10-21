@@ -25,13 +25,15 @@
       </div>
     {:else}
       <Title title="Reading" description="Books I'm currently reading." />
-      <BooksContainer>
-        {#each books as book}
-          <BookLink href="/book/{book.id}">
-            <Book {book} />
-          </BookLink>
-        {/each}
-      </BooksContainer>
+      {#if books}
+        <BooksContainer>
+          {#each books as book}
+            <BookLink href="/book/{book.id}">
+              <Book {book} />
+            </BookLink>
+          {/each}
+        </BooksContainer>
+      {/if}
     {/if}
   {:else}
     <div class="mb-10 md:mt-10 md:max-w-md">

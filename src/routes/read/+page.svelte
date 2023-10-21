@@ -12,11 +12,13 @@
 <Layout>
   <Header {session} {data} />
   <Title title="Read" description="The last books I've read." />
-  <BooksContainer>
-    {#each books as book}
-      <BookLink href="/book/{book.id}">
-        <Book {book} />
-      </BookLink>
-    {/each}
-  </BooksContainer>
+  {#if books}
+    <BooksContainer>
+      {#each books as book}
+        <BookLink href="/book/{book.id}">
+          <Book {book} />
+        </BookLink>
+      {/each}
+    </BooksContainer>
+  {/if}
 </Layout>
