@@ -1,16 +1,16 @@
 <script lang="ts">
-	import LoaderIcon from '$lib/components/LoaderIcon.svelte';
+  import LoaderIcon from "$lib/components/LoaderIcon.svelte";
 
-	export let value: string = '';
-	export let loading: boolean = false;
+  export let value: string = "";
+  export let loading: boolean = false;
 </script>
 
 <button
-	type="submit"
-	class="mt-7 w-fit text-sm border border-neutral-200 hover:border-neutral-300 rounded-md px-5 py-2 hover:cursor-pointer flex gap-2 items-center"
+  type="submit"
+  class="flex w-fit shrink-0 items-center gap-2 self-start rounded-md border border-neutral-200 px-5 py-2 text-sm hover:cursor-pointer hover:border-neutral-300"
 >
-	{#if loading}
-		<LoaderIcon />
-	{/if}
-	{value}
+  {#if loading}
+    <LoaderIcon />
+  {/if}
+  {value}
 </button>
