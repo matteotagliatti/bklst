@@ -60,17 +60,14 @@
       res.data.items = res.data.items.slice(0, 6);
 
       books = res.data.items.map((book: any) => {
-        const title = book.volumeInfo.title;
-        const author = book.volumeInfo.authors
-          ? book.volumeInfo.authors[0]
-          : "Unknown";
-        const img = book.volumeInfo.imageLinks
-          ? book.volumeInfo.imageLinks.thumbnail
-          : "https://via.placeholder.com/150x150/e6e6e6/969696?text=No+Cover+Avaiable";
         return {
-          title,
-          author,
-          img,
+          title: book.volumeInfo.title,
+          author: book.volumeInfo.authors
+            ? book.volumeInfo.authors[0]
+            : "Unknown",
+          img: book.volumeInfo.imageLinks
+            ? book.volumeInfo.imageLinks.thumbnail
+            : "https://via.placeholder.com/150x150/e6e6e6/969696?text=No+Cover+Avaiable",
         };
       });
 
