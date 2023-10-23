@@ -10,7 +10,7 @@
 </script>
 
 <Layout>
-  <Header {session} {data} />
+  <Header {session} />
   <Title title="To Read" description="Books to read in the future." />
   {#if books}
     <BooksContainer>

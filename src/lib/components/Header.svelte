@@ -1,63 +1,59 @@
 <script lang="ts">
-	import { browser } from '$app/environment';
-	import { goto } from '$app/navigation';
-	import { page } from '$app/stores';
-	import type { Session } from '@supabase/supabase-js';
+  import { page } from "$app/stores";
+  import type { Session } from "@supabase/supabase-js";
 
-	export let session: Session | null;
-	export let data;
-	let { supabase } = data;
-
-	async function logout() {
-		const { error } = await supabase.auth.signOut();
-
-		if (error) {
-			console.log(error);
-		}
-
-		if (browser) {
-			goto('/');
-		}
-	}
+  export let session: Session | null;
 </script>
 
 <header
-	class="fixed top-0 left-0 right-0 h-12 px-3 py-4 mx-2 flex justify-between items-center border-b border-neutral-100 bg-white/75 backdrop-blur z-10"
+  class="fixed left-0 right-0 top-0 z-10 mx-2 flex h-12 items-center justify-between border-b border-neutral-100 bg-white/75 px-3 py-4 backdrop-blur"
 >
-	<nav class="flex gap-4 justify-center">
-		<a
-			class="text-sm text-neutral-400 hover:underline {$page.route.id === '/'
-				? 'italic text-neutral-900 underline'
-				: null}"
-			href="/"
-		>
-			{session ? 'Reading' : 'Index'}
-		</a>
-		{#if session}
-			<a
-				class="text-sm text-neutral-400 hover:underline {$page.route.id === '/read'
-					? 'italic text-neutral-900 underline'
-					: null}"
-				href="/read"
-			>
-				Read</a
-			>
-			<a
-				class="text-sm text-neutral-400 hover:underline {$page.route.id === '/to-read'
-					? 'italic text-neutral-900 underline'
-					: null}"
-				href="/to-read"
-			>
-				To Read</a
-			>
-		{/if}
-	</nav>
-	<nav class="flex gap-4 justify-center">
-		{#if session}
-			<a class="text-sm text-neutral-400 hover:underline" href="/search"> Search</a>
-			<button class="text-sm text-neutral-400 hover:underline" on:click={logout}> Logout </button>
-		{:else}
-			<a class="text-sm text-neutral-400 hover:underline" href="/signin"> Sign In </a>
-		{/if}
-	</nav>
+  <nav class="flex justify-center gap-4">
+    <a
+      class="text-sm text-neutral-400 hover:underline {$page.route.id === '/'
+        ? 'italic text-neutral-900 underline'
+        : null}"
+      href="/"
+    >
+      {session ? "Reading" : "Index"}
+    </a>
+    {#if session}
+      <a
+        class="text-sm text-neutral-400 hover:underline {$page.route.id ===
+        '/read'
+          ? 'italic text-neutral-900 underline'
+          : null}"
+        href="/read"
+      >
+        Read</a
+      >
+      <a
+        class="text-sm text-neutral-400 hover:underline {$page.route.id ===
+        '/to-read'
+          ? 'italic text-neutral-900 underline'
+          : null}"
+        href="/to-read"
+      >
+        To Read</a
+      >
+    {/if}
+  </nav>
+  <nav class="flex justify-center gap-4">
+    {#if session}
+      <a class="text-sm text-neutral-400 hover:underline" href="/search">
+        Search</a
+      >
+      <form
+        method="post"
+        class="text-sm text-neutral-400 hover:underline"
+        action="/logout"
+      >
+        <button>Logout</button>
+      </form>
+    {:else}
+      <a class="text-sm text-neutral-400 hover:underline" href="/signin">
+        Sign In
+      </a>
+    {/if}
+  </nav>
 </header>

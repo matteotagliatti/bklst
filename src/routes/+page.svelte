@@ -10,7 +10,7 @@
 </script>
 
 <Layout>
-  <Header {data} {session} />
+  <Header {session} />
   {#if session}
     {#if books?.length === 0}
       <div
