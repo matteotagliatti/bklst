@@ -3,7 +3,7 @@ import { BookSchema } from "$lib/zodSchemas.js";
 import { fail, redirect } from "@sveltejs/kit";
 
 export const actions = {
-  default: async ({ request, params, locals: { supabase, getSession } }) => {
+  update: async ({ request, params, locals: { supabase, getSession } }) => {
     const session = await getSession();
     const formData = await request.formData();
     const id = params.slug;
@@ -35,6 +35,19 @@ export const actions = {
       .from("books")
       .update(book)
       .eq("id", book.id);
+
+    if (error) {
+      return {
+        errorMessage: error.message,
+      };
+    }
+
+    throw redirect(303, "/");
+  },
+  delete: async ({ params, locals: { supabase } }) => {
+    const id = params.slug;
+
+    const { error } = await supabase.from("books").delete().eq("id", id);
 
     if (error) {
       return {

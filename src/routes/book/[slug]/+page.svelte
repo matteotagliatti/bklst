@@ -6,10 +6,9 @@
   import Loader from "$lib/components/Loader.svelte";
   import LoaderIcon from "$lib/components/LoaderIcon.svelte";
   import Title from "$lib/components/Title.svelte";
-  import type { BookType } from "$lib/types.js";
+  import type { BookType } from "$lib/types";
 
   export let form;
-  $: console.log(form);
 
   export let data;
   const { supabase, session, id } = data;
@@ -40,21 +39,8 @@
     book = data;
   }
 
-  async function deleteBook() {
-    try {
-      loading = true;
-
-      const { error } = await supabase.from("books").delete().eq("id", book.id);
-
-      if (error) {
-        console.log(error);
-      }
-
-      goto("/");
-      loading = false;
-    } catch (error) {
-      console.log(error);
-    }
+  function deleteBook() {
+    loading = true;
   }
 </script>
 
@@ -115,7 +101,8 @@
               </a>
               <button
                 class="flex w-full items-center justify-center gap-2 rounded-md border border-red-500 bg-red-500 px-5 py-2 text-center text-sm text-white hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
-                on:click|preventDefault={deleteBook}
+                on:click={deleteBook}
+                formaction="?/delete"
               >
                 {#if loading}
                   <LoaderIcon />

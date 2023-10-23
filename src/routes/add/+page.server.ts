@@ -3,7 +3,7 @@ import { BookSchema } from "$lib/zodSchemas.js";
 import { fail, redirect } from "@sveltejs/kit";
 
 export const actions = {
-  default: async ({ request, locals: { supabase, getSession } }) => {
+  add: async ({ request, locals: { supabase, getSession } }) => {
     const session = await getSession();
     const formData = await request.formData();
 

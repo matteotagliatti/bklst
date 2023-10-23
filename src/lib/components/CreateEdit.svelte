@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { BookType } from "$lib/types";
-  import type { ActionData } from "./$types";
+  import type { ActionData } from "../../routes/add/$types";
+
   import ErrorMessage from "./Form/ErrorMessage.svelte";
   import FormContainer from "./Form/FormContainer.svelte";
   import Hearth from "./Form/Hearth.svelte";
@@ -19,7 +20,7 @@
   }
 </script>
 
-<FormContainer onSubmit={submit}>
+<FormContainer onSubmit={submit} action={edit ? "?/update" : "?/add"}>
   <div
     class="relative mb-2 flex items-center justify-center rounded-lg bg-neutral-100 p-10"
   >

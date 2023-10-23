@@ -12,5 +12,5 @@ export const BookSchema = z.object({
   img: z.string().url(),
   status: z.enum(["read", "reading", "to-read"]),
   finished: z.string().nullable(),
-  favorite: z.string(),
+  favorite: z.boolean(),
 });
