@@ -129,7 +129,7 @@
           author: "J.R.R. Tolkien",
           img: "http://books.google.com/books/content?id=xFr92V2k3PIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
           status: "reading",
-          favorite: false,
+          favorite: true,
         }}
         status={true}
       />
