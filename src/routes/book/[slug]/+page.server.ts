@@ -42,10 +42,13 @@ export const actions = {
       };
     }
 
-    throw redirect(303, "/");
+    throw redirect(303, `/${book.status !== "reading" ? book.status : ""}`);
   },
-  delete: async ({ params, locals: { supabase } }) => {
+  delete: async ({ request, params, locals: { supabase } }) => {
     const id = params.slug;
+    const formData = await request.formData();
+
+    const redirectPath = String(formData.get("status"));
 
     const { error } = await supabase.from("books").delete().eq("id", id);
 
@@ -55,6 +58,6 @@ export const actions = {
       };
     }
 
-    throw redirect(303, "/");
+    throw redirect(303, `/${redirectPath !== "reading" ? redirectPath : ""}`);
   },
 };
