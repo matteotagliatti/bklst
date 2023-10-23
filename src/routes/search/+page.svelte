@@ -7,8 +7,6 @@
   import ErrorMessage from "$lib/components/Form/ErrorMessage.svelte";
   import FormContainer from "$lib/components/Form/FormContainer.svelte";
   import Input from "$lib/components/Form/Input.svelte";
-  import InputContainer from "$lib/components/Form/InputContainer.svelte";
-  import Label from "$lib/components/Form/Label.svelte";
   import Submit from "$lib/components/Form/Submit.svelte";
   import SubmitContainer from "$lib/components/Form/SubmitContainer.svelte";
   import Layout from "$lib/components/Layout.svelte";
@@ -19,7 +17,6 @@
   let books = [] as BookType[];
   let loading = false;
   let errorMessage: string | null = null;
-  let noBooksMsg = false;
 
   interface Values {
     title: string | null;
@@ -33,8 +30,9 @@
     isbn: null,
   };
 
-  async function fetchBooks() {
+  async function fetchBooks(event: Event) {
     try {
+      event.preventDefault();
       loading = true;
       errorMessage = null;
 
@@ -85,33 +83,30 @@
     description="Search for a book and add it to your booklist. Complete at least one field."
   />
   <FormContainer onSubmit={fetchBooks}>
-    <InputContainer>
-      <Label htmlFor="title">Title</Label>
-      <Input
-        required={false}
-        type="text"
-        placeholder="Game of Thrones"
-        bind:value={inputValues.title}
-      />
-    </InputContainer>
-    <InputContainer>
-      <Label htmlFor="author">Author</Label>
-      <Input
-        required={false}
-        type="text"
-        placeholder="George R.R. Martin"
-        bind:value={inputValues.author}
-      />
-    </InputContainer>
-    <InputContainer>
-      <Label htmlFor="isbn">ISBN</Label>
-      <Input
-        required={false}
-        type="text"
-        placeholder="880475172X"
-        bind:value={inputValues.isbn}
-      />
-    </InputContainer>
+    <Input
+      id="title"
+      label="Title"
+      required={false}
+      type="text"
+      placeholder="Game of Thrones"
+      bind:value={inputValues.title}
+    />
+    <Input
+      id="author"
+      label="Author"
+      required={false}
+      type="text"
+      placeholder="George R.R. Martin"
+      bind:value={inputValues.author}
+    />
+    <Input
+      id="isbn"
+      label="ISBN"
+      required={false}
+      type="text"
+      placeholder="880475172X"
+      bind:value={inputValues.isbn}
+    />
     <SubmitContainer>
       <Submit value={"Search"} bind:loading />
       {#if errorMessage}

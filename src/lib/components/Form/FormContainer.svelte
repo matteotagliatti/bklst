@@ -1,5 +1,5 @@
 <script lang="ts">
-  export let onSubmit = () => {};
+  export let onSubmit = (e: Event) => {};
 </script>
 
 <form
