@@ -53,7 +53,7 @@
 
       if (res.data.totalItems === 0) {
         loading = false;
-        noBooksMsg = true;
+        errorMessage = "No books found.";
         return;
       }
 
@@ -120,20 +120,16 @@
     </SubmitContainer>
   </FormContainer>
   <BooksContainer cols={2}>
-    {#if noBooksMsg}
-      <p class="text-sm">No books found! Do another search.</p>
-    {:else}
-      {#each books as book}
-        <BookLink
-          href="add?title={book.title}&author={book.author}&img={book.img
-            .replace(/:/g, '%3A')
-            .replace(/\?/g, '%3F')
-            .replace(/=/g, '%3D')
-            .replace(/&/g, '%26')}"
-        >
-          <Book {book} />
-        </BookLink>
-      {/each}
-    {/if}
+    {#each books as book}
+      <BookLink
+        href="add?title={book.title}&author={book.author}&img={book.img
+          .replace(/:/g, '%3A')
+          .replace(/\?/g, '%3F')
+          .replace(/=/g, '%3D')
+          .replace(/&/g, '%26')}"
+      >
+        <Book {book} />
+      </BookLink>
+    {/each}
   </BooksContainer>
 </Layout>
