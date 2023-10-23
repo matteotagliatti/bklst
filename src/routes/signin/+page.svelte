@@ -14,6 +14,11 @@
 
   async function submit() {
     loading = true;
+
+    if (form) {
+      form.errorMessage = undefined;
+      form.issues = undefined;
+    }
   }
 </script>
 
