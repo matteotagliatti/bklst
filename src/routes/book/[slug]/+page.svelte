@@ -6,9 +6,15 @@
   import Loader from "$lib/components/Loader.svelte";
   import LoaderIcon from "$lib/components/LoaderIcon.svelte";
   import Title from "$lib/components/Title.svelte";
+  import type { BookType } from "$lib/types.js";
+
+  export let form;
+  $: console.log(form);
+
   export let data;
   const { supabase, session, id } = data;
-  let book: any;
+
+  let book: BookType;
   let loading: boolean = false;
   let href: string = "/";
 
@@ -58,7 +64,7 @@
   {#await fetchBook()}
     <Loader />
   {:then}
-    <CreateEdit {supabase} {session} {book} edit={true}>
+    <CreateEdit {book} {form} edit={true}>
       <a
         href="#modal"
         class="flex h-[2.4rem] w-[5.5rem] items-center justify-center rounded-md border border-red-500 bg-red-500 px-5 py-2 text-sm text-white hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
@@ -113,8 +119,9 @@
               >
                 {#if loading}
                   <LoaderIcon />
+                {:else}
+                  Delete
                 {/if}
-                Delete
               </button>
             </div>
           </div>

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
   import type { BookType } from "$lib/types";
-  import type { Session, SupabaseClient } from "@supabase/supabase-js";
+  import type { ActionData } from "./$types";
+  import ErrorMessage from "./Form/ErrorMessage.svelte";
   import FormContainer from "./Form/FormContainer.svelte";
   import Hearth from "./Form/Hearth.svelte";
   import Input from "./Form/Input.svelte";
@@ -9,69 +9,17 @@
   import Label from "./Form/Label.svelte";
   import Submit from "./Form/Submit.svelte";
 
-  export let session: Session | null;
-  export let supabase: SupabaseClient;
+  export let form: ActionData;
   export let book: BookType;
   export let edit = false;
   let loading = false;
 
-  function handleFavorite() {
-    if (book.status !== "read") book.favorite = false;
-  }
-
-  async function updateBook() {
-    try {
-      loading = true;
-      handleFavorite();
-      if (!book.finished || book.status !== "read") book.finished = null;
-
-      book.updated_at = new Date().toISOString();
-
-      const { error } = await supabase
-        .from("books")
-        .update(book)
-        .eq("id", book.id);
-
-      if (error) {
-        console.log(error);
-      }
-
-      goto("/");
-      loading = false;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function addBook() {
-    try {
-      loading = true;
-      handleFavorite();
-
-      // it's impossibile that session is nullable here because of the middleware. Maybe i have to change the project structure with an [auth]
-      if (!session) {
-        goto("/");
-        return;
-      }
-
-      book.owner = session.user.id;
-      if (!book.finished || book.status !== "read") book.finished = null;
-
-      const { error } = await supabase.from("books").insert(book);
-
-      if (error) {
-        console.log(error);
-      }
-
-      goto("/");
-      loading = false;
-    } catch (error) {
-      console.log(error);
-    }
+  async function submit() {
+    loading = true;
   }
 </script>
 
-<FormContainer onSubmit={edit ? updateBook : addBook}>
+<FormContainer onSubmit={submit}>
   <div
     class="relative mb-2 flex items-center justify-center rounded-lg bg-neutral-100 p-10"
   >
@@ -86,43 +34,43 @@
       {/if}
     </div>
   </div>
-
-  <InputContainer>
-    <Label htmlFor="img-url">Img URL:</Label>
-    <Input
-      required={true}
-      type="text"
-      placeholder="https://example.com/image.jpg"
-      bind:value={book.img}
-    />
-  </InputContainer>
-  <InputContainer>
-    <Label htmlFor="title">Title</Label>
-    <Input
-      required={true}
-      type="text"
-      placeholder="Game of Thrones"
-      bind:value={book.title}
-    />
-  </InputContainer>
-  <InputContainer>
-    <Label htmlFor="author">Author</Label>
-    <Input
-      required={true}
-      type="text"
-      placeholder="George R. R. Martin"
-      bind:value={book.author}
-    />
-  </InputContainer>
+  <Input
+    id="img"
+    label="Img URL"
+    required={true}
+    type="text"
+    placeholder="https://example.com/image.jpg"
+    bind:value={book.img}
+  />
+  <Input
+    id="title"
+    label="Title"
+    required={true}
+    type="text"
+    placeholder="Game of Thrones"
+    bind:value={book.title}
+  />
+  <Input
+    id="author"
+    label="Author"
+    required={true}
+    type="text"
+    placeholder="George R. R. Martin"
+    bind:value={book.author}
+  />
   <InputContainer>
     <Label htmlFor="status">Status</Label>
     <select
+      id="status"
+      name="status"
       class="border-none py-0 pl-0 pr-8 text-sm focus-within:ring-0 focus:outline-none focus:ring-0"
       bind:value={book.status}
       on:change={() => {
         if (book.status === "read")
           book.finished = new Date().toISOString().split("T")[0];
         else book.finished = null;
+
+        if (book.status !== "read") book.favorite = false;
       }}
     >
       <option value="to-read">To Read</option>
@@ -134,6 +82,8 @@
     <InputContainer>
       <Label htmlFor="finished">Finished</Label>
       <input
+        id="finished"
+        name="finished"
         required
         type="date"
         class="border-none p-0 text-sm focus-within:ring-0 focus:outline-none focus:ring-0"
@@ -142,8 +92,11 @@
     </InputContainer>
   {/if}
 
-  <div class="mt-7 flex items-center gap-3">
+  <div class="mb-7 mt-7 flex items-center gap-3">
     <Submit value={edit ? `Update` : `Add`} bind:loading />
     <slot />
   </div>
+  {#if form?.issues || form?.errorMessage}
+    <ErrorMessage issues={form.issues} message={form.errorMessage} />
+  {/if}
 </FormContainer>
