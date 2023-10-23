@@ -1,7 +1,7 @@
 <script lang="ts">
-	export let htmlFor: string = 'test';
+  export let htmlFor: string;
 </script>
 
-<label class="w-28 text-sm text-neutral-400 shrink-0" for={htmlFor}>
-	<slot />
+<label class="w-28 shrink-0 text-sm text-neutral-400" for={htmlFor}>
+  <slot />
 </label>

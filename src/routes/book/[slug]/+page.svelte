@@ -61,7 +61,7 @@
     <CreateEdit {supabase} {session} {book} edit={true}>
       <a
         href="#modal"
-        class="flex h-10 w-24 items-center justify-center rounded-md border border-red-500 bg-red-500 px-5 py-2 text-sm text-white hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
+        class="flex h-[2.4rem] w-[5.5rem] items-center justify-center rounded-md border border-red-500 bg-red-500 px-5 py-2 text-sm text-white hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
       >
         <span>Delete</span>
       </a>

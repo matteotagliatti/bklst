@@ -33,7 +33,8 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.3.0",
-		"vitest": "^0.32.2"
+		"vitest": "^0.32.2",
+		"zod": "^3.22.4"
 	},
 	"type": "module",
 	"dependencies": {

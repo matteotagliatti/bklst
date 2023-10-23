@@ -1,5 +1,20 @@
 <script lang="ts">
-  export let message: string;
+  import type { ZodIssue } from "zod";
+
+  export let issues: ZodIssue[] | undefined;
+  export let message: string | undefined;
 </script>
 
-<p class="text-sm text-red-500">{message}</p>
+<div>
+  {#if issues}
+    {#each issues as { message, path }}
+      <p>
+        {String(path[0]).charAt(0).toUpperCase() + String(path[0]).slice(1)} -
+        {message}
+      </p>
+    {/each}
+  {/if}
+  {#if message}
+    <p class="text-sm text-red-500">{message}</p>
+  {/if}
+</div>
