@@ -70,6 +70,9 @@
       });
 
       loading = false;
+
+      const inputs = document.querySelectorAll("input");
+      inputs.forEach((input) => input.blur());
     } catch (error) {
       console.log(error);
     }
