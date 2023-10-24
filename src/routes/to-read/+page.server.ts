@@ -1,4 +1,5 @@
 import type { BookType } from "$lib/types";
+import { redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({
@@ -7,7 +8,7 @@ export const load: PageServerLoad = async ({
   const session = await getSession();
 
   if (!session) {
-    return;
+    throw redirect(303, "/");
   }
 
   const { data } = await supabase
