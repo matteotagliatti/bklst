@@ -11,7 +11,7 @@
 
 <Layout>
   <Header {session} />
-  <Title title="Read" description="The last books I've read." />
+  <Title mb="mb-0" title="Read" description="The last books I've read." />
   {#if books}
     <BooksContainer>
       {#each books as book}

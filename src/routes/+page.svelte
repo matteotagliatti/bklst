@@ -24,7 +24,11 @@
         </a>
       </div>
     {:else}
-      <Title title="Reading" description="Books I'm currently reading." />
+      <Title
+        mb="mb-0"
+        title="Reading"
+        description="Books I'm currently reading."
+      />
       {#if books}
         <BooksContainer>
           {#each books as book}
