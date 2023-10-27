@@ -46,7 +46,7 @@
 
 <Layout small={true}>
   <BackIcon {href} />
-  <Title title="Edit" description="Edit the books infos below." />
+  <Title title="Edit" description="Edit the book infos below." />
   {#await fetchBook()}
     <Loader />
   {:then}
