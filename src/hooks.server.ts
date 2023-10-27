@@ -2,26 +2,16 @@ import {
   PUBLIC_SUPABASE_ANON_KEY,
   PUBLIC_SUPABASE_URL,
 } from "$env/static/public";
-import { createServerClient } from "@supabase/ssr";
+import { createSupabaseServerClient } from "@supabase/auth-helpers-sveltekit";
 import type { Handle } from "@sveltejs/kit";
 import { redirect } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
-  event.locals.supabase = createServerClient(
-    PUBLIC_SUPABASE_URL,
-    PUBLIC_SUPABASE_ANON_KEY,
-    {
-      cookies: {
-        get: (key) => event.cookies.get(key),
-        set: (key, value, options) => {
-          event.cookies.set(key, value, options);
-        },
-        remove: (key, options) => {
-          event.cookies.delete(key, options);
-        },
-      },
-    }
-  );
+  event.locals.supabase = createSupabaseServerClient({
+    supabaseUrl: PUBLIC_SUPABASE_URL,
+    supabaseKey: PUBLIC_SUPABASE_ANON_KEY,
+    event,
+  });
 
   event.locals.getSession = async () => {
     const {
