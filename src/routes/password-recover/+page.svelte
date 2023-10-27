@@ -18,15 +18,16 @@
     if (form) {
       form.errorMessage = undefined;
       form.issues = undefined;
+      form.success = undefined;
     }
   }
 </script>
 
 <Layout small={true}>
-  <BackIcon href="/" />
+  <BackIcon href="/signin" />
   <Title
-    title="Login"
-    description="Sign in with the credential provided. If you don't have one, please contant via the button on the homepage."
+    title="Password Recover"
+    description="Recover the password with your email."
   />
   <FormContainer onSubmit={submit}>
     <Input
@@ -36,22 +37,17 @@
       label="Email"
       placeholder="yourname@email.com"
     />
-    <Input
-      id="password"
-      required={true}
-      type="password"
-      label="Password"
-      placeholder="Your password"
-    />
     <SubmitContainer>
-      <Submit value={"Sign In"} bind:loading />
+      <Submit value={"Send"} bind:loading />
       <div class="space-y-2">
-        <a
-          href="/password-recover"
-          class="text-sm text-neutral-400 hover:underline">Forgot password?</a
-        >
         {#if form?.errorMessage || form?.issues}
           <ErrorMessage message={form.errorMessage} issues={form.issues} />
+        {/if}
+        {#if form?.success}
+          <p class="text-sm text-neutral-400 hover:underline">
+            Check your email for the reset-password email from
+            mail.app.supabase.io
+          </p>
         {/if}
       </div>
     </SubmitContainer>

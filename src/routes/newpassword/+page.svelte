@@ -1,4 +1,4 @@
-<script lang="ts">
+<script type="ts">
   import BackIcon from "$lib/components/BackIcon.svelte";
   import ErrorMessage from "$lib/components/Form/ErrorMessage.svelte";
   import FormContainer from "$lib/components/Form/FormContainer.svelte";
@@ -12,12 +12,13 @@
 
   let loading = false;
 
-  async function submit() {
+  function submit() {
     loading = true;
 
     if (form) {
       form.errorMessage = undefined;
       form.issues = undefined;
+      form.success = undefined;
     }
   }
 </script>
@@ -25,33 +26,34 @@
 <Layout small={true}>
   <BackIcon href="/" />
   <Title
-    title="Login"
-    description="Sign in with the credential provided. If you don't have one, please contant via the button on the homepage."
+    title="Change Password"
+    description="Change the password filling the inputs below."
   />
   <FormContainer onSubmit={submit}>
     <Input
-      id="email"
-      required={true}
-      type="email"
-      label="Email"
-      placeholder="yourname@email.com"
-    />
-    <Input
-      id="password"
+      id="new"
       required={true}
       type="password"
-      label="Password"
-      placeholder="Your password"
+      label="New"
+      placeholder="********"
+    />
+    <Input
+      id="confirm"
+      required={true}
+      type="password"
+      label="Confirm"
+      placeholder="********"
     />
     <SubmitContainer>
-      <Submit value={"Sign In"} bind:loading />
+      <Submit value={"Change"} bind:loading />
       <div class="space-y-2">
-        <a
-          href="/password-recover"
-          class="text-sm text-neutral-400 hover:underline">Forgot password?</a
-        >
         {#if form?.errorMessage || form?.issues}
           <ErrorMessage message={form.errorMessage} issues={form.issues} />
+        {/if}
+        {#if form?.success}
+          <p class="text-sm text-neutral-400 hover:underline">
+            Password changed successfully.
+          </p>
         {/if}
       </div>
     </SubmitContainer>

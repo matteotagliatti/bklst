@@ -6,7 +6,7 @@
   import Layout from "$lib/components/Layout.svelte";
   import Title from "$lib/components/Title.svelte";
   export let data;
-  $: ({ session, books } = data);
+  const { session, books } = data;
 </script>
 
 <Layout>
