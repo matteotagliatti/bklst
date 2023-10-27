@@ -1,7 +1,5 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-  import { goto, invalidate } from "$app/navigation";
-  import { redirect } from "@sveltejs/kit";
+  import { invalidate } from "$app/navigation";
   import { onMount } from "svelte";
   import "../app.css";
   import type { LayoutData } from "./$types";
@@ -14,8 +12,7 @@
     const { data } = supabase.auth.onAuthStateChange(
       async (event, _session) => {
         if (event == "PASSWORD_RECOVERY") {
-          goto("/signin/newpassword");
-          alert("Go to /newpassword page!");
+          alert("Go to /signin/newpassword page!");
         }
 
         if (_session?.expires_at !== session?.expires_at) {
