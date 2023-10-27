@@ -1,7 +1,7 @@
 <script lang="ts">
   import LoaderIcon from "$lib/components/LoaderIcon.svelte";
 
-  export let value: string = "";
+  export let value: string;
   export let loading: boolean = false;
 </script>
 
