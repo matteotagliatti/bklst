@@ -22,7 +22,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   const url = event.url.pathname;
 
-  if (url !== "/signin" && url !== "/password-recover" && url !== "/") {
+  if (url !== "/signin" && url !== "/signin/password-recover" && url !== "/") {
     const session = await event.locals.getSession();
     if (!session) {
       throw redirect(303, "/");

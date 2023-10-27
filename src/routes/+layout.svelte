@@ -14,7 +14,7 @@
     const { data } = supabase.auth.onAuthStateChange(
       async (event, _session) => {
         if (event == "PASSWORD_RECOVERY") {
-          goto("/newpassword");
+          goto("/signin/newpassword");
           alert("Go to /newpassword page!");
         }
 

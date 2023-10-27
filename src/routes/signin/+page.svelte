@@ -47,7 +47,7 @@
       <Submit value={"Sign In"} bind:loading />
       <div class="space-y-2">
         <a
-          href="/password-recover"
+          href="/signin/password-recover"
           class="text-sm text-neutral-400 hover:underline">Forgot password?</a
         >
         {#if form?.errorMessage || form?.issues}
