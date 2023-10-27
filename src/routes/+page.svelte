@@ -95,7 +95,6 @@
           finished: "2023-07-22",
           favorite: true,
         }}
-        status={true}
       />
       <Book
         book={{
@@ -105,7 +104,6 @@
           status: "reading",
           favorite: false,
         }}
-        status={true}
       />
       <Book
         book={{
@@ -115,7 +113,6 @@
           status: "to-read",
           favorite: false,
         }}
-        status={true}
       />
       <Book
         book={{
@@ -125,7 +122,6 @@
           status: "to-read",
           favorite: false,
         }}
-        status={true}
       />
       <Book
         book={{
@@ -135,7 +131,6 @@
           status: "reading",
           favorite: true,
         }}
-        status={true}
       />
       <Book
         book={{
@@ -146,7 +141,6 @@
           finished: "2023-03-21",
           favorite: false,
         }}
-        status={true}
       />
     </BooksContainer>
   {/if}

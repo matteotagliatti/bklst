@@ -3,7 +3,6 @@
   import Hearth from "./Form/Hearth.svelte";
 
   export let book: BookType;
-  export let status: boolean = false;
 
   function formatDate(string: string) {
     return string.replace(/ .*/, "").slice(2);
@@ -34,9 +33,6 @@
     <div
       class="absolute bottom-3 left-3 right-3 text-right text-neutral-400 md:relative md:bottom-0 md:left-0 md:right-0"
     >
-      {#if status}
-        <small class="block text-sm">{book.status}</small>
-      {/if}
       {#if book.status === "read" && book.finished}
         <small class="block">{formatDate(book.finished)}</small>
       {/if}
