@@ -18,7 +18,7 @@ export const actions = {
     const { data: user, error } = await supabase.auth.resetPasswordForEmail(
       email,
       {
-        redirectTo: "http://localhost:5175/newpassword",
+        redirectTo: "https://bklst.matteotagliatti.it/signin/newpassword",
       }
     );
 
