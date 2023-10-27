@@ -12,7 +12,7 @@
     <a
       class="text-sm text-neutral-400 hover:underline {$page.route.id === '/'
         ? 'italic text-neutral-900 underline'
-        : null}"
+        : ''}"
       href="/"
     >
       {session ? "Reading" : "Index"}
@@ -22,7 +22,7 @@
         class="text-sm text-neutral-400 hover:underline {$page.route.id ===
         '/read'
           ? 'italic text-neutral-900 underline'
-          : null}"
+          : ''}"
         href="/read"
       >
         Read</a
@@ -31,7 +31,7 @@
         class="text-sm text-neutral-400 hover:underline {$page.route.id ===
         '/to-read'
           ? 'italic text-neutral-900 underline'
-          : null}"
+          : ''}"
         href="/to-read"
       >
         To Read</a
