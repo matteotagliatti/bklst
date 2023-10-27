@@ -15,7 +15,7 @@
 >
   {#if book.favorite}
     <div class="absolute right-3 top-3">
-      <Hearth disabled={true} id={book.id} bind:checked={book.favorite} />
+      <Hearth disabled={true} id="favorite" bind:checked={book.favorite} />
     </div>
   {/if}
 

@@ -31,7 +31,7 @@
     />
     <div class="absolute bottom-3 right-3">
       {#if book.status === "read"}
-        <Hearth id={book.id} bind:checked={book.favorite} />
+        <Hearth id="favorite" bind:checked={book.favorite} />
       {/if}
     </div>
   </div>
