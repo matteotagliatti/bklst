@@ -34,7 +34,6 @@ export const actions = {
       throw Error("Unauthorized");
     }
 
-    book.owner = session.user.id;
     book.updated_at = new Date().toISOString();
     if (!book.finished || book.status !== "read") book.finished = null;
 

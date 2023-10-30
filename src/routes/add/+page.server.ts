@@ -32,7 +32,6 @@ export const actions = {
       throw Error("Unauthorized");
     }
 
-    book.owner = session.user.id;
     if (!book.finished || book.status !== "read") book.finished = null;
 
     const { error } = await supabase.from("books").insert(book);
