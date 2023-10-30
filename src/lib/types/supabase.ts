@@ -79,6 +79,31 @@ export interface Database {
         }
         Relationships: []
       }
+      users: {
+        Row: {
+          id: string
+          updated_at: string | null
+          username: string
+        }
+        Insert: {
+          id: string
+          updated_at?: string | null
+          username: string
+        }
+        Update: {
+          id?: string
+          updated_at?: string | null
+          username?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "users_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never
