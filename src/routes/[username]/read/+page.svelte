@@ -6,11 +6,11 @@
   import Layout from "$lib/components/Layout.svelte";
   import Title from "$lib/components/Title.svelte";
   export let data;
-  const { session, books } = data;
+  const { session, books, username } = data;
 </script>
 
 <Layout>
-  <Header {session} />
+  <Header {session} {username} />
   <Title mb="mb-0" title="Read" description="The last books I've read." />
   {#if books}
     <BooksContainer>

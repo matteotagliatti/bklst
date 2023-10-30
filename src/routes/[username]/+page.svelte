@@ -6,11 +6,11 @@
   import Layout from "$lib/components/Layout.svelte";
   import Title from "$lib/components/Title.svelte";
   export let data;
-  const { session, books } = data;
+  const { session, books, username } = data;
 </script>
 
 <Layout>
-  <Header {session} />
+  <Header {session} {username} />
   {#if books?.length === 0}
     <div
       class="absolute bottom-7 left-0 right-0 flex justify-center lg:bottom-auto"
