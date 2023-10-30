@@ -1,6 +1,17 @@
 import type { BookUpdate } from "$lib/types";
 import { BookSchema } from "$lib/zodSchemas";
 import { fail, redirect } from "@sveltejs/kit";
+import type { PageServerLoad } from "./$types";
+
+export const load: PageServerLoad = async ({ url, locals: { getSession } }) => {
+  const session = await getSession();
+
+  if (!session) {
+    throw redirect(303, "/");
+  }
+
+  return { url: url.origin };
+};
 
 export const actions = {
   update: async ({ request, params, locals: { supabase, getSession } }) => {

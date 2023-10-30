@@ -4,7 +4,6 @@ import {
 } from "$env/static/public";
 import { createSupabaseServerClient } from "@supabase/auth-helpers-sveltekit";
 import type { Handle } from "@sveltejs/kit";
-import { redirect } from "@sveltejs/kit";
 
 export const handle: Handle = async ({ event, resolve }) => {
   event.locals.supabase = createSupabaseServerClient({
@@ -19,15 +18,6 @@ export const handle: Handle = async ({ event, resolve }) => {
     } = await event.locals.supabase.auth.getSession();
     return session;
   };
-
-  const url = event.url.pathname;
-
-  if (url !== "/signin" && url !== "/signin/password-recover" && url !== "/") {
-    const session = await event.locals.getSession();
-    if (!session) {
-      throw redirect(303, "/");
-    }
-  }
 
   return resolve(event, {
     filterSerializedResponseHeaders(name) {

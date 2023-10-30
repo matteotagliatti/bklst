@@ -1,5 +1,16 @@
-import { fail } from "@sveltejs/kit";
+import { fail, redirect } from "@sveltejs/kit";
 import { z } from "zod";
+import type { PageServerLoad } from "./$types";
+
+export const load: PageServerLoad = async ({ url, locals: { getSession } }) => {
+  const session = await getSession();
+
+  if (session) {
+    throw redirect(303, "/");
+  }
+
+  return { url: url.origin };
+};
 
 export const actions = {
   default: async ({ request, locals: { supabase } }) => {

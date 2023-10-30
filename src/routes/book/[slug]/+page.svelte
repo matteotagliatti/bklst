@@ -19,7 +19,7 @@
 
   async function fetchBook() {
     if (!session) {
-      goto("/login");
+      goto("/");
       return;
     }
 
