@@ -6,14 +6,14 @@
   import Loader from "$lib/components/Loader.svelte";
   import LoaderIcon from "$lib/components/LoaderIcon.svelte";
   import Title from "$lib/components/Title.svelte";
-  import type { BookType } from "$lib/types";
+  import type { Book } from "$lib/types/index";
 
   export let form;
 
   export let data;
   const { supabase, session, id } = data;
 
-  let book: BookType;
+  let book: Book;
   let loading: boolean = false;
   let href: string = "/";
 

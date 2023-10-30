@@ -6,8 +6,9 @@ export const load = (({ url }) => {
     const title = url.searchParams.get("title");
     const author = url.searchParams.get("author");
     const img = url.searchParams.get("img");
+    const owner = url.searchParams.get("owner");
 
-    if (!title || !author || !img) {
+    if (!title || !author || !img || !owner) {
       throw error(404, "Invalid request");
     }
 
@@ -17,6 +18,8 @@ export const load = (({ url }) => {
         author,
         img,
         favorite: false,
+        status: "to-read",
+        owner,
       },
     };
   }

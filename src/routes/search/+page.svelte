@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { goto } from "$app/navigation";
   import { PUBLIC_GOOGLE_API_KEY } from "$env/static/public";
   import BackIcon from "$lib/components/BackIcon.svelte";
   import Book from "$lib/components/Book.svelte";
@@ -12,9 +13,17 @@
   import Layout from "$lib/components/Layout.svelte";
   import Title from "$lib/components/Title.svelte";
   import searchBooks from "$lib/functions/search";
-  import type { BookType } from "$lib/types";
+  import type { BookInsert } from "$lib/types/index";
 
-  let books = [] as BookType[];
+  export let data;
+
+  const { session } = data;
+
+  if (!session) {
+    goto("/login");
+  }
+
+  let books = [] as BookInsert[];
   let loading = false;
   let errorMessage: string | null = null;
 
@@ -52,8 +61,11 @@
       if (res.data.totalItems === 0) {
         loading = false;
         errorMessage = "No books found.";
+        unblurAllInputs();
         return;
       }
+
+      unblurAllInputs();
 
       res.data.items = res.data.items.slice(0, 6);
 
@@ -70,12 +82,14 @@
       });
 
       loading = false;
-
-      const inputs = document.querySelectorAll("input");
-      inputs.forEach((input) => input.blur());
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function unblurAllInputs() {
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((input) => input.blur());
   }
 </script>
 
@@ -124,7 +138,7 @@
           .replace(/:/g, '%3A')
           .replace(/\?/g, '%3F')
           .replace(/=/g, '%3D')
-          .replace(/&/g, '%26')}"
+          .replace(/&/g, '%26')}&owner={session?.user.id}"
       >
         <Book {book} />
       </BookLink>

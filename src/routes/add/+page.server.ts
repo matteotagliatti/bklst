@@ -1,19 +1,25 @@
-import type { BookType } from "$lib/types.js";
+import type { BookInsert } from "$lib/types";
 import { BookSchema } from "$lib/zodSchemas.js";
 import { fail, redirect } from "@sveltejs/kit";
 
 export const actions = {
   add: async ({ request, locals: { supabase, getSession } }) => {
     const session = await getSession();
+
+    if (!session) {
+      throw redirect(303, "/");
+    }
+
     const formData = await request.formData();
 
-    const book: BookType = {
+    const book: BookInsert = {
       title: String(formData.get("title")),
       author: String(formData.get("author")),
       img: String(formData.get("img")),
       status: String(formData.get("status")),
       finished: String(formData.get("finished")),
       favorite: Boolean(formData.get("favorite")),
+      owner: session.user.id,
     };
 
     const safeParse = BookSchema.safeParse(book);

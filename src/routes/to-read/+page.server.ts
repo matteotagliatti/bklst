@@ -1,4 +1,4 @@
-import type { BookType } from "$lib/types";
+import type { Book } from "$lib/types";
 import { redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 
@@ -18,6 +18,6 @@ export const load: PageServerLoad = async ({
     .eq("status", "to-read")
     .order("updated_at", { ascending: false });
 
-  const books = data as BookType[];
+  const books = data as Book[];
   return { books };
 };

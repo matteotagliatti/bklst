@@ -1,4 +1,4 @@
-import type { BookType } from "$lib/types";
+import type { Book } from "$lib/types";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({
@@ -17,6 +17,6 @@ export const load: PageServerLoad = async ({
     .eq("status", "reading")
     .order("updated_at", { ascending: false });
 
-  const books = data as BookType[];
+  const books = data as Book[];
   return { books };
 };

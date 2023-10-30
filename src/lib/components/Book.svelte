@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { BookType } from "../types";
+  import type { BookUpdate } from "../types/index";
   import Hearth from "./Form/Hearth.svelte";
 
-  export let book: BookType;
+  export let book: BookUpdate;
 
   function formatDate(string: string) {
     return string.replace(/ .*/, "").slice(2);

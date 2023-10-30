@@ -1,5 +1,5 @@
 <script lang="ts">
-  import type { BookType } from "$lib/types";
+  import type { BookInsert } from "$lib/types/index";
   import type { ActionData } from "../../routes/add/$types";
 
   import ErrorMessage from "./Form/ErrorMessage.svelte";
@@ -11,7 +11,7 @@
   import Submit from "./Form/Submit.svelte";
 
   export let form: ActionData;
-  export let book: BookType;
+  export let book: BookInsert;
   export let edit = false;
   let loading = false;
 
@@ -35,7 +35,7 @@
       alt={book.title}
     />
     <div class="absolute bottom-3 right-3">
-      {#if book.status === "read"}
+      {#if book.status === "read" && book.favorite !== undefined}
         <Hearth id="favorite" bind:checked={book.favorite} />
       {/if}
     </div>
