@@ -1,5 +1,5 @@
-import type { BookInsert } from "$lib/types";
-import { BookSchema } from "$lib/zodSchemas.js";
+import type { BookUpdate } from "$lib/types";
+import { BookSchema } from "$lib/zodSchemas";
 import { fail, redirect } from "@sveltejs/kit";
 
 export const actions = {
@@ -13,7 +13,7 @@ export const actions = {
     const formData = await request.formData();
     const id = params.slug;
 
-    const book: BookInsert = {
+    const book: BookUpdate = {
       id: Number(id),
       title: String(formData.get("title")),
       author: String(formData.get("author")),

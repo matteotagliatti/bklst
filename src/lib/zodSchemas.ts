@@ -6,11 +6,12 @@ export const UserSchema = z.object({
 });
 
 export const BookSchema = z.object({
-  id: z.string().optional(),
+  id: z.number().optional(),
   title: z.string().min(1).max(255),
   author: z.string().min(1).max(255),
   img: z.string().url(),
   status: z.enum(["read", "reading", "to-read"]),
   finished: z.string().nullable(),
   favorite: z.boolean(),
+  owner: z.string(),
 });

@@ -1,5 +1,5 @@
 import type { BookInsert } from "$lib/types";
-import { BookSchema } from "$lib/zodSchemas.js";
+import { BookSchema } from "$lib/zodSchemas";
 import { fail, redirect } from "@sveltejs/kit";
 
 export const actions = {
