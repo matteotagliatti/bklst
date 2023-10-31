@@ -1,19 +1,17 @@
-import get_username from "$lib/functions/get_username";
+import get_userid_from_username from "$lib/functions/get_userid_from_username";
 import type { Book } from "$lib/types";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({
   params: { username },
-  locals: { supabase, getSession },
+  locals: { supabase },
 }) => {
-  const session = await getSession();
-
-  const user_id = await get_username(supabase, session, username);
+  const user_id = await get_userid_from_username(supabase, username);
 
   const { data } = await supabase
     .from("books")
     .select()
-    .eq("owner", session ? session.user.id : user_id)
+    .eq("owner", user_id)
     .eq("status", "read")
     .order("updated_at", { ascending: false });
 
