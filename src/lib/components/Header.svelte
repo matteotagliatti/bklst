@@ -14,28 +14,28 @@
       {#if username}
         <a
           class="text-sm text-neutral-400 hover:underline {$page.route.id ===
-          `${username}/`
+          `/[username]`
             ? 'italic text-neutral-900 underline'
             : ''}"
-          href={`${username}/`}
+          href={`/${username}/`}
         >
           Reading
         </a>
         <a
           class="text-sm text-neutral-400 hover:underline {$page.route.id ===
-          `${username}/read`
+          `/[username]/read`
             ? 'italic text-neutral-900 underline'
             : ''}"
-          href={`${username}/read`}
+          href={`/${username}/read`}
         >
           Read</a
         >
         <a
           class="text-sm text-neutral-400 hover:underline {$page.route.id ===
-          `${username}/to-read`
+          `/[username]/to-read`
             ? 'italic text-neutral-900 underline'
             : ''}"
-          href={`${username}/to-read`}
+          href={`/${username}/to-read`}
         >
           To Read</a
         >
