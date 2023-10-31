@@ -5,14 +5,14 @@
   import Layout from "$lib/components/Layout.svelte";
 
   export let data;
-  const { session } = data;
+  const { session, username } = data;
 </script>
 
 <Layout>
   <Header {session} username={null} home={true}>
     <a
       class="text-sm italic text-neutral-900 underline hover:underline"
-      href="/"
+      href={username ? `/${username}/` : "/"}
     >
       Index
     </a>

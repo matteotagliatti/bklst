@@ -10,13 +10,17 @@ export const load: PageServerLoad = async ({
     return;
   }
 
-  const { data } = await supabase
-    .from("books")
+  const { data, error } = await supabase
+    .from("users")
     .select()
-    .eq("owner", session.user.id)
-    .eq("status", "reading")
-    .order("updated_at", { ascending: false });
+    .eq("id", session.user.id)
+    .single();
 
-  const books = data as Book[];
-  return { books };
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return {
+    username: data.username as string,
+  };
 };
