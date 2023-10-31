@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { goto } from "$app/navigation";
   import { PUBLIC_GOOGLE_API_KEY } from "$env/static/public";
   import BackIcon from "$lib/components/BackIcon.svelte";
   import Book from "$lib/components/Book.svelte";
@@ -18,10 +17,6 @@
   export let data;
 
   const { session } = data;
-
-  if (!session) {
-    goto("/login");
-  }
 
   let books = [] as BookInsert[];
   let loading = false;
@@ -94,7 +89,7 @@
 </script>
 
 <Layout small={true}>
-  <BackIcon href="/" />
+  <BackIcon />
   <Title
     title="Search"
     description="Search for a book and add it to your booklist. Complete at least one field."

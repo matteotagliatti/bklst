@@ -12,7 +12,7 @@
 </script>
 
 <Layout small={true}>
-  <BackIcon href="/search" />
+  <BackIcon />
   <Title title="Add a book" description="You can edit the infos below." />
   <CreateEdit {form} {book} />
 </Layout>

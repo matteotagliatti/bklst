@@ -27,7 +27,7 @@ export const actions = {
       return fail(400, { issues: safeParse.error.issues });
     }
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: user.email,
       password: user.password,
     });
@@ -38,6 +38,18 @@ export const actions = {
       };
     }
 
-    throw redirect(303, "/");
+    const { data: user_data, error: user_error } = await supabase
+      .from("users")
+      .select()
+      .eq("id", data?.user?.id)
+      .single();
+
+    if (user_error) {
+      return {
+        errorMessage: user_error.message,
+      };
+    }
+
+    throw redirect(303, `/${user_data?.username}`);
   },
 };

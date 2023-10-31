@@ -4,6 +4,7 @@
 
   export let session: Session | null;
   export let username: string | null;
+  export let home = false;
 </script>
 
 <header
@@ -44,9 +45,15 @@
   </nav>
   <nav class="flex justify-center gap-4">
     {#if session}
-      <a class="text-sm text-neutral-400 hover:underline" href="/search">
-        Search</a
-      >
+      {#if !home}
+        <a
+          class="text-sm text-neutral-400 hover:underline"
+          href={`/${username}/search`}
+        >
+          Search</a
+        >
+      {/if}
+
       <form
         method="post"
         class="text-sm text-neutral-400 hover:underline"

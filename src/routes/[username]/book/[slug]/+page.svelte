@@ -15,7 +15,6 @@
 
   let book: Book;
   let loading: boolean = false;
-  let href: string = "/";
 
   async function fetchBook() {
     if (!session) {
@@ -35,7 +34,6 @@
       return;
     }
 
-    if (data.status !== "reading") href = `/${data.status}`;
     book = data;
   }
 
@@ -45,7 +43,7 @@
 </script>
 
 <Layout small={true}>
-  <BackIcon {href} />
+  <BackIcon />
   <Title title="Edit" description="Edit the book infos below." />
   {#await fetchBook()}
     <Loader />

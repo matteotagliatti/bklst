@@ -3,10 +3,13 @@
   import BooksContainer from "$lib/components/BooksContainer.svelte";
   import Header from "$lib/components/Header.svelte";
   import Layout from "$lib/components/Layout.svelte";
+
+  export let data;
+  const { session } = data;
 </script>
 
 <Layout>
-  <Header session={null} username={null}>
+  <Header {session} username={null} home={true}>
     <a
       class="text-sm italic text-neutral-900 underline hover:underline"
       href="/"

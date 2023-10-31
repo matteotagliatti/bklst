@@ -32,7 +32,7 @@
       <BooksContainer>
         {#each books as book}
           {#if session}
-            <BookLink href="/book/{book.id}">
+            <BookLink href="/{username}/book/{book.id}">
               <Book {book} />
             </BookLink>
           {:else}

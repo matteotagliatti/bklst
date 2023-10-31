@@ -1,4 +1,4 @@
-import type { BookUpdate } from "$lib/types";
+import type { BookInsert } from "$lib/types";
 import { BookSchema } from "$lib/zodSchemas";
 import { fail, redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ url, locals: { getSession } }) => {
 };
 
 export const actions = {
-  update: async ({ request, params, locals: { supabase, getSession } }) => {
+  add: async ({ params, request, locals: { supabase, getSession } }) => {
     const session = await getSession();
 
     if (!session) {
@@ -22,10 +22,8 @@ export const actions = {
     }
 
     const formData = await request.formData();
-    const id = params.slug;
 
-    const book: BookUpdate = {
-      id: Number(id),
+    const book: BookInsert = {
       title: String(formData.get("title")),
       author: String(formData.get("author")),
       img: String(formData.get("img")),
@@ -45,13 +43,9 @@ export const actions = {
       throw Error("Unauthorized");
     }
 
-    book.updated_at = new Date().toISOString();
     if (!book.finished || book.status !== "read") book.finished = null;
 
-    const { error } = await supabase
-      .from("books")
-      .update(book)
-      .eq("id", book.id);
+    const { error } = await supabase.from("books").insert(book);
 
     if (error) {
       return {
@@ -59,22 +53,11 @@ export const actions = {
       };
     }
 
-    throw redirect(303, `/${book.status !== "reading" ? book.status : ""}`);
-  },
-  delete: async ({ request, params, locals: { supabase } }) => {
-    const id = params.slug;
-    const formData = await request.formData();
+    const { username } = params;
 
-    const redirectPath = String(formData.get("status"));
-
-    const { error } = await supabase.from("books").delete().eq("id", id);
-
-    if (error) {
-      return {
-        errorMessage: error.message,
-      };
-    }
-
-    throw redirect(303, `/${redirectPath !== "reading" ? redirectPath : ""}`);
+    throw redirect(
+      303,
+      `/${username}/${book.status !== "reading" ? book.status : ""}`
+    );
   },
 };
