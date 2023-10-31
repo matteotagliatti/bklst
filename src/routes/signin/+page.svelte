@@ -23,7 +23,7 @@
 </script>
 
 <Layout small={true}>
-  <BackIcon href="/" />
+  <BackIcon />
   <Title
     title="Login"
     description="Sign in with the credential provided. If you don't have one, please contant via the button on the homepage."
