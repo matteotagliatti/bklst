@@ -105,7 +105,8 @@
         title: "Fellowship of the Ring",
         author: "J.R.R. Tolkien",
         img: "http://books.google.com/books/content?id=xFr92V2k3PIC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-        status: "reading",
+        status: "read",
+        finished: "2023-03-21",
         favorite: true,
       }}
     />
@@ -114,8 +115,7 @@
         title: "Fire & Blood",
         author: "George R.R. Martin",
         img: "http://books.google.com/books/content?id=Mj5XDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api",
-        status: "read",
-        finished: "2023-03-21",
+        status: "reading",
         favorite: false,
       }}
     />
