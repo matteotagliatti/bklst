@@ -33,6 +33,6 @@
   />
 </svelte:head>
 
-<div class="app">
+<div class="app font-inter">
   <slot />
 </div>
