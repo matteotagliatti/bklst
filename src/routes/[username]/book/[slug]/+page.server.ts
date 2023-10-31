@@ -1,4 +1,3 @@
-import { username } from "$lib/stores/username";
 import type { BookUpdate } from "$lib/types";
 import { BookSchema } from "$lib/zodSchemas";
 import { fail, redirect } from "@sveltejs/kit";
