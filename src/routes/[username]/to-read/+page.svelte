@@ -6,18 +6,22 @@
   import Layout from "$lib/components/Layout.svelte";
   import Title from "$lib/components/Title.svelte";
   export let data;
-  const { session, books } = data;
+  const { session, books, username } = data;
 </script>
 
 <Layout>
-  <Header {session} />
+  <Header {session} {username} />
   <Title mb="mb-0" title="To Read" description="Books to read in the future." />
   {#if books}
     <BooksContainer>
       {#each books as book}
-        <BookLink href="/book/{book.id}">
+        {#if session}
+          <BookLink href="/book/{book.id}">
+            <Book {book} />
+          </BookLink>
+        {:else}
           <Book {book} />
-        </BookLink>
+        {/if}
       {/each}
     </BooksContainer>
   {/if}

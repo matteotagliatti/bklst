@@ -15,9 +15,13 @@
   {#if books}
     <BooksContainer>
       {#each books as book}
-        <BookLink href="/book/{book.id}">
+        {#if session}
+          <BookLink href="/book/{book.id}">
+            <Book {book} />
+          </BookLink>
+        {:else}
           <Book {book} />
-        </BookLink>
+        {/if}
       {/each}
     </BooksContainer>
   {/if}
