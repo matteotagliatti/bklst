@@ -24,7 +24,7 @@
 </script>
 
 <Layout small={true}>
-  <BackIcon href="/signin" />
+  <BackIcon />
   <Title
     title="Password Recover"
     description="Recover the password with your email."

@@ -24,7 +24,7 @@
 </script>
 
 <Layout small={true}>
-  <BackIcon href="/" />
+  <BackIcon />
   <Title
     title="Change Password"
     description="Change the password filling the inputs below."

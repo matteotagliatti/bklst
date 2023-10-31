@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { BookInsert } from "$lib/types/index";
-  import type { ActionData } from "../../routes/add/$types";
+  import type { ActionData } from "../../routes/[username]/add/$types";
 
   import ErrorMessage from "./Form/ErrorMessage.svelte";
   import FormContainer from "./Form/FormContainer.svelte";
