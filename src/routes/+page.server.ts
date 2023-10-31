@@ -1,4 +1,3 @@
-import type { Book } from "$lib/types";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({
