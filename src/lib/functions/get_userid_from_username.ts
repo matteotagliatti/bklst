@@ -1,8 +1,9 @@
-import type { Session, SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "$lib/types/supabase";
+import type { SupabaseClient } from "@supabase/supabase-js";
 import { redirect } from "@sveltejs/kit";
 
 export default async function get_userid_from_username(
-  supabase: SupabaseClient,
+  supabase: SupabaseClient<Database>,
   username: string
 ) {
   const { data, error } = await supabase
