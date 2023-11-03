@@ -11,10 +11,6 @@
   onMount(() => {
     const { data } = supabase.auth.onAuthStateChange(
       async (event, _session) => {
-        if (event == "PASSWORD_RECOVERY") {
-          alert("Go to /signin/newpassword page!");
-        }
-
         if (_session?.expires_at !== session?.expires_at) {
           invalidate("supabase:auth");
         }
