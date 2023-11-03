@@ -1,7 +1,8 @@
 import type { EmailOtpType } from "@supabase/supabase-js";
 import { redirect } from "@sveltejs/kit";
+import type { RequestEvent } from "../../$types";
 
-export const GET = async (event) => {
+export const GET = async (event: RequestEvent) => {
   const {
     url,
     locals: { supabase },
