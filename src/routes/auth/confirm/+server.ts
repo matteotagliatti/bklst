@@ -2,6 +2,11 @@ import type { EmailOtpType } from "@supabase/supabase-js";
 import { redirect } from "@sveltejs/kit";
 import type { RequestEvent } from "../../$types";
 
+/**
+ *
+ * @param event
+ * @description API Endoint for confirming email OTP, useful for  Magic Link and Password Recovery
+ */
 export const GET = async (event: RequestEvent) => {
   const {
     url,
