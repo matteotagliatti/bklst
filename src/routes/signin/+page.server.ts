@@ -34,7 +34,7 @@ export const actions = {
 
     if (error) {
       return {
-        errorMessage: error.message,
+        errorMessage: error.message as string,
       };
     }
 
@@ -46,7 +46,7 @@ export const actions = {
 
     if (user_error) {
       return {
-        errorMessage: user_error.message,
+        errorMessage: user_error.message as string,
       };
     }
 
