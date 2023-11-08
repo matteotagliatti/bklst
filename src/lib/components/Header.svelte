@@ -50,12 +50,8 @@
       >
         Search</a
       >
-      <form
-        method="post"
-        class="text-neutral-400 text-sm hover:underline"
-        action="/logout"
-      >
-        <button>Logout</button>
+      <form method="post" class="text-neutral-400 text-sm" action="/logout">
+        <button class="hover:underline">Logout</button>
       </form>
     {:else}
       <a class="text-neutral-400 text-sm hover:underline" href="/signin">
