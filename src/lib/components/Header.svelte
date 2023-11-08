@@ -4,7 +4,6 @@
 
   export let session: Session | null;
   export let username: string | null;
-  export let home = false;
 </script>
 
 <header
@@ -12,9 +11,9 @@
 >
   <nav class="flex justify-center gap-4">
     <slot>
-      {#if username}
+      {#if username && session}
         <a
-          class="text-sm text-neutral-400 hover:underline {$page.route.id ===
+          class="text-neutral-400 text-sm hover:underline {$page.route.id ===
           `/[username]`
             ? 'italic text-neutral-900 underline'
             : ''}"
@@ -23,7 +22,7 @@
           Reading
         </a>
         <a
-          class="text-sm text-neutral-400 hover:underline {$page.route.id ===
+          class="text-neutral-400 text-sm hover:underline {$page.route.id ===
           `/[username]/read`
             ? 'italic text-neutral-900 underline'
             : ''}"
@@ -32,7 +31,7 @@
           Read</a
         >
         <a
-          class="text-sm text-neutral-400 hover:underline {$page.route.id ===
+          class="text-neutral-400 text-sm hover:underline {$page.route.id ===
           `/[username]/to-read`
             ? 'italic text-neutral-900 underline'
             : ''}"
@@ -45,24 +44,21 @@
   </nav>
   <nav class="flex justify-center gap-4">
     {#if session}
-      {#if !home}
-        <a
-          class="text-sm text-neutral-400 hover:underline"
-          href={`/${username}/search`}
-        >
-          Search</a
-        >
-      {/if}
-
+      <a
+        class="text-neutral-400 text-sm hover:underline"
+        href={`/${username}/search`}
+      >
+        Search</a
+      >
       <form
         method="post"
-        class="text-sm text-neutral-400 hover:underline"
+        class="text-neutral-400 text-sm hover:underline"
         action="/logout"
       >
         <button>Logout</button>
       </form>
     {:else}
-      <a class="text-sm text-neutral-400 hover:underline" href="/signin">
+      <a class="text-neutral-400 text-sm hover:underline" href="/signin">
         Sign In
       </a>
     {/if}
