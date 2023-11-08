@@ -25,7 +25,6 @@ export const actions = {
     const { slug: id } = params;
 
     const book: BookUpdate = {
-      id: Number(id),
       title: String(formData.get("title")),
       author: String(formData.get("author")),
       img: String(formData.get("img")),
@@ -48,10 +47,7 @@ export const actions = {
     book.updated_at = new Date().toISOString();
     if (!book.finished || book.status !== "read") book.finished = null;
 
-    const { error } = await supabase
-      .from("books")
-      .update(book)
-      .eq("id", book.id);
+    const { error } = await supabase.from("books").update(book).eq("id", id);
 
     if (error) {
       return {
