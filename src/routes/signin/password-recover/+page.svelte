@@ -10,15 +10,9 @@
 
   export let form;
 
-  let loading = false;
-
-  async function submit() {
-    loading = true;
-
+  function submit() {
     if (form) {
-      form.errorMessage = undefined;
-      form.issues = undefined;
-      form.success = undefined;
+      form = null;
     }
   }
 </script>
@@ -37,19 +31,19 @@
       label="Email"
       placeholder="yourname@email.com"
     />
-    <SubmitContainer>
-      <Submit value={"Send"} bind:loading />
-      <div class="space-y-2">
-        {#if form?.errorMessage || form?.issues}
-          <ErrorMessage message={form.errorMessage} issues={form.issues} />
-        {/if}
-        {#if form?.success}
-          <p class="text-neutral-400 text-sm hover:underline">
-            Check your email for the reset-password email from
-            mail.app.supabase.io
-          </p>
-        {/if}
-      </div>
-    </SubmitContainer>
+    <svelte:fragment slot="submit" let:loading>
+      <SubmitContainer>
+        <Submit value={"Send"} {loading} />
+        <div class="space-y-2">
+          <ErrorMessage message={form?.errorMessage} issues={form?.issues} />
+          {#if form?.success}
+            <p class="text-neutral-400 text-sm hover:underline">
+              Check your email for the reset-password email from
+              mail.app.supabase.io
+            </p>
+          {/if}
+        </div>
+      </SubmitContainer>
+    </svelte:fragment>
   </FormContainer>
 </Layout>

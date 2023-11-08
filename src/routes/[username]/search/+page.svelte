@@ -94,7 +94,7 @@
     title="Search"
     description="Search for a book and add it to your booklist. Complete at least one field."
   />
-  <FormContainer onSubmit={fetchBooks}>
+  <form class="mb-12 flex flex-col md:max-w-md" on:submit={fetchBooks}>
     <Input
       id="title"
       label="Title"
@@ -125,7 +125,7 @@
         <ErrorMessage message={errorMessage} />
       {/if}
     </SubmitContainer>
-  </FormContainer>
+  </form>
   <BooksContainer cols={2}>
     {#each books as book}
       <BookLink

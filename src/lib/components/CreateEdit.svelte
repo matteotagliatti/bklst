@@ -13,14 +13,10 @@
   export let form: ActionData;
   export let book: BookInsert;
   export let edit = false;
-  let loading = false;
 
   async function submit() {
-    loading = true;
-
     if (form) {
-      form.errorMessage = undefined;
-      form.issues = undefined;
+      form = null;
     }
   }
 </script>
@@ -97,12 +93,13 @@
       />
     </InputContainer>
   {/if}
-
-  <div class="mb-7 mt-7 flex items-center gap-3">
-    <Submit value={edit ? `Update` : `Add`} bind:loading />
-    <slot />
-  </div>
-  {#if form?.issues || form?.errorMessage}
-    <ErrorMessage issues={form.issues} message={form.errorMessage} />
-  {/if}
+  <svelte:fragment slot="submit" let:loading>
+    <div class="mb-7 mt-7 flex items-center gap-3">
+      <Submit value={edit ? `Update` : `Add`} {loading} />
+      <slot {loading} />
+    </div>
+    {#if form?.issues || form?.errorMessage}
+      <ErrorMessage issues={form.issues} message={form.errorMessage} />
+    {/if}
+  </svelte:fragment>
 </FormContainer>

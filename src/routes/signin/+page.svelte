@@ -10,14 +10,9 @@
 
   export let form;
 
-  let loading = false;
-
-  async function submit() {
-    loading = true;
-
+  function submit() {
     if (form) {
-      form.errorMessage = undefined;
-      form.issues = undefined;
+      form = null;
     }
   }
 </script>
@@ -43,17 +38,17 @@
       label="Password"
       placeholder="Your password"
     />
-    <SubmitContainer>
-      <Submit value={"Sign In"} bind:loading />
-      <div class="space-y-2">
-        <a
-          href="/signin/password-recover"
-          class="text-neutral-400 text-sm hover:underline">Forgot password?</a
-        >
-        {#if form?.errorMessage || form?.issues}
-          <ErrorMessage message={form.errorMessage} issues={form.issues} />
-        {/if}
-      </div>
-    </SubmitContainer>
+    <svelte:fragment slot="submit" let:loading>
+      <SubmitContainer>
+        <Submit value={"Sign In"} {loading} />
+        <div class="space-y-2">
+          <a
+            href="/signin/password-recover"
+            class="text-neutral-400 text-sm hover:underline">Forgot password?</a
+          >
+          <ErrorMessage issues={form?.issues} message={form?.errorMessage} />
+        </div>
+      </SubmitContainer>
+    </svelte:fragment>
   </FormContainer>
 </Layout>
