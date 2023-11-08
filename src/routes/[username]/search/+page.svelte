@@ -16,7 +16,7 @@
 
   export let data;
 
-  const { session } = data;
+  const { session, username } = data;
 
   let books = [] as BookInsert[];
   let loading = false;
@@ -89,7 +89,7 @@
 </script>
 
 <Layout small={true}>
-  <BackIcon />
+  <BackIcon href="/{username}" />
   <Title
     title="Search"
     description="Search for a book and add it to your booklist. Complete at least one field."

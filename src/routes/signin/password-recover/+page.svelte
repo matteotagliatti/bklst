@@ -24,7 +24,7 @@
 </script>
 
 <Layout small={true}>
-  <BackIcon />
+  <BackIcon href="/signin" />
   <Title
     title="Password Recover"
     description="Recover the password with your email."
@@ -44,7 +44,7 @@
           <ErrorMessage message={form.errorMessage} issues={form.issues} />
         {/if}
         {#if form?.success}
-          <p class="text-sm text-neutral-400 hover:underline">
+          <p class="text-neutral-400 text-sm hover:underline">
             Check your email for the reset-password email from
             mail.app.supabase.io
           </p>

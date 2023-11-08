@@ -11,7 +11,7 @@
   export let form;
 
   export let data;
-  const { supabase, session, id } = data;
+  const { supabase, session, id, username } = data;
 
   let book: Book;
   let loading: boolean = false;
@@ -40,10 +40,37 @@
   function deleteBook() {
     loading = true;
   }
+
+  function goBack() {
+    window.history.back();
+  }
 </script>
 
 <Layout small={true}>
-  <BackIcon />
+  <button on:click={goBack} class="mb-5 block">
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M6 3L2 7L6 11"
+        stroke="#A3A3A3"
+        stroke-width="1.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M2 7H9.2C11.8509 7 14 9.23863 14 12"
+        stroke="#A3A3A3"
+        stroke-width="1.2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
   <Title title="Edit" description="Edit the book infos below." />
   {#await fetchBook()}
     <Loader />
@@ -51,7 +78,7 @@
     <CreateEdit {book} {form} edit={true}>
       <a
         href="#modal"
-        class="flex h-[2.4rem] w-[5.5rem] items-center justify-center rounded-md border border-red-500 bg-red-500 px-5 py-2 text-sm text-white hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
+        class="flex h-[2.4rem] w-[5.5rem] items-center justify-center rounded-md border border-red-500 bg-red-500 px-5 py-2 text-white text-sm hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
       >
         <span>Delete</span>
       </a>
@@ -85,7 +112,7 @@
                 />
               </svg>
               <p class="text-sm">Are you sure?</p>
-              <p class="text-sm text-neutral-400">
+              <p class="text-neutral-400 text-sm">
                 Click on delete to confirm.
               </p>
             </div>
@@ -98,7 +125,7 @@
                 Cancel
               </a>
               <button
-                class="flex w-full items-center justify-center gap-2 rounded-md border border-red-500 bg-red-500 px-5 py-2 text-center text-sm text-white hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
+                class="flex w-full items-center justify-center gap-2 rounded-md border border-red-500 bg-red-500 px-5 py-2 text-center text-white text-sm hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
                 on:click={deleteBook}
                 formaction="?/delete"
               >

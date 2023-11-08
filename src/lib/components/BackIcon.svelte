@@ -1,12 +1,8 @@
 <script lang="ts">
-  import { browser } from "$app/environment";
-
-  function goBack() {
-    if (browser) window.history.back();
-  }
+  export let href: string;
 </script>
 
-<button on:click={goBack} class="mb-5 block">
+<a {href} class="mb-5 block">
   <svg
     width="16"
     height="16"
@@ -29,4 +25,4 @@
       stroke-linejoin="round"
     />
   </svg>
-</button>
+</a>

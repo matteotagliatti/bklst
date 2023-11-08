@@ -24,7 +24,7 @@
 </script>
 
 <Layout small={true}>
-  <BackIcon />
+  <BackIcon href="/" />
   <Title
     title="Change Password"
     description="Change the password filling the inputs below."
@@ -51,7 +51,7 @@
           <ErrorMessage message={form.errorMessage} issues={form.issues} />
         {/if}
         {#if form?.success}
-          <p class="text-sm text-neutral-400 hover:underline">
+          <p class="text-neutral-400 text-sm hover:underline">
             Password changed successfully.
           </p>
         {/if}

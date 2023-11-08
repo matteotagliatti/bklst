@@ -8,11 +8,11 @@
 
   export let form: ActionData;
   export let data;
-  const { book } = data;
+  const { book, username } = data;
 </script>
 
 <Layout small={true}>
-  <BackIcon />
+  <BackIcon href="/{username}/search" />
   <Title title="Add a book" description="You can edit the infos below." />
   <CreateEdit {form} {book} />
 </Layout>

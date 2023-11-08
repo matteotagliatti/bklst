@@ -23,7 +23,7 @@
 </script>
 
 <Layout small={true}>
-  <BackIcon />
+  <BackIcon href="/" />
   <Title
     title="Login"
     description="Sign in with the credential provided. If you don't have one, please contant via the button on the homepage."
@@ -48,7 +48,7 @@
       <div class="space-y-2">
         <a
           href="/signin/password-recover"
-          class="text-sm text-neutral-400 hover:underline">Forgot password?</a
+          class="text-neutral-400 text-sm hover:underline">Forgot password?</a
         >
         {#if form?.errorMessage || form?.issues}
           <ErrorMessage message={form.errorMessage} issues={form.issues} />

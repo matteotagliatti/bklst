@@ -6,7 +6,7 @@
 </script>
 
 <Layout>
-  <BackIcon />
+  <BackIcon href="/" />
   <Title
     title={String($page.status)}
     description={$page.error ? $page.error.message : "Unspecified error"}
