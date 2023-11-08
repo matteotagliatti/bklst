@@ -11,7 +11,7 @@
   export let form;
 
   export let data;
-  const { supabase, session, id, username } = data;
+  const { supabase, session, id } = data;
 
   let book: Book;
   let loading: boolean = false;
@@ -31,6 +31,7 @@
 
     if (error) {
       console.log(error);
+      goto("/");
       return;
     }
 
