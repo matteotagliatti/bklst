@@ -1,3 +1,4 @@
+import { redirect } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({
@@ -19,7 +20,5 @@ export const load: PageServerLoad = async ({
     throw new Error(error.message);
   }
 
-  return {
-    username: data.username as string,
-  };
+  throw redirect(303, `/${data.username}`);
 };

@@ -5,14 +5,14 @@
   import Layout from "$lib/components/Layout.svelte";
 
   export let data;
-  const { session, username } = data;
+  const { session } = data;
 </script>
 
 <Layout>
-  <Header {session} username={null} home={true}>
+  <Header {session} username={null}>
     <a
-      class="text-sm italic text-neutral-900 underline hover:underline"
-      href={username ? `/${username}/` : "/"}
+      class="italic text-neutral-900 underline text-sm hover:underline"
+      href="/"
     >
       Index
     </a>
@@ -22,7 +22,7 @@
       Your <span class="italic">simple</span> and
       <br /> <span class="italic">personal</span> booklist
     </h1>
-    <p class="mb-5 text-sm text-neutral-400">
+    <p class="mb-5 text-neutral-400 text-sm">
       A very simple way to keep track of the books you read. No social media
       functions, no ads, no tracking. Just you and your books in a very clean
       interface. Forever{" "}
