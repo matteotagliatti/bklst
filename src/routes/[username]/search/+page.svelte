@@ -46,14 +46,14 @@
         return;
       }
 
-      const res = await searchBooks(
+      const data = await searchBooks(
         PUBLIC_GOOGLE_API_KEY,
         inputValues.title,
         inputValues.author,
         inputValues.isbn
       );
 
-      if (res.data.totalItems === 0) {
+      if (data.totalItems === 0) {
         loading = false;
         errorMessage = "No books found.";
         unblurAllInputs();
@@ -62,9 +62,9 @@
 
       unblurAllInputs();
 
-      res.data.items = res.data.items.slice(0, 6);
+      data.items = data.items.slice(0, 6);
 
-      books = res.data.items.map((book: any) => {
+      books = data.items.map((book: any) => {
         return {
           title: book.volumeInfo.title,
           author: book.volumeInfo.authors

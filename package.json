@@ -40,7 +40,6 @@
 	"type": "module",
 	"dependencies": {
 		"@supabase/ssr": "^0.0.6",
-		"@supabase/supabase-js": "^2.22.0",
-		"axios": "^1.4.0"
+		"@supabase/supabase-js": "^2.22.0"
 	}
 }
