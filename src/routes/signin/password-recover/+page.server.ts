@@ -27,10 +27,7 @@ export const actions = {
     }
 
     const { data: user, error } = await supabase.auth.resetPasswordForEmail(
-      email,
-      {
-        redirectTo: "https://bklst.matteotagliatti.it/signin/newpassword",
-      }
+      email
     );
 
     if (error) {

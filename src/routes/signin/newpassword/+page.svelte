@@ -51,9 +51,7 @@
           <ErrorMessage message={form.errorMessage} issues={form.issues} />
         {/if}
         {#if form?.success}
-          <p class="text-neutral-400 text-sm hover:underline">
-            Password changed successfully.
-          </p>
+          <p class="text-neutral-400 text-sm">Password changed successfully.</p>
         {/if}
       </div>
     </SubmitContainer>
