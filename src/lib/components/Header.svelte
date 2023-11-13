@@ -11,7 +11,7 @@
 >
   <nav class="flex justify-center gap-4">
     <slot>
-      {#if username && session}
+      {#if username}
         <a
           class="text-neutral-400 text-sm hover:underline {$page.route.id ===
           `/[username]`
