@@ -36,10 +36,25 @@
 
     book = data;
   }
+
+  function setStatusLink(status: string) {
+    switch (status) {
+      case "read":
+        return "read";
+      case "reading":
+        return "";
+      case "to-read":
+        return "to-read";
+      default:
+        return "";
+    }
+  }
 </script>
 
 <Layout small={true}>
-  <BackIcon href={book ? `/${username}/${book.status}` : `/${username}`} />
+  <BackIcon
+    href={book ? `/${username}/${setStatusLink(book.status)}` : `/${username}`}
+  />
   <Title title="Edit" description="Edit the book infos below." />
   {#await fetchBook()}
     <Loader />
