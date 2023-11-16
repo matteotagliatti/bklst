@@ -11,35 +11,18 @@
 
 <Layout>
   <Header {session} {username} />
-  {#if books?.length === 0}
-    <div
-      class="absolute bottom-7 left-0 right-0 flex justify-center lg:bottom-auto"
-    >
-      <a
-        href="/search"
-        class="h-fit w-fit rounded-md border border-neutral-200 px-5 py-2 text-sm hover:cursor-pointer hover:border-neutral-300"
-      >
-        Add a book you're reading
-      </a>
-    </div>
-  {:else}
-    <Title
-      mb="mb-0"
-      title="Reading"
-      description="Books I'm currently reading."
-    />
-    {#if books}
-      <BooksContainer>
-        {#each books as book}
-          {#if session}
-            <BookLink href="/{username}/book/{book.id}">
-              <Book {book} />
-            </BookLink>
-          {:else}
+  <Title mb="mb-0" title="Reading" description="Books I'm currently reading." />
+  {#if books}
+    <BooksContainer>
+      {#each books as book}
+        {#if session}
+          <BookLink href="/{username}/book/{book.id}">
             <Book {book} />
-          {/if}
-        {/each}
-      </BooksContainer>
-    {/if}
+          </BookLink>
+        {:else}
+          <Book {book} />
+        {/if}
+      {/each}
+    </BooksContainer>
   {/if}
 </Layout>
