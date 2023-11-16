@@ -1,5 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation";
+  import BackIcon from "$lib/components/BackIcon.svelte";
   import CreateEdit from "$lib/components/CreateEdit.svelte";
   import Layout from "$lib/components/Layout.svelte";
   import Loader from "$lib/components/Loader.svelte";
@@ -10,7 +11,7 @@
   export let form;
 
   export let data;
-  const { supabase, session, id } = data;
+  const { supabase, session, id, username } = data;
 
   let book: Book;
 
@@ -35,37 +36,10 @@
 
     book = data;
   }
-
-  function goBack() {
-    window.history.back();
-  }
 </script>
 
 <Layout small={true}>
-  <button on:click={goBack} class="mb-5 block">
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M6 3L2 7L6 11"
-        stroke="#A3A3A3"
-        stroke-width="1.2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-      <path
-        d="M2 7H9.2C11.8509 7 14 9.23863 14 12"
-        stroke="#A3A3A3"
-        stroke-width="1.2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-  </button>
+  <BackIcon href={book ? `/${username}/${book.status}` : `/${username}`} />
   <Title title="Edit" description="Edit the book infos below." />
   {#await fetchBook()}
     <Loader />
