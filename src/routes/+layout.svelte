@@ -29,6 +29,6 @@
   />
 </svelte:head>
 
-<div class="app font-inter">
+<div class="app">
   <slot />
 </div>
