@@ -5,6 +5,7 @@ export const GET: RequestHandler = async ({ url, locals: { supabase } }) => {
   const username = String(url.searchParams.get("username"));
   const status = String(url.searchParams.get("status"));
   const limit = Number(url.searchParams.get("limit") || 10);
+  const order = String(url.searchParams.get("order") || "updated_at");
 
   if (!username) {
     throw error(400, "username is required");
@@ -29,7 +30,7 @@ export const GET: RequestHandler = async ({ url, locals: { supabase } }) => {
     .select()
     .eq("owner", user.id)
     .eq("status", status)
-    .order("finished", { ascending: false })
+    .order(order, { ascending: false })
     .limit(limit);
 
   if (books_error) throw error;
