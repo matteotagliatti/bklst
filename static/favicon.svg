@@ -1,12 +1,16 @@
 <svg
-                    viewBox="0 0 60 68"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      clipRule="evenodd"
-                      d="M59.1667 67.3332H51.5487L32.9465 48.731C31.3193 47.1039 28.6811 47.1039 27.0539 48.731L8.45178 67.3332L0.833328 67.3333V3.66667C0.833328 2.00982 2.17647 0.666672 3.83333 0.666672H56.1667C57.8235 0.666672 59.1667 2.00982 59.1667 3.66667V67.3332Z"
-                      fill="black"
-                    />
-                  </svg>
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path
+                    d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"
+                  /><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path
+                    d="M3 6l0 13"
+                  /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg
+                >
