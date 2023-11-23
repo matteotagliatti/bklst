@@ -63,7 +63,7 @@
       <svelte:fragment let:loading>
         <a
           href="#modal"
-          class="flex h-[2.4rem] w-[5.5rem] items-center justify-center rounded-md border border-red-500 bg-red-500 px-5 py-2 text-white text-sm hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
+          class="flex h-[2.4rem] w-[5.5rem] items-center justify-center rounded-md border border-red-500 bg-red-500 px-5 py-2 text-sm text-white hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
         >
           <span>Delete</span>
         </a>
@@ -84,20 +84,24 @@
             <div class="p-8">
               <div class="mb-8">
                 <svg
-                  class="mb-4 h-5 w-5"
-                  viewBox="0 0 60 68"
-                  fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  class="mb-4 h-6 w-6"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="2"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path
+                    d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0"
+                  /><path d="M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0" /><path
+                    d="M3 6l0 13"
+                  /><path d="M12 6l0 13" /><path d="M21 6l0 13" /></svg
                 >
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M59.1667 67.3332H51.5487L32.9465 48.731C31.3193 47.1039 28.6811 47.1039 27.0539 48.731L8.45178 67.3332L0.833328 67.3333V3.66667C0.833328 2.00982 2.17647 0.666672 3.83333 0.666672H56.1667C57.8235 0.666672 59.1667 2.00982 59.1667 3.66667V67.3332Z"
-                    fill="black"
-                  />
-                </svg>
                 <p class="text-sm">Are you sure?</p>
-                <p class="text-neutral-400 text-sm">
+                <p class="text-sm text-neutral-400">
                   Click on delete to confirm.
                 </p>
               </div>
@@ -110,7 +114,7 @@
                   Cancel
                 </a>
                 <button
-                  class="flex w-full items-center justify-center gap-2 rounded-md border border-red-500 bg-red-500 px-5 py-2 text-center text-white text-sm hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
+                  class="flex w-full items-center justify-center gap-2 rounded-md border border-red-500 bg-red-500 px-5 py-2 text-center text-sm text-white hover:cursor-pointer hover:border-red-600 hover:bg-red-600"
                   formaction="?/delete"
                 >
                   {#if loading}
