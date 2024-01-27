@@ -6,3 +6,4 @@
 /blob-report/
 /playwright/.cache/
 /tests/user.json
+.vercel
